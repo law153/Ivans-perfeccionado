@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <!-- Bootstrap CSS-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    
+    <!--Javascript-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+    <!--Diseño propio-->
+    <link rel="stylesheet" type="text/css" href="../../css/barra.css">
+    <link rel="stylesheet" type="text/css" href="../../css/formularios.css">
+</head>
+<body>
+    <div class="container-fluid">
+
+        <!--Encabezado-->
+        <div class="row header-container">
+
+            <div class="col-md-1">
+                <img class="logo" src="../../img/icono.png" alt="Imagen no disponible">
+            </div>
+
+            <div class="col-md-1 header-container__name-container">
+                <a href="../index.html">IVAN'S</a>
+            </div>
+
+            <div class="col-md-6 col-sm-12">
+                <form name="busqueda" method="GET" id="busqueda" >
+
+                    <div class="contenedor_buscar">
+
+                        <div class="header-container__search-container">
+                            <input id="Barra-buscar" type="text" placeholder="Buscar..">
+                        </div>
+
+                        <div class="header-container__button-container">
+                            <input type="submit" name="boton" id="buscar" value="Buscar">
+                        </div>
+
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="col-md-4 header-container__ul-container">
+                <ul>
+                    <li><a href="nosotros.html">NOSOTROS</a></li> 
+                    <li><a href="registrarse.html">REGISTRARSE</a></li> 
+                    <li><a href="inicio-sesion.html">INICIAR SESIÓN</a></li> 
+                 </ul>
+            </div>
+        </div>
+
+        <!--Navegación-->
+        <div class="row">
+            <nav class="navbar navbar-expand-lg contenedor_nav">
+                <div class="nav-container">
+
+                    <div class="col-md-12 col-sm-12 col-lg-12 ">
+                        <button class="navbar-toggler boton-nav" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                
+                            <ul class="navbar-nav">
+                            <li class="nav-item"><a class="nav-link links" href="Herramientas.html">HERRAMIENTAS</a></li> 
+                            <li class="nav-item"><a class="nav-link links" href="gasfiteria.html">GASFITERIA</a></li> 
+                            <li class="nav-item"><a class="nav-link links" href="electricidad.html">ELECTRICIDAD</a></li> 
+                            <li class="nav-item"><a class="nav-link links" href="seguridad.html">SEGURIDAD</a></li> 
+                            <li class="nav-item"><a class="nav-link links" href="ropa.html">ROPA Y PROTECCIÓN</a></li> 
+                            <li class="nav-item"><a class="nav-link links" href="fijaciones.html">FIJACIONES</a></li> 
+                            <li class="nav-item"><a class="nav-link links ultimo" href="kits.html">KITS</a></li> 
+                            </ul>
+                
+                        </div>
+                    </div>
+
+
+                </div>
+            </nav>
+        </div>
+
+    </div>
+
+    <div class="container posicion">
+
+        <div class="row">
+            <div class="col-md-4"></div>
+
+            <div class="col-md-4 ajustado-posicion">
+                <h1>Cree su cuenta</h1>
+
+                <form id="registro" class="posicion-casillas-formulario" action="#" method="post" enctype="application/x-www-form-urlencoded">
+
+                    <div class="form-group left">
+                        <label for="rut">rut:</label><br>
+                        <input type="text" id="rut" name="rut" placeholder="Rut" style="width: 40%;">
+                        <label for="guion">-</label>
+                        <input type="text" id="dvrut" name="dvrut" style="width: 15%;" min="0" max="9">
+                        <label for="aclaracion" style="font-size: 12px;">Anote su rut sin puntos ni guión, si termina en k digite 0</label>
+                        <p id="alerta_rut" class="alerta"></p><br>
+                    </div>
+                    
+                    <div class="form-group left">
+                        <label for="nombre">Nombre:</label><br>
+                        <input type="text" id="nombre" name="nombre" placeholder="Nombre"><br>
+                        <p id="alerta_nombre" class="alerta"></p><br>
+                    </div>
+
+                    <div class="form-group left">
+                        <label for="Apellido">Apellido:</label><br>
+                        <input type="text" id="apellido" name="apellido" placeholder="Apellido"><br>
+                        <p id="alerta_apellido" class="alerta"></p><br>
+                    </div>
+
+                    <div class="form-group left">
+                        <label for="telefono">Teléfono:</label><br>
+                        <label for="inicio">9</label>
+                        <input type="tel" id="fono" name="fono" placeholder="Teléfono"><br>
+                        <p id="alerta_telefono" class="alerta"></p><br>
+                    </div>
+
+                    <div class="form-group left">
+                        <label for="direccion">Dirección:</label><br>
+                        <input type="text" id="direc" name="direc" placeholder="Dirección"><br>
+                        <p id="alerta_direccion" class="alerta"></p><br>
+                    </div>
+
+                    <div class="form-group left">
+                        <label for="correo_reg">Correo Electrónico:</label><br>
+                        <input type="email" id="correo" name="correo_reg" placeholder="Correo"><br>
+                        <p id="alerta_correo" class="alerta"></p><br>
+                    </div>
+                    <div class="form-group left">
+                        <label for="contra_ini">Contraseña:</label><br>
+                        <input type="password" id="contra" name="contra_ini" placeholder="Contraseña"><br>
+                        <p id="alerta_contra" class="alerta"></p><br>
+                    </div>
+                    <div class="form-group left">
+                        <label for="contra_confirm">Confirmar Contraseña:</label><br>
+                        <input type="password" id="contra_confirm" name="contra_confirm" placeholder="Repetir contraseña"><br>
+                        <p class="alerta" id="alerta-conf"></p><br>
+                    </div>
+
+                    <div class="form-group container-button">
+                        <input type="submit" value="Confirmar" id="btn-confirmar">
+                    </div>
+                </form> 
+            </div>
+
+            <div class="col-md-4"></div>
+
+        </div>
+
+    </div>
+
+    <!--JS-->
+   
+    <script src="../../js/registrarse.js"></script>
+    
+</body>
+</html>
