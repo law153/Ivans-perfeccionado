@@ -1,0 +1,147 @@
+.container-fluid{
+    margin-bottom: 0;
+}
+
+.container{
+    height: 70vh;
+    margin-top: -30%;
+    margin-bottom: 5%;
+}
+
+.contenedor-padre{
+    height: 100%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.contenedor-img{
+    width: 40%;
+    height: 100%;
+    object-fit: cover;
+    border: 2px solid #000;
+    background: #fff;
+}
+
+.contenedor-img > img{
+    width: 100%;
+    height: 100%;
+}
+
+.contenedor-img-k{
+    width: 40%;
+    height: 100%;
+    object-fit: cover;
+    border: 2px solid #000;
+}
+
+.contenedor-img-k > img{
+    width: 100%;
+    height: 100%;
+}
+
+.contenedor-texto{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    width: 50%;
+}
+
+.contenedor-texto > h1{
+    margin-bottom: 5%;
+}
+
+.contenedor-boton{
+    height: 18%;
+    width: 40%;
+    margin-top: 5%;
+}
+
+.contenedor-precio{
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.contenedor-boton > button{
+    height: 100%;
+    width: 100%;
+    border-radius: 15px;
+    background: #ff0;
+    color: #000;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.contenedor-boton > button:hover{
+    color: #000;
+    background: #aa0;
+}
+
+@media (max-width: 576px){
+
+    .container-fluid{
+        margin-bottom: 0;
+    }
+    
+    .container{
+        height: 100vh;
+        text-align: center;
+    }
+
+    .contenedor-img{
+        width: 60%;
+        height: 40%;
+        margin: auto;
+    }
+
+    .contenedor-img-k{
+        width: 60%;
+        height: 30%;
+        margin: auto;
+    }
+
+    .contenedor-texto{
+        text-align: left;
+        margin: auto;
+        margin-top: 2%;
+    }
+
+    .contenedor-boton{
+        height: 10%;
+        width: 100%;
+        margin-top: 5%;
+    }
+
+    .contenedor-texto > p{
+        text-align: left;
+    }
+
+
+}
+
+@media screen and (min-width: 520px) and (max-width: 576px){
+    
+    .container{
+        height: 100vh;
+        margin-top: -50%;
+    }
+}
+
+/*Medium*/
+@media screen and (min-width: 577px) and (max-width: 768px){
+
+
+
+}
+/*Large*/
+@media screen and (min-width: 769px) and (max-width: 992px){
+
+    
+
+}
+/*Extra Large*/
+@media screen and (min-width: 993px) and (max-width: 1200px){
+
+
+
+}

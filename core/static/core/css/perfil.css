@@ -1,0 +1,118 @@
+.container-fluid{
+    margin-bottom: 0;
+}
+
+.container{
+    height: 70vh;
+    margin-bottom: 5%;
+}
+
+.contenedor__perfil-texto{
+    display: inline-block;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 6%;
+    font-size: 18px;
+}
+
+label{
+    font-weight: bold;
+}
+
+.contenedor__perfil-foto{
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    display: flex;
+    align-items: center;
+    margin-left: 34%;
+}
+
+.contenedor__perfil-foto > img{
+    width: 100%;
+    height: 100%;
+}
+
+.contenedor-boton{
+    margin-bottom: 2%;
+
+}
+
+.contenedor-boton > button{
+    height: 40px;
+    width: 70px;
+    border-radius: 15px;
+    background: #000;
+    color: #ddd;
+    font-size: 13px;
+}
+
+.contenedor-boton > button:hover{
+    color: #fff;
+    background: #000;
+}
+
+.contenedor__perfil-form{
+    display: inline-block;
+    flex-direction: column;
+    align-items: center;
+    font-size: 18px;
+    margin-bottom: 2%;
+    margin-left: 28%;
+}
+
+.editar{
+    margin-left: 0;
+}
+
+.contenedor__perfil-foto-e{
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    display: flex;
+    align-items: center;
+    margin-left: 10%;
+}
+
+.contenedor__perfil-foto-e > img{
+    width: 100%;
+    height: 100%;
+}
+
+@media (max-width: 576px){
+
+    .contenedor__perfil-foto{
+        margin:auto;
+        
+    }
+
+    .contenedor__perfil-foto-e{
+        margin:auto;
+    }
+
+
+    .contenedor__perfil-form{
+        margin-left: 0;
+    }
+
+}
+
+
+/*Medium*/
+@media screen and (min-width: 577px) and (max-width: 768px){
+
+
+
+}
+/*Large*/
+@media screen and (min-width: 769px) and (max-width: 992px){
+
+
+
+}
+/*Extra Large*/
+@media screen and (min-width: 993px) and (max-width: 1200px){
+
+
+
+}

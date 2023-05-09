@@ -1,0 +1,115 @@
+.container-fluid{
+    margin-bottom: 0;
+}
+
+.container{
+    height: 100vh;
+    margin-top: -30%;
+    
+}
+
+.container-extra{
+    display: flex;
+    align-items: center;
+    bottom: 0%;
+    height: 100%;
+}
+
+.container-titulo{
+    padding-top: 5%;
+    text-align: center;
+}
+
+.container-form{
+    height: 70%;
+    width: 50%;
+    margin-right: 0%;
+    border: 2px solid #000;
+    background: #ff0;
+    color: #000;
+}
+
+#mensaje{
+    height: 100%;
+    width: 80%;
+}
+
+.container-map{
+    height: 70%;
+    width: 50%;
+    right: 0%;
+    margin-left: 0%;
+    text-align: right;
+    border: 2px solid #000;
+    background: #ff0;
+}
+
+#mapa{
+    height: 80%;
+    width: 90%;
+}
+
+.alerta{
+    color: #a33;
+    font-size: 15px;
+}
+
+@media (max-width: 576px){
+
+    .container-fluid{
+        margin-bottom: 0;
+    }
+    
+    .container{
+        height: 100vh;
+    }
+
+    .container-titulo{
+        height: 5%;
+        margin-bottom: -30%;
+    }
+
+    .container-extra{
+        margin-top: 15%;
+    }
+
+    .container-form{
+        height: 60%;
+        width: 100%;
+        
+    }
+
+    .container-map{
+        height: 50%;
+        width: 100%;
+    }
+    
+}
+
+@media screen and (min-width: 520px) and (max-width: 576px){
+    
+    .container{
+        height: 100vh;
+        margin-top: -50%;
+    }
+}
+
+/*Medium*/
+@media screen and (min-width: 577px) and (max-width: 768px){
+
+
+
+}
+/*Large*/
+@media screen and (min-width: 769px) and (max-width: 992px){
+
+
+
+}
+/*Extra Large*/
+@media screen and (min-width: 993px) and (max-width: 1200px){
+
+
+
+}
+

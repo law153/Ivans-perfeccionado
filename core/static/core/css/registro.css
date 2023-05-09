@@ -1,0 +1,39 @@
+/*Buscando manera de centrar los textos y casillas al centro*/
+
+.ajustado-posicion_registro{
+    text-align: center;
+}
+.posicion-casillas-formulario_registro{
+    text-align: right;
+    display: inline;
+}
+
+.estilo-titulo > h1{
+    font-weight: lighter;
+}
+
+.estilo-labels_registro{
+    font-size: 15px;
+    letter-spacing: 1px;
+
+}
+
+
+/*Medium*/
+@media screen and (min-width: 577px) and (max-width: 768px){
+
+
+
+}
+/*Large*/
+@media screen and (min-width: 769px) and (max-width: 992px){
+
+
+
+}
+/*Extra Large*/
+@media screen and (min-width: 993px) and (max-width: 1200px){
+
+
+
+}

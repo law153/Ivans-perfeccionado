@@ -1,0 +1,413 @@
+@import url(https://fonts.googleapis.com/css2?family=Bebas+Neue);
+@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap);
+
+*{
+    font-family: 'Bebas Neue';
+    
+}
+
+input, textarea{
+    font-family: 'Roboto';
+    
+}
+
+/**Encabezado **/
+
+.container-fluid{
+    height: 0px;
+}
+
+.header-container{
+    background: #000;
+    display: flex;
+    align-items: center;
+    height: 15%;
+}
+
+.logo{
+    width: 100%;
+    max-width: 100px;
+    height: 100%;
+    max-height: 100px;
+    padding: 5px;
+    
+}
+
+
+.header-container__name-container > a{
+    color: #fff;
+    text-decoration: none;
+    font-size: 38px;
+}
+
+.contenedor_buscar{
+    display: flex;
+    width: 100%;
+    height: 40px;
+}
+
+.header-container__search-container{
+    width: 80%;
+    height: 100%;
+}
+
+.header-container__search-container >  input{
+    border-radius: 15px;
+    width: 100%;
+    height: 100%;
+    font-size: 20px;
+}
+
+.header-container__button-container{
+    width: 20%;
+    height: 100%;
+    
+}   
+
+.header-container__button-container > input{
+    height: 100%;
+    width: 100%;
+    border-radius: 15px;
+    background: #ff0;
+    color: #000;
+    font-weight: bold;
+    font-size: 20px;
+    font-family: 'Bebas Neue'
+}
+
+.header-container__button-container > input:hover{
+    color: #000;
+    background: #cc0;
+}
+
+
+
+
+.header-container__ul-container{
+    color: #fff;
+}
+
+.header-container__ul-container > ul{
+    list-style-type: none;
+}
+
+.header-container__ul-container > ul > li{
+    display: inline;
+    border-right: 2px solid #fff;
+    padding: 4px;
+    font-size: 25px;
+}
+
+.header-container__ul-container > ul > li:last-child{
+    padding: 4px;
+    border: none;
+}
+
+.header-container__ul-container > ul > li > a{
+    color: #fff;
+}
+
+/**Navegación**/
+
+.contenedor_nav{
+    background: #ff0;
+    margin: auto;
+    width: 100%;
+}
+
+.boton-nav{
+    background: #000;
+
+}
+
+.categorias-contenedor{
+    color: #000;
+}
+
+.categorias-contenedor > li{
+    color: #000;
+
+}
+
+.links{
+    color: #000;
+    font-weight: bold;
+    font-size: 40px;
+    border-right: 5px solid #880;
+}
+
+.ultimo{
+    border-right: none;
+}
+
+.links:hover{
+    background: #880;
+    color: #000;
+}
+
+
+.active{
+    background: #880;
+}
+
+/**Cuerpo**/
+
+.body-container-main{
+    background: #900;
+    background-image: url(../img/Fondo.jpg);
+    color: #fff;
+}
+
+.body-container__p-container{
+    padding-top: 10%;
+    padding-left: 10%;
+    padding-bottom: 5%;
+}
+
+.body-container__p-container > h2{
+    font-weight: bold;
+    font-size: 80px;
+    letter-spacing: 10px;
+    text-shadow: 8px 2px 2px #000;
+}
+
+.body-container__p-container > p{
+    font-size: 40px;
+    color: #ff0;
+    text-shadow: 6px 2px 2px #000;
+}
+
+.no-editable{
+    background: #aaa;
+    text-align: center;
+}
+
+.container-fluid{
+    min-height: 100vh;
+}
+
+.boton-contenedor{
+    width: 200px;
+    height: 80px;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.boton{
+    height: 100%;
+    width: 100%;
+    border-radius: 20px;
+    background: #000;
+    color: #fff;
+    font-weight: bold;
+    font-size: 15px;
+    font-family: 'Bebas Neue';
+    border: 2px solid #fff;
+    font-size: 25px;
+}
+
+.boton:hover{
+    color: #aaa;
+    background: #000;
+}
+
+.bajo_main{
+    background: #000;
+    color: #fff;
+
+}
+
+.tabla-contenedor{
+    width: 100%;
+    height: 100%;
+}
+
+.tabla{
+    color: #000;
+    background: #ff0;
+    margin: auto;
+    font-size: 30px;
+    width: 30%;
+    height: 100%;
+    text-align: center;
+    border-radius: 20px;
+    margin-bottom: 2%;
+}
+
+.tabla > img{
+    border-radius: 20px;
+}
+
+#leyenda{
+    font-size: 30px;
+    text-align: center;
+    color: #fff;
+}
+
+.cli-foto{
+    border-radius: 70px;
+    border: 2px solid #000;
+}
+
+.nombre-cli{
+    font-size: 25px;
+}
+
+/**Medida small**/
+@media screen and (min-width: 0px) and (max-width: 576px){
+
+    *{
+        text-align: center;
+    }
+
+    .header-container{
+        background: #000;
+        display: flex;
+        align-items: center;
+        height: 50%;
+
+    }
+
+    .nav-container{
+       
+        font-size: 20px;
+        
+    }
+
+    .contenedor_buscar{
+        display: inline;
+    }
+
+    .header-container__button-container{
+        text-align: center;
+        margin-bottom: 2%; 
+        margin: auto;
+    }
+    
+    .header-container__search-container{
+        margin: auto;
+    }
+
+    .header-container__ul-container > ul > li{
+        font-size: 18px;
+    }
+
+    .body-container__p-container > h2{
+        font-size: 50px;
+    }
+    
+    .body-container__p-container > p{
+        font-size: 30px;
+    }
+
+    .body-container-main{
+        background-size: cover;
+        background-image: url(../img/Fondo.jpg);
+        background-repeat: repeat;
+    }
+
+    .body-container__p-container{
+        padding-top: 50%;
+        padding-left: 10%;
+    }
+
+    .container-fluid{
+        background: #fff;
+    }
+
+    .links{
+        font-size: 20px;
+        border-bottom: 5px solid #880;
+        border-right: none;
+        text-align: left;
+    }
+
+    .ultimo{
+        border-bottom: none;
+    }
+
+    .boton{
+        font-size: 20px;
+    }
+
+    .tabla{
+        font-size: 15px;
+        width: 80%;
+    }
+    
+
+
+}
+
+/*Medium*/
+@media screen and (min-width: 577px) and (max-width: 768px){
+
+
+
+}
+/*Large*/
+@media screen and (min-width: 769px) and (max-width: 992px){
+
+    .header-container__name-container > a{
+        font-size: 33px;
+    }
+
+    .header-container__search-container >  input{
+        border-radius: 15px;
+        font-size: 30px;
+    }
+
+    .header-container__button-container > input{
+        font-size: 25px;
+    }
+
+    .header-container__ul-container > ul > li{
+        display: inline;
+        border-right: 2px solid #fff;
+        padding: 4px;
+        font-size: 20px;
+    }
+
+    .nav-container{
+        
+        height: 20%;
+        font-size: 30px;
+        text-align: center;
+    }
+
+}
+/*Extra Large*/
+@media screen and (min-width: 993px) and (max-width: 1400px){
+
+    .header-container__name-container > a{
+        font-size: 33px;
+    }
+
+    .header-container__search-container >  input{
+        border-radius: 15px;
+        font-size: 30px;
+    }
+
+    .header-container__button-container > input{
+        font-size: 25px;
+    }
+
+    .header-container__ul-container > ul > li{
+        display: inline;
+        border-right: 2px solid #fff;
+        padding: 4px;
+        font-size: 20px;
+    }
+
+    .nav-container{
+        
+        height: 20%;
+        font-size: 30px;
+        text-align: center;
+    }
+
+}
+
+
+

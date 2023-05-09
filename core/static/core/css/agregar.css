@@ -1,0 +1,58 @@
+.cuerpo{
+    border-right: 2px solid #000;
+    border-left: 2px solid #000;
+}
+
+
+
+.contenedor__atributo{
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.contenedor__atributo > textarea{
+   height: 100px;
+}
+
+.id{
+    width: 10%;
+}
+
+.nombre{
+    width: 50%;
+}
+
+.contenedor__precio > input{
+    width: 15%;
+}
+
+.descripcion{
+    width: 70%;
+    height: 100%;
+    
+}
+
+.precio{
+    width: 20%;
+}
+
+.stock{
+    width: 10%;
+}
+
+
+
+.boton{
+    height: 50px;
+    width: 20%;
+    border-radius: 15px;
+    background: #ff0;
+    color: #000;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.boton:hover{
+    color: #000;
+    background: #cc0;
+}

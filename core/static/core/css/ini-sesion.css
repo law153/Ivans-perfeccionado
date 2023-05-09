@@ -1,0 +1,22 @@
+/*Buscando manera de centrar los textos y casillas al centro*/
+
+
+.ajustado-posicion{
+    text-align: center;
+    margin-top: 20%;
+}
+.posicion-casillas-formulario{
+    text-align: right;
+    display: inline-block;
+}
+
+.estilo-titulo > h1{
+    font-weight: bold;
+    font-size: 40px ;
+}
+
+.estilo-labels{
+    font-size: 15px;
+    letter-spacing: 1px;
+
+}
