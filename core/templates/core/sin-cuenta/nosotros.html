@@ -13,7 +13,7 @@
     <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
     <!--Diseño propio-->
     <link rel="stylesheet" type="text/css" href="{% static  'core/css/barra.css'%}">
-    <link rel="stylesheet" type="text/css" href="../../css/nosotros.css">
+    <link rel="stylesheet" type="text/css" href="{% static  'core/css/nosotros.css'%}">
 </head>
 <body>
     <div class="container-fluid">
@@ -22,7 +22,7 @@
         <div class="row header-container">
 
             <div class="col-md-1">
-                <img class="logo" src="../../img/icono.png" alt="Imagen no disponible">
+                <img class="logo" src="{% static 'core/img/icono.png'%}" alt="Imagen no disponible">
             </div>
 
             <div class="col-md-1 header-container__name-container">
@@ -49,7 +49,7 @@
 
             <div class="col-md-4 header-container__ul-container">
                 <ul>
-                    <li><a href="nosotros.html">NOSOTROS</a></li> 
+                    <li><a href="{% url 'mostrarNosotros' %}">NOSOTROS</a></li> 
                     <li><a href="registrarse.html">REGISTRARSE</a></li> 
                     <li><a href="inicio-sesion.html">INICIAR SESIÓN</a></li> 
                  </ul>
