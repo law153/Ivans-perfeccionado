@@ -1,6 +1,8 @@
 from django.shortcuts import render
 
 # Create your views here.
+
+###Paginas sin-cuenta###
 def mostrarIndex(request):
     return render(request, 'core/index.html')
 
@@ -24,3 +26,10 @@ def mostrarProducto(request):
 
 def mostrarCategoria(request):
     return render(request, 'core/sin-cuenta/Categoria.html')
+
+###Paginas cliente###
+
+###Paginas admin###
+
+def mostrarIndexAdm(request):
+    return render(request, 'core/administrador/index-adm.html')
