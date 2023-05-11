@@ -24,6 +24,3 @@ def mostrarProducto(request):
 
 def mostrarCategoria(request):
     return render(request, 'core/sin-cuenta/Categoria.html')
-
-def mostrarNosotros(request):
-    return render(request, 'core/sin-cuenta/nosotros.html')
