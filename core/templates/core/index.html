@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +14,7 @@
     <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
     <!--Diseño propio-->
 
-    <link rel="stylesheet" type="text/css" href="../css/barra.css">
+    <link rel="stylesheet" type="text/css" href="{% static  'core/css/barra.css'%}">
 </head>
 <body>
     
@@ -23,7 +24,7 @@
         <div class="row header-container">
 
             <div class="col-md-1 col-sm-12">
-                <img class="logo" src="../img/icono.png" alt="Imagen no disponible">
+                <img class="logo" src="{% static 'core/img/icono.png'%}" alt="Imagen no disponible">
             </div>
 
             <div class="col-md-1 col-sm-12 header-container__name-container">
@@ -140,6 +141,6 @@
 
     </div>
 
-    <script src="../../js/Api-rest.js"></script>
+    <script src="{% static 'core/js/Api-rest.js' %}"></script>
 </body>
 </html>
