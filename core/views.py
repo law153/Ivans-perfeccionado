@@ -33,3 +33,12 @@ def mostrarCategoria(request):
 
 def mostrarIndexAdm(request):
     return render(request, 'core/administrador/index-adm.html')
+
+def mostrarPerfilAdm(request):
+    return render(request, 'core/administrador/perfil-adm.html')
+
+def mostrarCategoriaAdm(request):
+    return render(request, 'core/administrador/categoria.html')
+
+def mostrarAgregar(request):
+    return render(request, 'core/administrador/agregar.html')

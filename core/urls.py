@@ -1,5 +1,5 @@
 from django.urls import path,include
-from .views import mostrarIndex, mostrarNosotros, mostrarRegistro, mostrarIni_sesion, mostrarOlv_contra, mostrarPregunta, mostrarProducto, mostrarCategoria, mostrarIndexAdm
+from .views import mostrarIndex, mostrarNosotros, mostrarRegistro, mostrarIni_sesion, mostrarOlv_contra, mostrarPregunta, mostrarProducto, mostrarCategoria, mostrarIndexAdm, mostrarPerfilAdm, mostrarCategoriaAdm, mostrarAgregar
 
 urlpatterns = [
 
@@ -16,4 +16,7 @@ urlpatterns = [
 
     ### Paginas admin###
     path('principal/',mostrarIndexAdm,name="mostrarIndexAdm"),
+    path('categoria_adm/', mostrarCategoriaAdm, name="mostrarCategoriaAdm"),
+    path('perfil_adm/',mostrarPerfilAdm, name="mostrarPerfilAdm"),
+    path('agregar/', mostrarAgregar, name="mostrarAgregar"),
 ]
