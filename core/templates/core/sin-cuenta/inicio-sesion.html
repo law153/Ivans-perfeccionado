@@ -21,7 +21,7 @@
         <div class="row header-container">
 
             <div class="col-md-1">
-                <img class="logo" src="../../img/icono.png" alt="Imagen no disponible">
+                <img class="logo" src="{% static 'core/img/icono.png'%}" alt="Imagen no disponible">
             </div>
 
             <div class="col-md-1 header-container__name-container">
@@ -48,9 +48,9 @@
 
             <div class="col-md-4 header-container__ul-container">
                 <ul>
-                    <li><a href="nosotros.html">NOSOTROS</a></li> 
-                    <li><a href="registrarse.html">REGISTRARSE</a></li> 
-                    <li><a href="inicio-sesion.html">INICIAR SESIÓN</a></li> 
+                    <li><a href="{% url 'mostrarNosotros' %}">NOSOTROS</a></li> 
+                    <li><a href="{% url 'mostrarRegistro' %}">REGISTRARSE</a></li> 
+                    <li><a href="admin/index-adm.html">INICIAR SESIÓN</a></li> <!--Cambiar luego de la evaluación--->
                  </ul>
             </div>
         </div>
@@ -68,13 +68,13 @@
                         <div class="collapse navbar-collapse" id="navbarNav">
                 
                             <ul class="navbar-nav">
-                            <li class="nav-item"><a class="nav-link links" href="Herramientas.html">HERRAMIENTAS</a></li> 
-                            <li class="nav-item"><a class="nav-link links" href="gasfiteria.html">GASFITERIA</a></li> 
-                            <li class="nav-item"><a class="nav-link links" href="electricidad.html">ELECTRICIDAD</a></li> 
-                            <li class="nav-item"><a class="nav-link links" href="seguridad.html">SEGURIDAD</a></li> 
-                            <li class="nav-item"><a class="nav-link links" href="ropa.html">ROPA Y PROTECCIÓN</a></li> 
-                            <li class="nav-item"><a class="nav-link links" href="fijaciones.html">FIJACIONES</a></li> 
-                            <li class="nav-item"><a class="nav-link links ultimo" href="kits.html">KITS</a></li> 
+                                <li class="nav-item"><a class="nav-link links" href="{% url 'mostrarCategoria' %}">HERRAMIENTAS</a></li> 
+                                <li class="nav-item"><a class="nav-link links" href="{% url 'mostrarCategoria' %}">GASFITERIA</a></li> 
+                                <li class="nav-item"><a class="nav-link links" href="{% url 'mostrarCategoria' %}">ELECTRICIDAD</a></li> 
+                                <li class="nav-item"><a class="nav-link links" href="{% url 'mostrarCategoria' %}">SEGURIDAD</a></li> 
+                                <li class="nav-item"><a class="nav-link links" href="{% url 'mostrarCategoria' %}">ROPA Y PROTECCIÓN</a></li> 
+                                <li class="nav-item"><a class="nav-link links" href="{% url 'mostrarCategoria' %}">FIJACIONES</a></li> 
+                                <li class="nav-item"><a class="nav-link links ultimo" href="{% url 'mostrarCategoria' %}">KITS</a></li>  
                             </ul>
                 
                         </div>
