@@ -42,3 +42,9 @@ def mostrarCategoriaAdm(request):
 
 def mostrarAgregar(request):
     return render(request, 'core/administrador/agregar.html')
+
+def mostrarEditarPerfilAdm(request):
+    return render(request, 'core/administrador/editar-perfil-adm.html')
+
+def mostrarCambioContraAdm(request):
+    return render(request, 'core/administrador/cambiar-contrasena-adm.html')
