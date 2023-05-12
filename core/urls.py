@@ -1,9 +1,5 @@
 from django.urls import path,include
-<<<<<<< Updated upstream
-from .views import mostrarIndex, mostrarNosotros, mostrarRegistro, mostrarIni_sesion, mostrarOlv_contra, mostrarPregunta,mostrarProducto, mostrarCategoria, mostrarIndexAdm, mostrarPerfilAdm, mostrarCategoriaAdm, mostrarAgregar
-=======
 from .views import mostrarIndex, mostrarNosotros, mostrarRegistro, mostrarIni_sesion, mostrarOlv_contra, mostrarPregunta, mostrarProducto, mostrarCategoria, mostrarIndexAdm, mostrarPerfilAdm, mostrarCategoriaAdm, mostrarAgregar, mostrarEditarPerfilAdm, mostrarCambioContraAdm
->>>>>>> Stashed changes
 
 urlpatterns = [
 
