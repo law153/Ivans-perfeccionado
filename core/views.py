@@ -16,7 +16,7 @@ def mostrarIni_sesion(request):
     return render(request, 'core/sin-cuenta/inicio-sesion.html')
 
 def mostrarOlv_contra(request):
-    return render(request, 'core/sin-cuenta/olvidar-contraseña.html')
+    return render(request, 'core/sin-cuenta/olvidar-contrasena.html')
 
 def mostrarPregunta(request):
     return render(request, 'core/sin-cuenta/Pregunta.html')

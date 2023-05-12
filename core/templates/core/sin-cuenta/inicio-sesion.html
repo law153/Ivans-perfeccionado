@@ -50,7 +50,7 @@
                 <ul>
                     <li><a href="{% url 'mostrarNosotros' %}">NOSOTROS</a></li> 
                     <li><a href="{% url 'mostrarRegistro' %}">REGISTRARSE</a></li> 
-                    <li><a href="admin/index-adm.html">INICIAR SESIÓN</a></li> <!--Cambiar luego de la evaluación--->
+                    <li><a href="{% url 'mostrarIni_sesion' %}">INICIAR SESIÓN</a></li> <!--Cambiar luego de la evaluación--->
                  </ul>
             </div>
         </div>
@@ -109,7 +109,7 @@
                     </div>
 
                     <div class="form-group container-link">
-                        <a href="Pregunta.html">Olvide mi contraseña</a>
+                        <a href="{% url 'mostrarPregunta' %}">Olvide mi contraseña</a>
                     </div>
                     <br>
                     <div class="form-group container-button">
