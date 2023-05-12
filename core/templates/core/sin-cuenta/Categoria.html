@@ -46,7 +46,7 @@
                 <ul>
                     <li><a href="{% url 'mostrarNosotros' %}">NOSOTROS</a></li> 
                     <li><a href="{% url 'mostrarRegistro' %}">REGISTRARSE</a></li> 
-                    <li><a href="admin/index-adm.html">INICIAR SESIÓN</a></li> <!--Cambiar luego de la evaluación--->
+                    <li><a href="{% url 'mostrarIni_sesion' %}">INICIAR SESIÓN</a></li> <!--Cambiar luego de la evaluación--->
                  </ul>
             </div>
         </div>
@@ -99,64 +99,64 @@
                 
             <div class="col-md-2 contenedor__producto">
                 <div class="contenedor__producto-img">
-                    <img src="../../img/Electricidad-cable.jpg" alt="No hay imagen disponible">
+                    <img src="{% static 'core/img/Electricidad-cable.jpg'%}" alt="No hay imagen disponible">
                 </div>
                 <div class="contenedor__producto-texto">
-                    <a href="Electricidad-1.html">CABLE ELECTRICO CORDON ST 3 X 14 AWG</a> 
+                    <a href="{% url 'mostrarProducto' %}">CABLE ELECTRICO CORDON ST 3 X 14 AWG</a> 
                 </div>
                 <div class="contenedor__producto-precio">
                     <p>$3.075  MT</p>
                 </div>
                 <div class="contenedor__producto-button">
-                    <form action="inicio-sesion.html">
+                    <form action="{% url 'mostrarIni_sesion' %}">
                         <button>Agregar</button>
                     </form>
                 </div>
             </div>
             <div class="col-md-2 contenedor__producto">
                 <div class="contenedor__producto-img">
-                    <img src="../../img/Electricidad-interruptor.jpg" alt="No hay imagen disponible">
+                    <img src="{% static 'core/img/Electricidad-interruptor.jpg'%}" alt="No hay imagen disponible">
                 </div>
                 <div class="contenedor__producto-texto">
-                    <a href="Electricidad-2.html">MODULO INTERRUPTOR 16A 9/12 BTICINO</a> 
+                    <a href="{% url 'mostrarProducto' %}">MODULO INTERRUPTOR 16A 9/12 BTICINO</a> 
                 </div>
                 <div class="contenedor__producto-precio">
                     <p>$5.750  UNI</p>
                 </div>
                 <div class="contenedor__producto-button">
-                    <form action="inicio-sesion.html">
+                    <form action="{% url 'mostrarIni_sesion' %}">
                         <button>Agregar</button>
                     </form>
                 </div>
             </div>
             <div class="col-md-2 contenedor__producto">
                 <div class="contenedor__producto-img">
-                    <img src="../../img/Electricidad-cinta.jpg" alt="No hay imagen disponible">
+                    <img src="{% static 'core/img/Electricidad-cinta.jpg'%}" alt="No hay imagen disponible">
                 </div>
                 <div class="contenedor__producto-texto">
-                    <a href="Electricidad-3.html">CINTA AISLANTE VERDE 10MT IMCOEX</a> 
+                    <a href="{% url 'mostrarProducto' %}">CINTA AISLANTE VERDE 10MT IMCOEX</a> 
                 </div>
                 <div class="contenedor__producto-precio">
                     <p>$575  UNI</p>
                 </div>
                 <div class="contenedor__producto-button">
-                    <form action="inicio-sesion.html">
+                    <form action="{% url 'mostrarIni_sesion' %}">
                         <button>Agregar</button>
                     </form>
                 </div>
             </div>
             <div class="col-md-2 contenedor__producto last-prod">
                 <div class="contenedor__producto-img">
-                    <img src="../../img/Electricidad-grampa.jpg" alt="No hay imagen disponible">
+                    <img src="{% static 'core/img/Electricidad-grampa.jpg'%}" alt="No hay imagen disponible">
                 </div>
                 <div class="contenedor__producto-texto">
-                    <a href="Electricidad-4.html">GRAMPAS COAXIAL NEGRO 6 MM</a>
+                    <a href="{% url 'mostrarProducto' %}">GRAMPAS COAXIAL NEGRO 6 MM</a>
                 </div>
                 <div class="contenedor__producto-precio">
                     <p>$105  UNI</p>
                 </div>
                 <div class="contenedor__producto-button">
-                    <form action="inicio-sesion.html">
+                    <form action="{% url 'mostrarIni_sesion' %}">
                         <button>Agregar</button>
                     </form>
                 </div>

@@ -51,7 +51,7 @@
                 <ul>
                     <li><a href="{% url 'mostrarNosotros' %}">NOSOTROS</a></li> 
                     <li><a href="{% url 'mostrarRegistro' %}">REGISTRARSE</a></li> 
-                    <li><a href="admin/index-adm.html">INICIAR SESIÓN</a></li> <!--Cambiar luego de la evaluación--->
+                    <li><a href="{% url 'mostrarIni_sesion' %}">INICIAR SESIÓN</a></li> <!--Cambiar luego de la evaluación--->
                  </ul>
             </div>
         </div>
@@ -131,7 +131,7 @@
 
                     <div class="container-button">
                         
-                        <a class="boton-fake" href="olvidar-contrasena.html">Confirmar</a>
+                        <a class="boton-fake" href="{% url 'mostrarOlv_contra' %}">Confirmar</a>
                         <br>
                         <p>Boton para avanzar</p>
                     </div>

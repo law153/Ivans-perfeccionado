@@ -47,7 +47,7 @@
                 <ul>
                     <li><a href="{% url 'mostrarNosotros' %}">NOSOTROS</a></li> 
                     <li><a href="{% url 'mostrarRegistro' %}">REGISTRARSE</a></li> 
-                    <li><a href="admin/index-adm.html">INICIAR SESIÓN</a></li> <!--Cambiar luego de la evaluación--->
+                    <li><a href="{% url 'mostrarIni_sesion' %}">INICIAR SESIÓN</a></li> <!--Cambiar luego de la evaluación--->
                  </ul>
             </div>
         </div>
@@ -89,7 +89,7 @@
         <div class="row contenedor-padre">
 
             <div class="col-md-5 contenedor-img">
-                <img alt="No hay imagen disponible" src="../../img/Electricidad-cable.jpg">
+                <img alt="No hay imagen disponible" src="{% static 'core/img/Electricidad-cable.jpg'%}">
             </div>
 
             <div class="col-md-7 contenedor-texto"> 
