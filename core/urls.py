@@ -1,5 +1,5 @@
 from django.urls import path,include
-from .views import mostrarIndex, mostrarNosotros, mostrarRegistro, mostrarIni_sesion, mostrarOlv_contra, mostrarPregunta, mostrarProducto, mostrarCategoria, mostrarIndexAdm, mostrarPerfilAdm, mostrarCategoriaAdm, mostrarAgregar, mostrarEditarPerfilAdm, mostrarCambioContraAdm
+from .views import mostrarIndex, mostrarNosotros, mostrarRegistro, mostrarIni_sesion, mostrarOlv_contra, mostrarPregunta, mostrarProducto, mostrarCategoria, mostrarIndexAdm, mostrarPerfilAdm, mostrarCategoriaAdm, mostrarAgregar, mostrarEditarPerfilAdm, mostrarCambioContraAdm, mostrarProductoAdm
 
 urlpatterns = [
 
@@ -21,5 +21,6 @@ urlpatterns = [
     path('agregar/', mostrarAgregar, name="mostrarAgregar"),
     path('editar_perfil_adm/', mostrarEditarPerfilAdm, name="mostrarEditarPerfilAdm"),
     path('cambio_contra_adm/', mostrarCambioContraAdm, name="mostrarCambioContraAdm"),
+    path('producto_adm/', mostrarProductoAdm, name="mostrarProductoAdm"),
 
 ]

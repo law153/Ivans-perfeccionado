@@ -48,3 +48,6 @@ def mostrarEditarPerfilAdm(request):
 
 def mostrarCambioContraAdm(request):
     return render(request, 'core/administrador/cambiar-contrasena-adm.html')
+
+def mostrarProductoAdm(request):
+    return render(request, 'core/administrador/producto-adm.html')
