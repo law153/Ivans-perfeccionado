@@ -1,5 +1,5 @@
 from django.urls import path,include
-from .views import mostrarIndex, mostrarNosotros, mostrarRegistro, mostrarIni_sesion, mostrarOlv_contra, mostrarPregunta, mostrarProducto, mostrarCategoria, mostrarIndexAdm, mostrarPerfilAdm, mostrarCategoriaAdm, mostrarAgregar, mostrarEditarPerfilAdm, mostrarCambioContraAdm, mostrarProductoAdm
+from .views import mostrarIndex, mostrarNosotros, mostrarRegistro,mostrarIni_sesion, mostrarOlv_contra, mostrarPregunta, mostrarProducto, mostrarCategoria, mostrarIndexAdm, mostrarPerfilAdm, mostrarCategoriaAdm, mostrarAgregar, mostrarEditarPerfilAdm, mostrarCambioContraAdm, mostrarProductoAdm
 
 urlpatterns = [
 
@@ -13,7 +13,7 @@ urlpatterns = [
     path('producto/',mostrarProducto,name="mostrarProducto"),
     path('categoria/',mostrarCategoria,name="mostrarCategoria"),
     ### Paginas cliente###
-
+    
     ### Paginas admin###
     path('principal/',mostrarIndexAdm,name="mostrarIndexAdm"),
     path('categoria_adm/', mostrarCategoriaAdm, name="mostrarCategoriaAdm"),
