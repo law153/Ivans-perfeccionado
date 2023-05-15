@@ -88,7 +88,7 @@
 
                 <div class="col-md-4 col-sm-12">
                     <div class="contenedor__perfil-foto">
-                        <img src="../../img/icono-perfil.png" alt="No hay imagen">
+                        <img src="{% static 'core/img/icono-perfil.png'%}" alt="No hay imagen">
                     </div>  
                 </div>
 
@@ -100,10 +100,10 @@
                             Télefono: +56764982253<br>
                             Dirección: Caupolicán 1257
                         </p>
-                        <form class="contenedor-boton" action="editar-perfil.html">
+                        <form class="contenedor-boton" action="{% url 'mostrarEditarPerfilCli' %}">
                             <button>Editar</button>
                         </form>
-                        <form class="contenedor-boton" action="cambiar-contrasena-cli.html">
+                        <form class="contenedor-boton" action="{% url 'mostrarCambioContraCli' %}">
                             <button>Cambiar contraseña</button>
                         </form>
                     </div>
