@@ -28,6 +28,32 @@ def mostrarCategoria(request):
     return render(request, 'core/sin-cuenta/Categoria.html')
 
 ###Paginas cliente###
+def mostrarProductoCli(request):
+    return render(request, 'core/cliente/Producto-cli.html')
+
+def mostrarCategoriaCli(request):
+    return render(request, 'core/cliente/Categoria-cli.html')
+
+def mostrarMetodoPago(request):
+    return render(request, 'core/cliente/Metodo-pago.html')
+
+def mostrarNosotrosCli(request):
+    return render(request, 'core/cliente/nosotros-cli.html')
+
+def mostrarPerfilCli(request):
+    return render(request, 'core/cliente/Perfil.html')
+
+def mostrarIndexCli(request):
+    return render(request, 'core/cliente/index-cli.html')
+
+def mostrarCarritoCli(request):
+    return render(request, 'core/cliente/carrito.html')
+
+def mostrarCambioContraCli(request):
+    return render(request, 'core/cliente/cambiar-contrasena-cli.html')
+
+def mostrarEditarPerfilCli(request):
+    return render(request, 'core/cliente/Editar-perfil.html')
 
 ###Paginas admin###
 
