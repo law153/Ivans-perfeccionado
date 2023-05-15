@@ -14,8 +14,8 @@
     <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
     <!--Diseño propio-->
     <link rel="stylesheet" type="text/css" href="{% static  'core/css/barra.css'%}">
-    <link rel="stylesheet" type="text/css" href="../../css/perfil.css">
-    <link rel="stylesheet" type="text/css" href="../../css/formularios.css">
+    <link rel="stylesheet" type="text/css" href="{% static  'core/css/perfil.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static  'core/css/formularios.css'%}">
 </head>
 <body>
     <div class="container-fluid">
@@ -24,7 +24,7 @@
         <div class="row header-container">
 
             <div class="col-md-1">
-                <img class="logo" src="../../img/icono.png" alt="Imagen no disponible">
+                <img class="logo" src="{% static 'core/img/icono.png'%}" alt="Imagen no disponible">
             </div>
 
             <div class="col-md-1 header-container__name-container">
@@ -99,7 +99,7 @@
                         <div class="form-group left">
     
                             <div class="contenedor__perfil-foto-e">
-                                <img src="../../img/icono-perfil.png" alt="No hay imagen">
+                                <img src="{% static 'core/img/icono-perfil.png'%}" alt="No hay imagen">
                             </div> 
                             <label for="imagen">Imagen:</label><br>
                             <input class="imagen" type="file" id="imagen" name="imagen">
