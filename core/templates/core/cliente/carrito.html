@@ -61,24 +61,33 @@
         </div>
 
         <!--Navegación-->
-        <div class="row nav-container">
+        <div class="row">
+            <nav class="navbar navbar-expand-lg contenedor_nav">
+                <div class="nav-container">
 
-            <div class="col-md-2 col-sm-0 col-lg-0"></div>
+                    <div class="col-md-12 col-sm-12 col-lg-12 ">
+                        <button class="navbar-toggler boton-nav" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                
+                            <ul class="navbar-nav">
+                            <li class="nav-item"><a class="nav-link links" href="{% url 'mostrarCategoriaCli' %}">HERRAMIENTAS</a></li> 
+                            <li class="nav-item"><a class="nav-link links" href="{% url 'mostrarCategoriaCli' %}">GASFITERIA</a></li> 
+                            <li class="nav-item"><a class="nav-link links" href="{% url 'mostrarCategoriaCli' %}">ELECTRICIDAD</a></li> 
+                            <li class="nav-item"><a class="nav-link links" href="{% url 'mostrarCategoriaCli' %}">SEGURIDAD</a></li> 
+                            <li class="nav-item"><a class="nav-link links" href="{% url 'mostrarCategoriaCli' %}">ROPA Y PROTECCIÓN</a></li> 
+                            <li class="nav-item"><a class="nav-link links" href="{% url 'mostrarCategoriaCli' %}">FIJACIONES</a></li> 
+                            <li class="nav-item"><a class="nav-link links ultimo" href="{% url 'mostrarCategoriaCli' %}">KITS</a></li> 
+                            </ul>
+                
+                        </div>
+                    </div>
 
-            <div class="col-md-8col-sm-12 col-lg-12  nav-container__ul-container">
-                <ul>
-                    <li><a href="{% url 'mostrarCategoriaCli' %}">HERRAMIENTAS</a></li> 
-                    <li><a href="{% url 'mostrarCategoriaCli' %}">GASFITERIA</a></li> 
-                    <li><a href="{% url 'mostrarCategoriaCli' %}">ELECTRICIDAD</a></li> 
-                    <li><a href="{% url 'mostrarCategoriaCli' %}">SEGURIDAD</a></li> 
-                    <li><a href="{% url 'mostrarCategoriaCli' %}">ROPA Y PROTECCIÓN</a></li> 
-                    <li><a href="{% url 'mostrarCategoriaCli' %}">FIJACIONES</a></li> 
-                    <li><a href="{% url 'mostrarCategoriaCli' %}">KITS</a></li> 
-                </ul>
-            </div>
 
-            <div class="col-md-2 col-sm-0 col-lg-0"></div>
-
+                </div>
+            </nav>
         </div>
 
     </div>
