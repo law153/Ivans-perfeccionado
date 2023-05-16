@@ -4,7 +4,7 @@
 }
 
 .header-container{
-    height: 45% !important;
+    height: 45% ;
 }
 
 .links{
@@ -14,11 +14,11 @@
 
 
 .contenedor-nave{
-    height: 55% !important;
+    height: 55% ;
 }
 
 .contenedor_nav{
-    height: 100% !important;
+    height: 100%;
 }
 
 
@@ -44,8 +44,11 @@
     }
 
     .links{
+        font-size: 20px;
+        border-bottom: 5px solid #880;
+        border-right: none;
+        text-align: left;
         margin-top: 0px;
-        background-color: #ff0;
     }
     
 

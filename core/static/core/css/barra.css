@@ -309,6 +309,7 @@ input, textarea{
         border-bottom: 5px solid #880;
         border-right: none;
         text-align: left;
+        margin-top: 0px;
     }
 
     .ultimo{
