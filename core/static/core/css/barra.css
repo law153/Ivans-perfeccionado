@@ -81,8 +81,6 @@ input, textarea{
 }
 
 
-
-
 .header-container__ul-container{
     color: #fff;
 }
@@ -177,6 +175,8 @@ input, textarea{
     text-shadow: 6px 2px 2px #000;
 }
 
+/**Cosas generales*/
+
 .no-editable{
     background: #aaa;
     text-align: center;
@@ -186,6 +186,7 @@ input, textarea{
     min-height: 100vh;
 }
 
+/**Para la API*/
 .boton-contenedor{
     width: 200px;
     height: 80px;
