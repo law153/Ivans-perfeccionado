@@ -1,151 +1,81 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    {% load static %}
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% extends 'core/sin-cuenta/plantillaSinCuenta.html'%}
+{% load static %}
+
+    {% block titulo %}
     <title>Pregunta de seguridad</title>
-    <!-- Bootstrap CSS-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <!--Javascript-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
-    <!--Diseño propio-->
-    <link rel="stylesheet" type="text/css" href="{% static  'core/css/barra.css'%}">
+    {% endblock titulo %}
+
+    {% block disenos %}
     <link rel="stylesheet" type="text/css" href="{% static  'core/css/formularios.css'%}">
-</head>
-<body>
-    <div class="container-fluid">
+    {% endblock disenos %}
 
-        <!--Encabezado-->
-        <div class="row header-container">
-
-            <div class="col-md-1">
-                <img class="logo" src="{% static 'core/img/icono.png'%}" alt="Imagen no disponible">
-            </div>
-
-            <div class="col-md-1 header-container__name-container">
-                <a href="{% url 'mostrarIndex' %}">IVAN'S</a>
-            </div>
-
-            <div class="col-md-6 col-sm-12">
-                <form name="busqueda" method="GET" id="busqueda" >
-
-                    <div class="contenedor_buscar">
-
-                        <div class="header-container__search-container">
-                            <input id="Barra-buscar" type="text" placeholder="Buscar..">
-                        </div>
-
-                        <div class="header-container__button-container">
-                            <input type="submit" name="boton" id="buscar" value="Buscar">
-                        </div>
-
-                    </div>
-
-                </form>
-            </div>
-
-            <div class="col-md-4 header-container__ul-container">
-                <ul>
-                    <li><a href="{% url 'mostrarNosotros' %}">NOSOTROS</a></li> 
-                    <li><a href="{% url 'mostrarRegistro' %}">REGISTRARSE</a></li> 
-                    <li><a href="{% url 'mostrarIni_sesion' %}">INICIAR SESIÓN</a></li> <!--Cambiar luego de la evaluación--->
-                 </ul>
-            </div>
-        </div>
-
-        <!--Navegación-->
-        <div class="row">
-            <nav class="navbar navbar-expand-lg contenedor_nav">
-                <div class="nav-container">
-
-                    <div class="col-md-12 col-sm-12 col-lg-12 ">
-                        <button class="navbar-toggler boton-nav" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                
-                        <div class="collapse navbar-collapse" id="navbarNav">
-                
-                            <ul class="navbar-nav">
-                                <li class="nav-item"><a class="nav-link links" href="{% url 'mostrarCategoria' %}">HERRAMIENTAS</a></li> 
-                                <li class="nav-item"><a class="nav-link links" href="{% url 'mostrarCategoria' %}">GASFITERIA</a></li> 
-                                <li class="nav-item"><a class="nav-link links" href="{% url 'mostrarCategoria' %}">ELECTRICIDAD</a></li> 
-                                <li class="nav-item"><a class="nav-link links" href="{% url 'mostrarCategoria' %}">SEGURIDAD</a></li> 
-                                <li class="nav-item"><a class="nav-link links" href="{% url 'mostrarCategoria' %}">ROPA Y PROTECCIÓN</a></li> 
-                                <li class="nav-item"><a class="nav-link links" href="{% url 'mostrarCategoria' %}">FIJACIONES</a></li> 
-                                <li class="nav-item"><a class="nav-link links ultimo" href="{% url 'mostrarCategoria' %}">KITS</a></li>  
-                            </ul>
-                
-                        </div>
-                    </div>
-
-
+    {% block cuerpo %}
+    
+        <!--Cuerpo-->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
                 </div>
-            </nav>
-        </div>
-
-    </div>
-
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-            </div>
-
-
-            <div class="col-md-4 ajustado-posicion">
-                <h1>Pregunta de seguridad</h1>
-                <form id="pregunta" name="pregunta" method="post" enctype="application/x-www-form-urlencoded" class="posicion-casillas-formulario">
-
-                    <div class="form-group" style="text-align: left;">
-                        <label for="rut">rut:</label><br>
-                        <input type="text" id="rut" name="rut" placeholder="Rut" style="width: 40%;">
-                        <label for="guion">-</label>
-                        <input type="text" id="dvrut" name="dvrut" style="width: 15%;" min="0" max="9"><br>
-                        <label for="aclaracion" style="font-size: 10px;">Anote su rut sin puntos ni guión, si termina en k digite 0</label><br>
-                        <p class="alerta" id="alerta_rut"></p>
-                    </div>
-
-                    <div class="form-group" style="text-align: left;">
-                        <label for="elección">Seleccione su pregunta de seguridad:</label><br>
-                        <select id="preg">
-                            <option value="0"></option>
-                            <option value="1">¿Cual es el nombre de tu mascota?</option>
-                            <option value="2">¿Cual es tu color favorito?</option>
-                            <option value="3">¿Cual es tu ciudad natal?</option>
-                        </select><br>
-                        <p class="alerta" id="alerta_preg"></p>
-                    </div>
-
-                    <div class="form-group" style="text-align: left;">
-                        <label for="respuesta">Respuesta:</label><br>
-                        <input type="text" id="respuesta" name="respuesta"><br>
-                        <p class="alerta" id="alerta_resp"></p>
-                    </div>
-
-                    <div class="form-group container-button">
-                        <input type="submit" value="Confirmar" id="btn-confirmar">
-                        
-                    </div>
-
-                    <div class="container-button">
-                        
-                        <a class="boton-fake" href="{% url 'mostrarOlv_contra' %}">Confirmar</a>
+    
+    
+                <div class="col-md-4 ajustado-posicion">
+                    <h1>Pregunta de seguridad</h1>
+                    <form id="pregunta" name="pregunta" method="post" enctype="application/x-www-form-urlencoded" class="posicion-casillas-formulario">
+    
+                        <div class="form-group" style="text-align: left;">
+                            <label for="rut">rut:</label><br>
+                            <input type="text" id="rut" name="rut" placeholder="Rut" style="width: 40%;">
+                            <label for="guion">-</label>
+                            <input type="text" id="dvrut" name="dvrut" style="width: 15%;" min="0" max="9"><br>
+                            <label for="aclaracion" style="font-size: 10px;">Anote su rut sin puntos ni guión, si termina en k digite 0</label><br>
+                            <p class="alerta" id="alerta_rut"></p>
+                        </div>
+    
+                        <div class="form-group" style="text-align: left;">
+                            <label for="elección">Seleccione su pregunta de seguridad:</label><br>
+                            <select id="preg">
+                                <option value="0"></option>
+                                <option value="1">¿Cual es el nombre de tu mascota?</option>
+                                <option value="2">¿Cual es tu color favorito?</option>
+                                <option value="3">¿Cual es tu ciudad natal?</option>
+                            </select><br>
+                            <p class="alerta" id="alerta_preg"></p>
+                        </div>
+    
+                        <div class="form-group" style="text-align: left;">
+                            <label for="respuesta">Respuesta:</label><br>
+                            <input type="text" id="respuesta" name="respuesta"><br>
+                            <p class="alerta" id="alerta_resp"></p>
+                        </div>
+    
+                        <div class="form-group container-button">
+                            <input type="submit" value="Confirmar" id="btn-confirmar">
+                            
+                        </div>
+    
+                        <div class="container-button">
+                            
+                            <a class="boton-fake" href="{% url 'mostrarOlv_contra' %}">Confirmar</a>
+                            <br>
+                            <p>Boton para avanzar</p>
+                        </div>
                         <br>
-                        <p>Boton para avanzar</p>
-                    </div>
+                        
+                    </form> 
                     <br>
-                    
-                </form> 
-                <br>
-
-            </div>
-
-            <div class="col-md-4">
+    
+                </div>
+    
+                <div class="col-md-4">
+                </div>
             </div>
         </div>
-    </div>
+        <!--Fin Cuerpo-->
+    {% endblock cuerpo %}
+    
+    {% block js %}
+    <!--JS-->
     <script src="{% static 'core/js/pregunta.js' %}"></script>
-</body>
-</html>
+    {% endblock js %}
+
+
