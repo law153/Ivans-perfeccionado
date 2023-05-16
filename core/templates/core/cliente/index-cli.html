@@ -1,95 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    {% load static %}
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% extends 'core/cliente/plantillaConCuenta.html'%}
+{% load static %}
+
+    {% block titulo %}
     <title>Pagina Principal</title>
-    <!-- Bootstrap CSS-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    {% endblock titulo %}
     
-    <!--Javascript-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
-    <!--Diseño propio-->
-    <link rel="stylesheet" type="text/css" href="{% static  'core/css/barra.css'%}">
-</head>
-<body>
-    
-    <div class="container-fluid">
-
-        <!--Encabezado-->
-        <div class="row header-container">
-
-            <div class="col-md-1">
-                <img class="logo" src="{% static 'core/img/icono.png'%}" alt="Imagen no disponible">
-            </div>
-
-            <div class="col-md-1 header-container__name-container">
-                <a href="{% url 'mostrarIndexCli' %}">IVAN'S</a>
-            </div>
-
-            <div class="col-md-6 col-sm-12">
-                <form name="busqueda" method="GET" id="busqueda" >
-
-                    <div class="contenedor_buscar">
-
-                        <div class="header-container__search-container">
-                            <input id="Barra-buscar" type="text" placeholder="Buscar..">
-                        </div>
-
-                        <div class="header-container__button-container">
-                            <input type="submit" name="boton" id="buscar" value="Buscar">
-                        </div>
-
-                    </div>
-
-                </form>
-            </div>
-
-            <div class="col-md-4 header-container__ul-container">
-                <ul>
-                    <li><a href="{% url 'mostrarNosotrosCli' %}">NOSOTROS</a></li> 
-                    <li><a href="{% url 'mostrarCarritoCli' %}">CARRITO</a></li> 
-                    <li><a href="{% url 'mostrarPerfilCli' %}">Perfil</a></li> 
-                    <li><a href="{% url 'mostrarIndex' %}">Cerrar sesión</a></li> 
-                 </ul>
-            </div>
-        </div>
-
-        <!--Navegación-->
+        {% block cuerpo %}
         <div class="row">
-            <nav class="navbar navbar-expand-lg contenedor_nav">
-                <div class="nav-container">
-
-                    <div class="col-md-12 col-sm-12 col-lg-12 ">
-                        <button class="navbar-toggler boton-nav" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                
-                        <div class="collapse navbar-collapse" id="navbarNav">
-                
-                            <ul class="navbar-nav">
-                            <li class="nav-item"><a class="nav-link links" href="{% url 'mostrarCategoriaCli' %}">HERRAMIENTAS</a></li> 
-                            <li class="nav-item"><a class="nav-link links" href="{% url 'mostrarCategoriaCli' %}">GASFITERIA</a></li> 
-                            <li class="nav-item"><a class="nav-link links" href="{% url 'mostrarCategoriaCli' %}">ELECTRICIDAD</a></li> 
-                            <li class="nav-item"><a class="nav-link links" href="{% url 'mostrarCategoriaCli' %}">SEGURIDAD</a></li> 
-                            <li class="nav-item"><a class="nav-link links" href="{% url 'mostrarCategoriaCli' %}">ROPA Y PROTECCIÓN</a></li> 
-                            <li class="nav-item"><a class="nav-link links" href="{% url 'mostrarCategoriaCli' %}">FIJACIONES</a></li> 
-                            <li class="nav-item"><a class="nav-link links ultimo" href="{% url 'mostrarCategoriaCli' %}">KITS</a></li> 
-                            </ul>
-                
-                        </div>
-                    </div>
-
-
-                </div>
-            </nav>
-        </div>
-
-        <div class="row">
-
             <div class="col-md-12 body-container-main">
                 <div class="body-container__p-container"> <!--Editar -->
                     <h2>Todo lo que<br>
@@ -97,27 +14,18 @@
                     <p>Todo lo que necesitas en tu taller!!</p>
                 </div>
             </div>
-
         </div>
-
         <div class="row bajo_main">
-
             <div class="col-md-2"></div>
-            <div class="col-md-8">
-                    
+            <div class="col-md-8">                   
                 <div class="boton-contenedor">
                     <button id="boton" type="button" class="boton">Cliente ganador</button>
-                </div>
-                    
+                </div>                   
             </div>
-            <div class="col-md-2"></div>
-                
+            <div class="col-md-2"></div>                
         </div>
-    
         <div class="row bajo_main">
-    
             <div class="col-md-2"></div>
-    
             <div class="col-md-10 tabla-contenedor">
                 <table id="tabla" class="tabla">
                     <thead>
@@ -126,18 +34,14 @@
                             <th>Nombre:</th>
                          </tr>
                     </thead>
-                     <tbody>
-    
+                     <tbody>  
                       </tbody>
                   </table>
             </div>
-    
             <div class="col-md-2"></div>
-    
         </div>
-
-    </div>
-
+        {% endblock cuerpo %}
+    
+    {% block js %}
     <script src="{% static 'core/js/Api-rest.js' %}"></script>
-</body>
-</html>
+    {% endblock js %}
