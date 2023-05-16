@@ -256,6 +256,20 @@ input, textarea{
         text-align: center;
     }
 
+    .contenedor-barra{
+        height: 300px;
+    }
+    
+
+    .header-container{
+        height: 80%;
+
+    }
+
+    .contenedor-nave{
+        height: 20%;
+        margin-top: -25px;
+    }
 
     .nav-container{
        
@@ -279,6 +293,10 @@ input, textarea{
 
     .header-container__ul-container > ul > li{
         font-size: 18px;
+    }
+
+    .container{
+        margin-top: 0px !important;
     }
 
     .body-container__p-container > h2{
@@ -310,6 +328,7 @@ input, textarea{
         border-right: none;
         text-align: left;
         margin-top: 0px;
+        background: #ff0;
     }
 
     .ultimo{
