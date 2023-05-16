@@ -13,15 +13,15 @@ input, textarea{
 
 /**Encabezado **/
 
-.container-fluid{
-    height: 0px;
+.contenedor-barra{
+    height: 170px;
 }
 
 .header-container{
     background: #000;
     display: flex;
     align-items: center;
-    height: 15%;
+    height: 45%;
 }
 
 .logo{
@@ -81,6 +81,8 @@ input, textarea{
 }
 
 
+
+
 .header-container__ul-container{
     color: #fff;
 }
@@ -107,10 +109,17 @@ input, textarea{
 
 /**Navegación**/
 
+.contenedor-nave{
+    height: 55%;
+
+}
+
 .contenedor_nav{
     background: #ff0;
     margin: auto;
     width: 100%;
+    height: 100%;
+    
 }
 
 .boton-nav{
@@ -118,20 +127,13 @@ input, textarea{
 
 }
 
-.categorias-contenedor{
-    color: #000;
-}
-
-.categorias-contenedor > li{
-    color: #000;
-
-}
 
 .links{
     color: #000;
     font-weight: bold;
     font-size: 40px;
     border-right: 5px solid #880;
+    margin-top: -28px;
 }
 
 .ultimo{
@@ -149,6 +151,10 @@ input, textarea{
 }
 
 /**Cuerpo**/
+
+.contenedor-cuerpo{
+    
+}
 
 .body-container-main{
     background: #900;
@@ -175,18 +181,15 @@ input, textarea{
     text-shadow: 6px 2px 2px #000;
 }
 
-/**Cosas generales*/
-
 .no-editable{
     background: #aaa;
     text-align: center;
 }
 
-.container-fluid{
+.container-fluid:not(.contenedor-barra){
     min-height: 100vh;
 }
 
-/**Para la API*/
 .boton-contenedor{
     width: 200px;
     height: 80px;
@@ -262,11 +265,18 @@ input, textarea{
         text-align: center;
     }
 
+    .contenedor-barra{
+        height: 320px;
+    }
+    
+
     .header-container{
-        background: #000;
-        display: flex;
-        align-items: center;
-        height: 50%;
+        height: 80%;
+
+    }
+
+    .contenedor-nave{
+        height: 20%;
 
     }
 
@@ -322,6 +332,8 @@ input, textarea{
         border-bottom: 5px solid #880;
         border-right: none;
         text-align: left;
+        margin-top: 0px;
+        background-color: #ff0;
     }
 
     .ultimo{
@@ -409,6 +421,8 @@ input, textarea{
     }
 
 }
+
+
 
 
 
