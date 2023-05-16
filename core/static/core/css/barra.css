@@ -81,6 +81,8 @@ input, textarea{
 }
 
 
+
+
 .header-container__ul-container{
     color: #fff;
 }
@@ -111,6 +113,7 @@ input, textarea{
     background: #ff0;
     margin: auto;
     width: 100%;
+    
 }
 
 .boton-nav{
@@ -118,14 +121,6 @@ input, textarea{
 
 }
 
-.categorias-contenedor{
-    color: #000;
-}
-
-.categorias-contenedor > li{
-    color: #000;
-
-}
 
 .links{
     color: #000;
@@ -148,7 +143,12 @@ input, textarea{
     background: #880;
 }
 
+.container-fluid{
+    min-height: 100vh;
+}
+
 /**Cuerpo**/
+
 
 .body-container-main{
     background: #900;
@@ -175,18 +175,12 @@ input, textarea{
     text-shadow: 6px 2px 2px #000;
 }
 
-/**Cosas generales*/
-
 .no-editable{
     background: #aaa;
     text-align: center;
 }
 
-.container-fluid{
-    min-height: 100vh;
-}
 
-/**Para la API*/
 .boton-contenedor{
     width: 200px;
     height: 80px;
@@ -262,13 +256,6 @@ input, textarea{
         text-align: center;
     }
 
-    .header-container{
-        background: #000;
-        display: flex;
-        align-items: center;
-        height: 50%;
-
-    }
 
     .nav-container{
        
@@ -409,6 +396,8 @@ input, textarea{
     }
 
 }
+
+
 
 
 

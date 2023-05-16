@@ -1,0 +1,52 @@
+.contenedor-barra{
+    height: 170px !important;
+}
+
+.header-container{
+    height: 45%;
+}
+
+
+.contenedor-nave{
+    height: 55%;
+}
+
+.contenedor_nav{
+    height: 100%;
+}
+
+
+@media screen and (min-width: 0px) and (max-width: 576px){
+
+    *{
+        text-align: center;
+    }
+
+    .contenedor-barra{
+        height: 320px;
+    }
+    
+
+    .header-container{
+        height: 80%;
+
+    }
+
+    .contenedor-nave{
+        height: 20%;
+
+    }
+
+    .links{
+        font-size: 20px;
+        border-bottom: 5px solid #880;
+        border-right: none;
+        text-align: left;
+        margin-top: 0px;
+        background-color: #ff0;
+    }
+    
+
+
+}
+

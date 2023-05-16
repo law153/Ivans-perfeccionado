@@ -18,7 +18,8 @@
     {% endblock disenos %}
 </head>
 <body>
-    <div class="container-fluid contenedor-barra">
+    
+    <div class="container-fluid">
 
         <!--Encabezado-->
         <div class="row header-container">
@@ -28,7 +29,7 @@
             </div>
 
             <div class="col-md-1 header-container__name-container">
-                <a href="{% url 'mostrarIndex' %}">IVAN'S</a>
+                <a href="{% url 'mostrarIndexAdm' %}">IVAN'S</a>
             </div>
 
             <div class="col-md-6 col-sm-12">
@@ -51,15 +52,14 @@
 
             <div class="col-md-4 header-container__ul-container">
                 <ul>
-                    <li><a href="{% url 'mostrarNosotros' %}">NOSOTROS</a></li> 
-                    <li><a href="{% url 'mostrarRegistro' %}">REGISTRARSE</a></li> 
-                    <li><a href="{% url 'mostrarIni_sesion' %}">INICIAR SESIÓN</a></li> <!--Cambiar luego de la evaluación--->
+                    <li><a href="{% url 'mostrarPerfilAdm' %}">Perfil</a></li>
+                    <li><a href="{% url 'mostrarIndex' %}">Cerrar sesión</a></li> 
                  </ul>
             </div>
         </div>
 
         <!--Navegación-->
-        <div class="row contenedor-nave">
+        <div class="row">
             <nav class="navbar navbar-expand-lg contenedor_nav">
                 <div class="nav-container">
 
@@ -71,13 +71,13 @@
                         <div class="collapse navbar-collapse" id="navbarNav">
                 
                             <ul class="navbar-nav">
-                                <li class="nav-item"><a class="nav-link links" href="{% url 'mostrarCategoria' %}">HERRAMIENTAS</a></li> 
-                                <li class="nav-item"><a class="nav-link links" href="{% url 'mostrarCategoria' %}">GASFITERIA</a></li> 
-                                <li class="nav-item"><a class="nav-link links" href="{% url 'mostrarCategoria' %}">ELECTRICIDAD</a></li> 
-                                <li class="nav-item"><a class="nav-link links" href="{% url 'mostrarCategoria' %}">SEGURIDAD</a></li> 
-                                <li class="nav-item"><a class="nav-link links" href="{% url 'mostrarCategoria' %}">ROPA Y PROTECCIÓN</a></li> 
-                                <li class="nav-item"><a class="nav-link links" href="{% url 'mostrarCategoria' %}">FIJACIONES</a></li> 
-                                <li class="nav-item"><a class="nav-link links ultimo" href="{% url 'mostrarCategoria' %}">KITS</a></li>  
+                            <li class="nav-item"><a class="nav-link links" href="{% url 'mostrarCategoriaAdm' %}">HERRAMIENTAS</a></li> 
+                            <li class="nav-item"><a class="nav-link links" href="{% url 'mostrarCategoriaAdm' %}">GASFITERIA</a></li> 
+                            <li class="nav-item"><a class="nav-link links" href="{% url 'mostrarCategoriaAdm' %}">ELECTRICIDAD</a></li> 
+                            <li class="nav-item"><a class="nav-link links" href="{% url 'mostrarCategoriaAdm' %}">SEGURIDAD</a></li> 
+                            <li class="nav-item"><a class="nav-link links" href="{% url 'mostrarCategoriaAdm' %}">ROPA Y PROTECCIÓN</a></li> 
+                            <li class="nav-item"><a class="nav-link links" href="{% url 'mostrarCategoriaAdm' %}">FIJACIONES</a></li> 
+                            <li class="nav-item"><a class="nav-link links ultimo" href="{% url 'mostrarCategoriaAdm' %}">KITS</a></li> 
                             </ul>
                 
                         </div>
@@ -87,18 +87,12 @@
                 </div>
             </nav>
         </div>
-
     </div>
-    
-
     {% block cuerpo %}
     {% endblock cuerpo %}
 
 
     {% block js %}
     {% endblock js %}
-    
-
-    
 </body>
 </html>

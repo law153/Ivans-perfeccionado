@@ -5,12 +5,18 @@
     <title>Pagina Principal</title>
     {% endblock titulo %}
 
+    {% block disenos %}
+    <link rel="stylesheet" type="text/css" href="{% static  'core/css/index.css'%}">
+    {% endblock disenos %}
+
     {% block cuerpo %}
         <!--Cuerpo-->
-        <div class="container-fluid">
+        <div class="container-fluid contenedor-cuerpo">
+
             <div class="row">
+    
                 <div class="col-md-12 body-container-main">
-                    <div class="body-container__p-container"> <!--Editar -->
+                    <div class="body-container__p-container"> 
                         <h2>Todo lo que<br>
                             necesitas.</h2>
                         <p>Todo lo que necesitas en tu taller!!</p>
@@ -18,11 +24,11 @@
                         <p id="leyenda">¡Todos los meses elegimos a un cliente para recibir 50% de descuento!</p>
                     </div>
                 </div>
-
+    
             </div>
-
+    
             <div class="row bajo_main">
-
+    
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
                         
@@ -45,19 +51,19 @@
                             <tr>
                                 <th>Foto:</th>
                                 <th>Nombre:</th>
-                            </tr>
+                             </tr>
                         </thead>
-                        <tbody>
+                         <tbody>
         
-                        </tbody>
-                    </table>
+                          </tbody>
+                      </table>
                 </div>
         
                 <div class="col-md-2"></div>
         
             </div>
             
-
+    
         </div>
         <!--Fin Cuerpo-->
     {% endblock cuerpo %}
