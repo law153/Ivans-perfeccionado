@@ -13,15 +13,15 @@ input, textarea{
 
 /**Encabezado **/
 
-.contenedor-barra{
-    height: 170px;
+.container-fluid{
+    height: 0px;
 }
 
 .header-container{
     background: #000;
     display: flex;
     align-items: center;
-    height: 45%;
+    height: 15%;
 }
 
 .logo{
@@ -109,16 +109,10 @@ input, textarea{
 
 /**Navegación**/
 
-.contenedor-nave{
-    height: 55%;
-
-}
-
 .contenedor_nav{
     background: #ff0;
     margin: auto;
     width: 100%;
-    height: 100%;
     
 }
 
@@ -133,7 +127,6 @@ input, textarea{
     font-weight: bold;
     font-size: 40px;
     border-right: 5px solid #880;
-    margin-top: -28px;
 }
 
 .ultimo{
@@ -183,9 +176,6 @@ input, textarea{
     text-align: center;
 }
 
-.container-fluid:not(.contenedor-barra){
-    min-height: 100vh;
-}
 
 .boton-contenedor{
     width: 200px;
@@ -262,20 +252,6 @@ input, textarea{
         text-align: center;
     }
 
-    .contenedor-barra{
-        height: 320px;
-    }
-    
-
-    .header-container{
-        height: 80%;
-
-    }
-
-    .contenedor-nave{
-        height: 20%;
-
-    }
 
     .nav-container{
        
@@ -329,8 +305,6 @@ input, textarea{
         border-bottom: 5px solid #880;
         border-right: none;
         text-align: left;
-        margin-top: 0px;
-        background-color: #ff0;
     }
 
     .ultimo{
