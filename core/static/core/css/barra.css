@@ -143,6 +143,10 @@ input, textarea{
     background: #880;
 }
 
+.container-fluid{
+    min-height: 100vh;
+}
+
 /**Cuerpo**/
 
 
