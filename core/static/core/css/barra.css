@@ -17,6 +17,8 @@ input, textarea{
     height: 0px;
 }
 
+
+
 .header-container{
     background: #000;
     display: flex;
@@ -127,7 +129,7 @@ input, textarea{
     font-weight: bold;
     font-size: 40px;
     border-right: 5px solid #880;
-}
+}   
 
 .ultimo{
     border-right: none;
@@ -210,7 +212,7 @@ input, textarea{
 .bajo_main{
     background: #000;
     color: #fff;
-
+    height: 25%;
 }
 
 .tabla-contenedor{
@@ -262,13 +264,13 @@ input, textarea{
     }
 
     .header-container{
-        height: 70%;
+        height: 50%;
 
     }
 
     .contenedor-nave{
-        height: 30%;
-        margin-top: -18%;
+        height: 50%;
+        margin-top: -25%;
     }
 
     .nav-container{
@@ -343,7 +345,12 @@ input, textarea{
         font-size: 15px;
         width: 80%;
     }
+
     
+    .bajo_main{
+        height: 30%;
+    }
+        
 
 
 }
