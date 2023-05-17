@@ -3,8 +3,9 @@
 }
 
 .container{
-    height: 70vh;
-    margin-bottom: 5%;
+    height: 100vh;
+    margin-top: -30%;
+    
 }
 
 .contenedor__perfil-texto{

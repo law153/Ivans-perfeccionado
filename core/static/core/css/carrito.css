@@ -1,3 +1,13 @@
+.container-fluid{
+    margin-bottom: 0;
+}
+
+.container{
+    height: 100vh;
+    margin-top: -30%;
+    
+}
+
 
 .contenedor__producto{
     height: 87px;

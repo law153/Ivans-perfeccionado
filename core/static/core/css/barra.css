@@ -256,19 +256,19 @@ input, textarea{
         text-align: center;
     }
 
-    .contenedor-barra{
-        height: 300px;
-    }
     
+    .container-fluid{
+        min-height: 75vh;
+    }
 
     .header-container{
-        height: 80%;
+        height: 70%;
 
     }
 
     .contenedor-nave{
-        height: 20%;
-        margin-top: -25px;
+        height: 30%;
+        margin-top: -18%;
     }
 
     .nav-container{
