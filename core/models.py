@@ -65,8 +65,6 @@ class Venta(models.Model):
     total = models.IntegerField()
     carrito = models.BooleanField(verbose_name='0 para venta y 1 para carrito')
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
-    def __str__(self) -> str:
-        return self.id_venta + ""
 
 class Detalle(models.Model):
     id_detalle = models.AutoField(primary_key=True)
@@ -74,8 +72,6 @@ class Detalle(models.Model):
     subtotal = models.IntegerField()
     venta = models.ForeignKey(Venta, on_delete=models.CASCADE)
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
-    def __str__(self) -> str:
-        return self.id_detalle + ""
 
 ###incremental: models.AutoField()###
 ###imagenes: foto = models.ImageField(upload_to="carpeta")###
