@@ -1,6 +1,6 @@
 $(document).ready(function(){
     $("#cambiar-contra-cli").submit(function(e){
-        e.preventDefault();
+        
         //--Variables--
 
         var contra_actual = $("#contra_actual").val();
@@ -47,6 +47,7 @@ $(document).ready(function(){
 
         if(enviar){
             $("#alerta-actual").html(msj);
+            e.preventDefault();
 
         }else{
             $("#alerta-actual").html("");
@@ -98,6 +99,7 @@ $(document).ready(function(){
 
         if(enviar){
             $("#alerta-nueva").html(msj);
+            e.preventDefault();
 
         }else{
             $("#alerta-nueva").html("");
@@ -149,6 +151,7 @@ $(document).ready(function(){
 
         if(enviar){
             $("#alerta-conf").html(msj);
+            e.preventDefault();
 
         }else{
             $("#alerta-conf").html("");
