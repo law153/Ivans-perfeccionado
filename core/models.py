@@ -42,7 +42,7 @@ class Usuario(models.Model):
     rol = models.ForeignKey(Rol, on_delete=models.CASCADE)
     pregunta = models.ForeignKey(Pregunta, on_delete=models.CASCADE)
     def __str__(self) -> str:
-        return self.rut + ""
+        return self.nombre
 
 
 class Producto(models.Model):
@@ -53,6 +53,7 @@ class Producto(models.Model):
     stock = models.IntegerField()
     foto_prod = models.ImageField(upload_to="productos")
     unidad_medida = models.CharField(max_length=30)
+    categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
     def __str__(self) -> str:
         return self.nombre_prod
 
@@ -65,7 +66,7 @@ class Venta(models.Model):
     carrito = models.BooleanField(verbose_name='0 para venta y 1 para carrito')
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     def __str__(self) -> str:
-        return self.id_venta
+        return self.id_venta + ""
 
 class Detalle(models.Model):
     id_detalle = models.AutoField(primary_key=True)
@@ -74,7 +75,7 @@ class Detalle(models.Model):
     venta = models.ForeignKey(Venta, on_delete=models.CASCADE)
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
     def __str__(self) -> str:
-        return self.id_detalle
+        return self.id_detalle + ""
 
 ###incremental: models.AutoField()###
 ###imagenes: foto = models.ImageField(upload_to="carpeta")###
