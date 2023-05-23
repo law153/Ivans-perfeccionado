@@ -1,7 +1,6 @@
 $(document).ready(function(){
 
     $("#pregunta").submit(function(e){
-        e.preventDefault();
 
         /*Variables*/
 
@@ -50,6 +49,7 @@ $(document).ready(function(){
 
         if(enviar){
             $("#alerta_rut").html(msj);
+            e.preventDefault();
 
         }else{
             $("#alerta_rut").html("");
@@ -66,6 +66,7 @@ $(document).ready(function(){
 
         if(enviar){
             $("#alerta_preg").html(msj);
+            e.preventDefault();
 
         }else{
             $("#alerta_preg").html("");
@@ -82,6 +83,7 @@ $(document).ready(function(){
 
         if(enviar){
             $("#alerta_resp").html(msj);
+            e.preventDefault();
 
         }else{
             $("#alerta_resp").html("");

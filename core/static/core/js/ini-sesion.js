@@ -1,7 +1,6 @@
 $(document).ready(function(){
 
     $("#ini-sesion").submit(function(e){
-        e.preventDefault();
 
         /*Variables*/
  
@@ -34,6 +33,7 @@ $(document).ready(function(){
 
         if(enviar){
             $("#alerta_correo").html(msj);
+            e.preventDefault();
 
         }else{
             $("#alerta_correo").html("");
@@ -80,6 +80,7 @@ $(document).ready(function(){
         
         if(enviar){
             $("#alerta_contra").html(msj);
+            e.preventDefault();
 
         }else{
             $("#alerta_contra").html("");

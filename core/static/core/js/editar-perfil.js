@@ -1,7 +1,5 @@
 $(document).ready(function(){
     $("#form_editar-perfil").submit(function(e){
-        e.preventDefault();
-
         //--Variables--
 
         //--Permite que solo se suban ciertos formatos de archivos
@@ -38,6 +36,7 @@ $(document).ready(function(){
 
         if(enviar){
             $("#alerta_imagen-ed_perfil").html(msj);
+            e.preventDefault();
 
         }else{
             $("#alerta_imagen-ed_perfil").html("");
@@ -81,6 +80,7 @@ $(document).ready(function(){
 
         if(enviar){
             $("#alerta_nombre-ed_perfil").html(msj);
+            e.preventDefault();
 
         }else{
             $("#alerta_nombre-ed_perfil").html("");
@@ -124,6 +124,7 @@ $(document).ready(function(){
 
         if(enviar){
             $("#alerta_apellido-ed_perfil").html(msj);
+            e.preventDefault();
 
         }else{
             $("#alerta_apellido-ed_perfil").html("");
@@ -170,6 +171,7 @@ $(document).ready(function(){
 
         if(enviar){
             $("#alerta_rut-ed_perfil").html(msj);
+            e.preventDefault();
 
         }else{
             $("#alerta_rut-ed_perfil").html("");
@@ -205,6 +207,7 @@ $(document).ready(function(){
 
         if(enviar){
             $("#alerta_telefono-ed_perfil").html(msj);
+            e.preventDefault();
 
         }else{
             $("#alerta_telefono-ed_perfil").html("");
@@ -253,6 +256,7 @@ $(document).ready(function(){
 
         if(enviar){
             $("#alerta_direccion-ed_perfil").html(msj);
+            e.preventDefault();
 
         }else{
             $("#alerta_direccion-ed_perfil").html("");
@@ -285,6 +289,7 @@ $(document).ready(function(){
         
         if(enviar){
             $("#alerta_correo").html(msj);
+            e.preventDefault();
     
         }else{
             $("#alerta_correo").html("");
@@ -303,6 +308,7 @@ $(document).ready(function(){
 
         if(enviar){
             $("#alerta_pregunta-ed_perfil").html(msj);
+            e.preventDefault();
 
         }else{
             $("#alerta_pregunta-ed_perfil").html("");
@@ -321,6 +327,7 @@ $(document).ready(function(){
 
         if(enviar){
             $("#alerta_respuesta-ed_perfil").html(msj);
+            e.preventDefault();
 
         }else{
             $("#alerta_respuesta-ed_perfil").html("");

@@ -1,6 +1,5 @@
 $(document).ready(function(){
     $("#metodo-de-pago").submit(function(e){
-        e.preventDefault();
         //VARIABLES
         var eleccion = $("#eleccion").val();
         let msj = "";
@@ -12,6 +11,7 @@ $(document).ready(function(){
         }
         if(enviar){
             $("#alerta_metodo").html(msj);
+            e.preventDefault();
         }else{
             $("#alerta_metodo").html("");
         }

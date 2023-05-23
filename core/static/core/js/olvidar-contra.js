@@ -1,7 +1,6 @@
 $(document).ready(function(){
 
     $("#cambio-contra").submit(function(e){
-        e.preventDefault();
 
         /*Variables*/
         var clave = $("#contra_nueva").val();
@@ -48,6 +47,7 @@ $(document).ready(function(){
 
         if(enviar){
             $("#alerta-nueva").html(msj);
+            e.preventDefault();
 
         }else{
             $("#alerta-nueva").html("");
@@ -72,6 +72,7 @@ $(document).ready(function(){
         
         if(enviar){
             $("#alerta-conf").html(msj);
+            e.preventDefault();
 
         }else{
             $("#alerta-conf").html("");

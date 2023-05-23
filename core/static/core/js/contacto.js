@@ -1,7 +1,6 @@
 $(document).ready(function(){
 
     $("#contacto").submit(function(e){
-        e.preventDefault();
 
         /*Variables*/
 
@@ -62,6 +61,7 @@ $(document).ready(function(){
 
         if(enviar){
             $("#alerta").html(msj);
+            e.preventDefault();
 
         }else{
             $("#alerta").html("");
