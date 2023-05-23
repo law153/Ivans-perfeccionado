@@ -8,7 +8,7 @@ $(document).ready(function(){
         var contra_confirm = $("#contra_confirm").val();
 
         let msj = "";
-        let enviar = "false";
+        let enviar = "false"; //Si enviar es true, quiere decir que algo es invalido
 
         //--Validación Contraseña Actual
 
