@@ -42,7 +42,7 @@ class Usuario(models.Model):
     rol = models.ForeignKey(Rol, on_delete=models.CASCADE)
     pregunta = models.ForeignKey(Pregunta, on_delete=models.CASCADE)
     def __str__(self) -> str:
-        return self.rut + self.dvrut + ""
+        return self.rut + ""
 
 
 class Producto(models.Model):
