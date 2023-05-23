@@ -1,7 +1,6 @@
 $(document).ready(function(){
 
     $("#registro").submit(function(e){
-        e.preventDefault();
 
         /*Variables*/
 
@@ -59,6 +58,7 @@ $(document).ready(function(){
 
         if(enviar){
             $("#alerta_rut").html(msj);
+            e.preventDefault();
 
         }else{
             $("#alerta_rut").html("");
@@ -101,6 +101,7 @@ $(document).ready(function(){
 
         if(enviar){
             $("#alerta_nombre").html(msj);
+            e.preventDefault();
 
         }else{
             $("#alerta_nombre").html("");
@@ -142,6 +143,7 @@ $(document).ready(function(){
 
         if(enviar){
             $("#alerta_apellido").html(msj);
+            e.preventDefault();
 
         }else{
             $("#alerta_apellido").html("");
@@ -174,6 +176,7 @@ $(document).ready(function(){
         }
         if(enviar){
             $("#alerta_telefono").html(msj);
+            e.preventDefault();
 
         }else{
             $("#alerta_telefono").html("");
@@ -220,6 +223,7 @@ $(document).ready(function(){
 
         if(enviar){
             $("#alerta_direccion").html(msj);
+            e.preventDefault();
 
         }else{
             $("#alerta_direccion").html("");
@@ -249,6 +253,7 @@ $(document).ready(function(){
 
         if(enviar){
             $("#alerta_correo").html(msj);
+            e.preventDefault();
 
         }else{
             $("#alerta_correo").html("");
@@ -294,6 +299,7 @@ $(document).ready(function(){
         
         if(enviar){
             $("#alerta_contra").html(msj);
+            e.preventDefault();
 
         }else{
             $("#alerta_contra").html("");
@@ -320,6 +326,7 @@ $(document).ready(function(){
 
         if(enviar){
             $("#alerta-conf").html(msj);
+            e.preventDefault();
 
         }else{
             $("#alerta-conf").html("");

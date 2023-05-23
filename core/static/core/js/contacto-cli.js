@@ -1,6 +1,6 @@
 $(document).ready(function(){
     $("#contacto-cli").submit(function(e){
-        e.preventDefault();
+
         /*Variables*/
         var nombre = $("#nom").val();
         var asunto = $("#asunto").val();
@@ -43,6 +43,7 @@ $(document).ready(function(){
         }
         if(enviar){
             $("#alerta").html(msj);
+            e.preventDefault();
 
         }else{
             $("#alerta").html("");

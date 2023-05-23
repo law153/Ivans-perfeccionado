@@ -1,6 +1,5 @@
 $(document).ready(function(){
     $("#form_agregar").submit(function(e){
-        e.preventDefault(); 
 
         //--Variables--
 
@@ -34,6 +33,7 @@ $(document).ready(function(){
 
         if(enviar){
             $("#alerta_imagen-prod").html(msj);
+            e.preventDefault();
 
         }else{
             $("#alerta_imagen-prod").html("");
@@ -66,6 +66,7 @@ $(document).ready(function(){
 
         if(enviar){
             $("#alerta_nombre-prod").html(msj);
+            e.preventDefault();
 
         }else{
             $("#alerta_nombre-prod").html("");
@@ -97,6 +98,7 @@ $(document).ready(function(){
 
         if(enviar){
             $("#alerta_descripcion-prod").html(msj);
+            e.preventDefault();
         }else{
             $("#alerta_descripcion-prod").html("");
         }
@@ -132,6 +134,7 @@ $(document).ready(function(){
 
         if(enviar){
             $("#alerta_precio-prod").html(msj);
+            e.preventDefault();
         }else{
             $("#alerta_precio-prod").html("");
         }
@@ -162,6 +165,7 @@ $(document).ready(function(){
 
         if(enviar){
             $("#alerta_stock-prod").html(msj);
+            e.preventDefault();
         }else{
             $("#alerta_stock-prod").html("");
         }
