@@ -31,12 +31,13 @@
                             Télefono: +56764982253<br>
                             Dirección: Caupolicán 1257
                         </p>
-                        <form {% csrf_token %} class="contenedor-boton" action="{% url 'mostrarEditarPerfilCli' %}">
-                            <button>Editar</button>
-                        </form>
-                        <form {% csrf_token %} class="contenedor-boton" action="{% url 'mostrarCambioContraCli' %}">
-                            <button>Cambiar contraseña</button>
-                        </form>
+                        <div class="container-button">
+                            <a class="boton-fake-2" href="{% url 'mostrarEditarPerfilCli' %}">Editar</a>
+                        </div>
+                        <div class="container-button">
+                            <a class="boton-fake-2" href="{% url 'mostrarCambioContraCli' %}">Editar</a>
+                        </div>
+                        
                     </div>
                 </div>
                 <div class="col-md-2">

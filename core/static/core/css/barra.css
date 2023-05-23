@@ -251,6 +251,51 @@ input, textarea{
     font-size: 25px;
 }
 
+/*Diseños para links que parecen botones :D*/
+.container-button{
+    margin-bottom: 2%;
+    text-align: center;
+    
+}
+
+.boton-fake-1{
+    text-decoration: none;
+    color: #ddd;
+    background: #000;
+    font-size: 15px;
+    border-radius: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    
+    
+}
+
+.boton-fake-1:hover{
+    color: #fff;
+    background: #000;
+}
+
+.boton-fake-2{
+    text-decoration: none;
+    color: #000;
+    background: #ff0;
+    font-size: 15px;
+    border-radius: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    
+    
+}
+
+.boton-fake-2:hover{
+    color: #fff;
+    background: #cc0;
+}
+
 /**Medida small**/
 @media screen and (min-width: 0px) and (max-width: 576px){
 

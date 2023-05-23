@@ -66,24 +66,7 @@ input, textarea, select{
 }
 
 
-.boton-fake{
-    text-decoration: none;
-    color: #ddd;
-    background: #000;
-    font-size: 15px;
-    border-radius: 15px;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    
-    
-}
 
-.boton-fake:hover{
-    color: #fff;
-    background: #000;
-}
 
 .left{
     text-align: left;
