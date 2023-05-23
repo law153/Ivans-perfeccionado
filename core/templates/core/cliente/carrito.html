@@ -30,7 +30,7 @@
                 <div class="contenedor__producto-precio">
                     <p>$3.075  MT</p>
                 </div>
-                <form name="contador" class="container-button">
+                <form {% csrf_token %} name="contador" class="container-button">
                     <input type="number" min="1" value="1" class="contador" name="cantidad">
                     <input type="button" value="Aceptar" name="fijar_cant">
                     <button class="borrar"><i class="fa-solid fa-trash"></i></button> 
@@ -50,7 +50,7 @@
                 <div class="contenedor__producto-precio">
                     <p>$180  UNI</p>
                 </div>
-                <form name="contador" class="container-button">
+                <form {% csrf_token %} name="contador" class="container-button">
                     <input type="number" min="1" value="1" class="contador" name="cantidad">
                     <input type="button" value="Aceptar" name="fijar_cant">
 
@@ -71,7 +71,7 @@
                 <div class="contenedor__producto-precio">
                     <p>$130.650  UNI</p>
                 </div>
-                <form name="contador" class="container-button">
+                <form {% csrf_token %} name="contador" class="container-button">
                     <input type="number" min="1" value="1" class="contador" name="cantidad">
                     <input type="button" value="Aceptar" name="fijar_cant">
 
@@ -82,7 +82,7 @@
         <div class="row">
             <div class="col-md-4"></div>
             <div class="col-md-4">
-                <form class="form-group" style="text-align: center;">
+                <form {% csrf_token %} class="form-group" style="text-align: center;">
                     <label for="Total">Total: $</label>
                     <input class="no-editable" type="number" min="0" name="total" value="133905" readonly style="width: 30%;">
                 </form>
@@ -92,7 +92,7 @@
         <div class="row">
             <div class="col-md-4"></div>
             <div class="col-md-4">
-                <form action="{% url 'mostrarMetodoPago' %}" name="pagar" class="container-button-p">
+                <form {% csrf_token %} action="{% url 'mostrarMetodoPago' %}" name="pagar" class="container-button-p">
                     <input style="text-align: center; width: 50%; height: 50px; margin-bottom: 5%;" type="submit" value="Pagar">
                 </form>
             </div>

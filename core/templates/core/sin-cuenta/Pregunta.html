@@ -20,7 +20,7 @@
     
                 <div class="col-md-4 ajustado-posicion">
                     <h1>Pregunta de seguridad</h1>
-                    <form id="pregunta" name="pregunta" method="post" enctype="application/x-www-form-urlencoded" class="posicion-casillas-formulario">
+                    <form {% csrf_token %} id="pregunta" name="pregunta" method="post" enctype="application/x-www-form-urlencoded" class="posicion-casillas-formulario">
     
                         <div class="form-group" style="text-align: left;">
                             <label for="rut">rut:</label><br>

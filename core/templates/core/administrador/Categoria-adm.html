@@ -1,22 +1,18 @@
-{% extends 'core/sin-cuenta/plantillaSinCuenta.html'%}
+{% extends 'core/cliente/plantillaAdministrador.html'%}
 {% load static %}
+    {% block titulo%}
+    <title>Electricidad</title>
+    {% endblock titulo%}
 
-    {% block titulo %}
-    <title>Categoria</title>
-    {% endblock titulo %}
-    
-    {% block disenos %}
+    {% block disenos%}
     <link rel="stylesheet" type="text/css" href="{% static  'core/css/comprar-diseno.css'%}">
-    {% endblock disenos %}
-    
+    <link rel="stylesheet" type="text/css" href="{% static  'core/css/inventario.css'%}">
+    {% endblock disenos%}
 
-    
-    {% block cuerpo %}
-    
-        <!--Cuerpo-->
+    {% block cuerpo%}
         <div class="container">
 
-            
+            <!--Cuerpo-->
             <div class="row">
                 <div class="col-md-12">  
                     <h1 class="titulo">Electricidad</h1>
@@ -33,15 +29,10 @@
                         <img src="{% static 'core/img/Electricidad-cable.jpg'%}" alt="No hay imagen disponible">
                     </div>
                     <div class="contenedor__producto-texto">
-                        <a href="{% url 'mostrarProducto' %}">CABLE ELECTRICO CORDON ST 3 X 14 AWG</a> 
+                        <a href="{% url 'mostrarProductoAdm' %}">CABLE ELECTRICO CORDON ST 3 X 14 AWG</a> 
                     </div>
                     <div class="contenedor__producto-precio">
                         <p>$3.075  MT</p>
-                    </div>
-                    <div class="contenedor__producto-button">
-                        <form {% csrf_token %} action="{% url 'mostrarIni_sesion' %}">
-                            <button>Agregar</button>
-                        </form>
                     </div>
                 </div>
                 <div class="col-md-2 contenedor__producto">
@@ -49,15 +40,10 @@
                         <img src="{% static 'core/img/Electricidad-interruptor.jpg'%}" alt="No hay imagen disponible">
                     </div>
                     <div class="contenedor__producto-texto">
-                        <a href="{% url 'mostrarProducto' %}">MODULO INTERRUPTOR 16A 9/12 BTICINO</a> 
+                        <a href="{% url 'mostrarProductoAdm' %}">MODULO INTERRUPTOR 16A 9/12 BTICINO</a> 
                     </div>
                     <div class="contenedor__producto-precio">
                         <p>$5.750  UNI</p>
-                    </div>
-                    <div class="contenedor__producto-button">
-                        <form {% csrf_token %} action="{% url 'mostrarIni_sesion' %}">
-                            <button>Agregar</button>
-                        </form>
                     </div>
                 </div>
                 <div class="col-md-2 contenedor__producto">
@@ -65,15 +51,10 @@
                         <img src="{% static 'core/img/Electricidad-cinta.jpg'%}" alt="No hay imagen disponible">
                     </div>
                     <div class="contenedor__producto-texto">
-                        <a href="{% url 'mostrarProducto' %}">CINTA AISLANTE VERDE 10MT IMCOEX</a> 
+                        <a href="{% url 'mostrarProductoAdm' %}">CINTA AISLANTE VERDE 10MT IMCOEX</a> 
                     </div>
                     <div class="contenedor__producto-precio">
                         <p>$575  UNI</p>
-                    </div>
-                    <div class="contenedor__producto-button">
-                        <form {% csrf_token %} action="{% url 'mostrarIni_sesion' %}">
-                            <button>Agregar</button>
-                        </form>
                     </div>
                 </div>
                 <div class="col-md-2 contenedor__producto last-prod">
@@ -81,15 +62,10 @@
                         <img src="{% static 'core/img/Electricidad-grampa.jpg'%}" alt="No hay imagen disponible">
                     </div>
                     <div class="contenedor__producto-texto">
-                        <a href="{% url 'mostrarProducto' %}">GRAMPAS COAXIAL NEGRO 6 MM</a>
+                        <a href="{% url 'mostrarProductoAdm' %}">GRAMPAS COAXIAL NEGRO 6 MM</a>
                     </div>
                     <div class="contenedor__producto-precio">
                         <p>$105  UNI</p>
-                    </div>
-                    <div class="contenedor__producto-button">
-                        <form {% csrf_token %} action="{% url 'mostrarIni_sesion' %}">
-                            <button>Agregar</button>
-                        </form>
                     </div>
                 </div>
 
@@ -97,8 +73,17 @@
 
             </div>
 
-            </div>
-            
+            <div class="row">
+
+                <div class="col-md-2 contenedor__producto contenedor__nuevo">
+                    <div class="contenedor__producto-img">
+                        <img src="{% static  'core/img/mas.png'%}" alt="No hay imagen disponible">
+                    </div>
+                    <div class="contenedor__producto-texto">
+                        <a href="{% url 'mostrarAgregar' %}">Agregar</a>    
+                    </div>
+                </div>
+
+            </div>       
         </div>
-        <!--Fin Cuerpo-->
     {% endblock cuerpo %}

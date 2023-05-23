@@ -20,7 +20,7 @@
     
                 <div class="col-md-4 ajustado-posicion">
                     <h1>Iniciar Sesión</h1>
-                    <form id="ini-sesion" class="posicion-casillas-formulario" action="#" method="post" enctype="application/x-www-form-urlencoded">
+                    <form {% csrf_token %} id="ini-sesion" class="posicion-casillas-formulario" action="#" method="post" enctype="application/x-www-form-urlencoded">
                         <div class="form-group" style="text-align: left;">
                             <label for="correo_ini">Correo Electrónico:</label><br>
                             <input type="email" id="correo_ini" name="correo_ini" placeholder="Correo"><br>

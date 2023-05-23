@@ -30,7 +30,7 @@
                     <p>$3.075  MT</p>
                 </div>
                 <div class="contenedor__producto-button">
-                    <form action="{% url 'mostrarCarritoCli' %}">
+                    <form {% csrf_token %} action="{% url 'mostrarCarritoCli' %}">
                         <button>Agregar</button>
                     </form>
                 </div>
@@ -46,7 +46,7 @@
                     <p>$5.750  UNI</p>
                 </div>
                 <div class="contenedor__producto-button">
-                    <form action="{% url 'mostrarCarritoCli' %}">
+                    <form {% csrf_token %} action="{% url 'mostrarCarritoCli' %}">
                         <button>Agregar</button>
                     </form>
                 </div>
@@ -62,7 +62,7 @@
                     <p>$575  UNI</p>
                 </div>
                 <div class="contenedor__producto-button">
-                    <form action="{% url 'mostrarCarritoCli' %}">
+                    <form {% csrf_token %} action="{% url 'mostrarCarritoCli' %}">
                         <button>Agregar</button>
                     </form>
                 </div>
@@ -78,7 +78,7 @@
                     <p>$105  UNI</p>
                 </div>
                 <div class="contenedor__producto-button">
-                    <form action="{% url 'mostrarCarritoCli' %}">
+                    <form {% csrf_token %} action="{% url 'mostrarCarritoCli' %}">
                         <button>Agregar</button>
                     </form>
                 </div>
