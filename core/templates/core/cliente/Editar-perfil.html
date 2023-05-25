@@ -21,7 +21,8 @@
                 <div class="col-md-2">
                 </div>
                 <div class="col-md-8 ajustado-posicion">
-                    <form {% csrf_token %} id="form_editar-perfil-cli" class="contenedor__perfil-form posicion-casillas-formulario editar" method="post" enctype="multipart/form-data">
+                    <form id="form_editar-perfil-cli" class="contenedor__perfil-form posicion-casillas-formulario editar" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
                         <div class="form-group left">    
                             <div class="contenedor__perfil-foto-e">
                                 <img src="{% static 'core/img/icono-perfil.png'%}" alt="No hay imagen">

@@ -25,8 +25,8 @@
                     <div class="col-md-2"></div>
 
                     <div class="col-md-8 ajustado-posicion">
-                        <form {% csrf_token %} id="form_agregar" method="POST" name="agregar-prod" enctype="multipart/form-data" action="#">
-
+                        <form id="form_agregar" method="POST" name="agregar-prod" enctype="multipart/form-data" action="#">
+                            {% csrf_token %}
                             <div class="form-group contenedor__id contenedor__atributo left">
                                 <label for="nombre">ID:</label>
                                 <input class="id" type="text" id="id" name="id"  readonly>

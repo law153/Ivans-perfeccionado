@@ -26,7 +26,8 @@
                         E-mail: serviciocliente@ivansbusiness.cl<br>
                     </p>
     
-                    <form {% csrf_token %} id="contacto" action="#" method="post" enctype="application/x-www-form-urlencoded"> 
+                    <form id="contacto" action="#" method="post" enctype="application/x-www-form-urlencoded"> 
+                        {% csrf_token %}
                         <div class="form-group">
                             <label style="font-weight: bold;" for="nom-ap">Nombre:</label><br>
                             <input type="text" id="nom" name="nom-ap" value="">

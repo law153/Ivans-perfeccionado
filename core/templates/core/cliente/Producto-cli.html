@@ -22,7 +22,8 @@
                     <p>$3.075 el metro</p>
                 </div>
                 <div class="contenedor-boton">
-                    <form {% csrf_token %} action="{% url 'mostrarCarritoCli' %}">
+                    <form action="{% url 'mostrarCarritoCli' %}">
+                        {% csrf_token %}
                         <button>Agregar</button>
                     </form>
                 </div>

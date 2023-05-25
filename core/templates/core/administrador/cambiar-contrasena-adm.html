@@ -16,7 +16,8 @@
 
                 <div class="col-md-4 ajustado-posicion">
                     <h1>Cambio de Contraseña</h1>
-                    <form {% csrf_token %} id="cambiar_contra" method="post" enctype="application/x-www-form-urlencoded">
+                    <form id="cambiar_contra" method="post" enctype="application/x-www-form-urlencoded">
+                        {% csrf_token %}
                         <div class="form-group">
                             <label for="contra_nueva">Contraseña actual:</label><br>
                             <input type="password" id="contra_actual" name="contra_actual" value="SoyAbel/57"><br>
