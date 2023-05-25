@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'Ivans_perfeccionado.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.oracle',
-        'NAME': '127.0.0.1:1521/orcl',
+        'NAME': '192.168.1.143:1521/orcl', #Para Abel 192.168.1.143, para los demas 127.0.0.1
         'USER': 'ivan1',
         'PASSWORD': 'ivan1',
         'TEST':{
