@@ -20,7 +20,7 @@
                 <div class="col-md-4 ajustado-posicion">
                     <h1>Cree su cuenta</h1>
     
-                    <form id="registro" class="posicion-casillas-formulario" action="#" method="post" enctype="application/x-www-form-urlencoded">
+                    <form id="registro" class="posicion-casillas-formulario" action="{% url 'registrarUsuario' %}" method="post" enctype="application/x-www-form-urlencoded">
                         {% csrf_token %}
                         <div class="form-group left">
                             <label for="rut">rut:</label><br>

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Rol, Pregunta, Categoria, Producto
+from .models import Rol, Pregunta, Categoria, Consulta, Usuario, Producto, Venta, Detalle
 
 # Create your views here.
 
@@ -27,6 +27,43 @@ def mostrarProducto(request):
 
 def mostrarCategoria(request):
     return render(request, 'core/sin-cuenta/Categoria.html')
+
+def registrarUsuario(request):
+    rutU = request.POST['rut']
+    dvrutU = request.POST['dvrut']
+    nombreU = request.POST['nombre']
+    apellidoU = request.POST['apellido']
+    telefonoU = request.POST['fono']
+    direccionU = request.POST['direc']
+    correoU = request.POST['correo_reg']
+    claveU = request.POST['contra_ini']
+    respuestaU = ' '
+    registroRol = Rol.objects.get(id_rol = 1) ##Los usuarios registrados son clientes
+    registroPregunta = Pregunta.objects.get(id_pregunta = 1) ##Pregunta asiganada por defecto
+
+    Usuario.objects.create(rut = rutU,
+                            dvrut = dvrutU,
+                            nombre = nombreU,
+                            apellido = apellidoU,
+                            telefono = telefonoU,
+                            correo = correoU,
+                            clave = claveU,
+                            direccion = direccionU,
+                            respuesta = respuestaU,
+                            rol = registroRol,
+                            pregunta = registroPregunta)
+    
+    return redirect('mostrarIni_sesion')
+
+def consultar(request):
+    nombreC = request.POST['nom-ap']
+    asuntoC = request.POST['asunto']
+    mensajeC = request.POST['msg']
+
+    Consulta.objects.create(nombre_consultante = nombreC,
+                            asunto_consulta = asuntoC,
+                            mensaje_consulta = mensajeC)
+    return redirect('mostrarNosotros')
 
 ###Paginas cliente###
 def mostrarProductoCli(request):

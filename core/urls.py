@@ -1,5 +1,5 @@
 from django.urls import path,include
-from .views import mostrarIndex, mostrarNosotros, mostrarRegistro,mostrarIni_sesion, mostrarOlv_contra, mostrarPregunta, mostrarProducto, mostrarCategoria, mostrarIndexAdm, mostrarPerfilAdm, mostrarCategoriaAdm, mostrarAgregar, mostrarEditarPerfilAdm, mostrarCambioContraAdm, mostrarProductoAdm, mostrarProductoCli, mostrarCategoriaCli, mostrarMetodoPago, mostrarNosotrosCli, mostrarPerfilCli, mostrarIndexCli, mostrarCarritoCli, mostrarCambioContraCli, mostrarEditarPerfilCli,agregarProducto
+from .views import mostrarIndex, mostrarNosotros, mostrarRegistro,mostrarIni_sesion, mostrarOlv_contra, mostrarPregunta, mostrarProducto, mostrarCategoria, mostrarIndexAdm, mostrarPerfilAdm, mostrarCategoriaAdm, mostrarAgregar, mostrarEditarPerfilAdm, mostrarCambioContraAdm, mostrarProductoAdm, mostrarProductoCli, mostrarCategoriaCli, mostrarMetodoPago, mostrarNosotrosCli, mostrarPerfilCli, mostrarIndexCli, mostrarCarritoCli, mostrarCambioContraCli, mostrarEditarPerfilCli,registrarUsuario,consultar, agregarProducto
 
 urlpatterns = [
 
@@ -12,6 +12,8 @@ urlpatterns = [
     path('pregunta_de_seguridad/',mostrarPregunta,name="mostrarPregunta"),
     path('producto/',mostrarProducto,name="mostrarProducto"),
     path('categoria/',mostrarCategoria,name="mostrarCategoria"),
+    path('registrarUsuario/',registrarUsuario,name='registrarUsuario'),
+    path('consultar/',consultar,name="consultar"),
     ### Paginas cliente###
     path('producto_cli/',mostrarProductoCli,name="mostrarProductoCli"),
     path('principal_cli/',mostrarIndexCli,name="mostrarIndexCli"),
