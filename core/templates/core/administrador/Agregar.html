@@ -25,7 +25,7 @@
                     <div class="col-md-2"></div>
 
                     <div class="col-md-8 ajustado-posicion">
-                        <form id="form_agregar" method="POST" name="agregar-prod" enctype="multipart/form-data" action="#">
+                        <form id="form_agregar" method="POST" name="agregar-prod" enctype="multipart/form-data" action="{% url 'agregarProducto' %}">
                             {% csrf_token %}
                             <div class="form-group contenedor__id contenedor__atributo left">
                                 <label for="nombre">ID:</label>
@@ -71,13 +71,9 @@
                             <div class="form-group contenedor__cate contenedor__atributo left">
                                 <label for="categoria">Categoria:</label><br>
                                 <select name="categoria" >
-                                    <option value="Herramientas">Herramientas</option>
-                                    <option value="Gasfiteria">Gasfiteria</option>
-                                    <option value="Electricidad">Electricidad</option>
-                                    <option value="Seguridad">Seguridad</option>
-                                    <option value="Ropa">Ropa y protección</option>
-                                    <option value="Fijaciones">Fijaciones</option>
-                                    <option value="Kits">Kits</option>
+                                    {% for c in categories%}
+                                    <option value="{{c.id_categoria}}">{{c.nombre_categoria}}</option>
+                                    {% endfor %}
                                 </select>
                             </div>
                             

@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from .models import Rol, Pregunta, Categoria, Producto
 
 # Create your views here.
 
@@ -64,10 +65,14 @@ def mostrarPerfilAdm(request):
     return render(request, 'core/administrador/perfil-adm.html')
 
 def mostrarCategoriaAdm(request):
-    return render(request, 'core/administrador/categoria.html')
+    return render(request, 'core/administrador/categoria-adm.html')
 
 def mostrarAgregar(request):
-    return render(request, 'core/administrador/agregar.html')
+    categorias = Categoria.objects.all()
+    contexto = {
+        "categories" : categorias
+    }
+    return render(request, 'core/administrador/agregar.html',contexto)
 
 def mostrarEditarPerfilAdm(request):
     return render(request, 'core/administrador/editar-perfil-adm.html')
@@ -77,3 +82,20 @@ def mostrarCambioContraAdm(request):
 
 def mostrarProductoAdm(request):
     return render(request, 'core/administrador/producto-adm.html')
+
+def agregarProducto(request):
+    nombreP = request.POST['nombre']
+    descripcionP = request.POST['descripcion']
+    precioP = request.POST['precio']
+    stockP = request.POST['stock']
+    fotoP = request.FILES['imagen']
+    unidadP = request.POST['medida']
+    categoriaP = request.POST['categoria']
+
+    registroCategoria = Categoria.objects.get(id_categoria = categoriaP)
+
+    Producto.objects.create(nombre_prod = nombreP, descripcion = descripcionP, precio = precioP, stock = stockP, foto_prod = fotoP, unidad_medida = unidadP, categoria = registroCategoria)
+    return redirect('mostrarAgregar')
+
+
+
