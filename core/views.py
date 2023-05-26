@@ -109,7 +109,7 @@ def mostrarAgregar(request):
     contexto = {
         "categories" : categorias
     }
-    return render(request, 'core/administrador/agregar.html',contexto)
+    return render(request, 'core/administrador/Agregar.html',contexto)
 
 def mostrarEditarPerfilAdm(request):
     return render(request, 'core/administrador/editar-perfil-adm.html')
