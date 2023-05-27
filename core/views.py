@@ -88,7 +88,11 @@ def mostrarProductoCli(request):
     return render(request, 'core/cliente/Producto-cli.html')
 
 def mostrarCategoriaCli(request):
-    return render(request, 'core/cliente/Categoria-cli.html')
+    productos = Producto.objects.all()
+    
+    contexto = {"products" : productos}
+
+    return render(request, 'core/cliente/Categoria-cli.html', contexto)
 
 def mostrarMetodoPago(request):
     return render(request, 'core/cliente/Metodo-pago.html')
@@ -117,7 +121,22 @@ def mostrarIndexAdm(request):
     return render(request, 'core/administrador/index-adm.html')
 
 def mostrarPerfilAdm(request):
-    return render(request, 'core/administrador/perfil-adm.html')
+    nombrePerfil = "Abelardo"
+    apellidoPerfil = "Sánchez"
+    rutPerfil = 21342568
+    dvrutPerfil = 4
+    telefonoPerfil = 64982253
+    direccionPerfil = "Caupolicán 1257"
+
+    contexto = {
+        "nombre": nombrePerfil,
+        "apellido": apellidoPerfil,
+        "rut": rutPerfil,
+        "dvrut": dvrutPerfil,
+        "telefono": telefonoPerfil,
+        "direccion": direccionPerfil
+    }
+    return render(request, 'core/administrador/perfil-adm.html',contexto)
 
 def mostrarCategoriaAdm(request):
     return render(request, 'core/administrador/categoria-adm.html')
@@ -130,23 +149,9 @@ def mostrarAgregar(request):
     return render(request, 'core/administrador/Agregar.html',contexto)
 
 def mostrarEditarPerfilAdm(request):
-    nombrePerfil = "Abelardo"
-    apellidoPerfil = "Sánchez"
-    rutPerfil = 21342568
-    dvrutPerfil = 4
-    telefonoPerfil = 964982253
-    direccionPerfil = "Caupolicán 1257"
+    
 
-    contexto = {
-        "nombre": nombrePerfil,
-        "apellido": apellidoPerfil,
-        "rut": rutPerfil,
-        "dvrut": dvrutPerfil,
-        "telefono": telefonoPerfil,
-        "direccion": direccionPerfil
-    }
-
-    return render(request, 'core/administrador/perfil-adm.html',contexto)
+    return render(request, 'core/administrador/Editar-perfil-adm.html')
 
 def mostrarCambioContraAdm(request):
     return render(request, 'core/administrador/cambiar-contrasena-adm.html')
