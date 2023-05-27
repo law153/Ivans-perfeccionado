@@ -28,11 +28,11 @@
 
                 <div class="col-md-4 col-sm-12">
                     <div class="contenedor__perfil-texto">
-                        <p> Nombre: Abelardo<br>
-                            Apellido: Sánchez<br>
-                            Rut: 21.342.568-4<br>
-                            Télefono: +56764982253<br>
-                            Dirección: Caupolicán 1257
+                        <p> Nombre: {{nombre}} <br>
+                            Apellido: {{apellido}} <br>
+                            Rut: {{rut}}-{{dvrut}} <br>
+                            Télefono: +56 {{telefono}} <br>
+                            Dirección: {{direccion}}
                         </p>
                         <div class="container-button">
                             <a class="boton-fake-2" href="{% url 'mostrarEditarPerfilAdm' %}">Editar</a>

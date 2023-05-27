@@ -130,7 +130,23 @@ def mostrarAgregar(request):
     return render(request, 'core/administrador/Agregar.html',contexto)
 
 def mostrarEditarPerfilAdm(request):
-    return render(request, 'core/administrador/editar-perfil-adm.html')
+    nombrePerfil = "Abelardo"
+    apellidoPerfil = "Sánchez"
+    rutPerfil = 21342568
+    dvrutPerfil = 4
+    telefonoPerfil = 964982253
+    direccionPerfil = "Caupolicán 1257"
+
+    contexto = {
+        "nombre": nombrePerfil,
+        "apellido": apellidoPerfil,
+        "rut": rutPerfil,
+        "dvrut": dvrutPerfil,
+        "telefono": telefonoPerfil,
+        "direccion": direccionPerfil
+    }
+
+    return render(request, 'core/administrador/perfil-adm.html',contexto)
 
 def mostrarCambioContraAdm(request):
     return render(request, 'core/administrador/cambiar-contrasena-adm.html')
