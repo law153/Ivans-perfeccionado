@@ -69,6 +69,20 @@ def consultar(request):
                             mensaje_consulta = mensajeC)
     return redirect('mostrarNosotros')
 
+def inicioSesion(request):
+
+    correoI = request.POST['correo_ini']
+    claveI = request.POST['contra_ini']
+
+    datos = Usuario.objects.all()
+
+    for i in datos:
+
+        if (i.correo == correoI and i.clave == claveI ):
+            return redirect('mostrarIndexCli')
+        else:
+            return redirect('mostrarIni_sesion')
+
 ###Paginas cliente###
 def mostrarProductoCli(request):
     return render(request, 'core/cliente/Producto-cli.html')
