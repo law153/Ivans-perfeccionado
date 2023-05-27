@@ -11,7 +11,6 @@ $(document).ready(function(){
         var nombre = $("#nombre").val();
         var descripcion = $("#descripcion").val();
         var precio = $("#precio").val();
-        var medida = $('#medida').val();
         var stock = $("#stock").val();
         let msj = "";
         let enviar = "false";
@@ -107,7 +106,7 @@ $(document).ready(function(){
         //Fin validaciones Descripcion--
 
         //--Validaciones Precio
-        if(precio.trim().length === 0 || medida.trim().length === 0){
+        if(precio.trim().length === 0){
             
             msj += "Debe llenar estos campos";
             enviar = true;
