@@ -63,14 +63,14 @@
                             </div>
             
                             <div class="form-group contenedor__stock contenedor__atributo left">
-                                <label for="Stock">Stock:</label><br>
+                                <label for="stock">Stock:</label><br>
                                 <input class="stock" type="number" id="stock" name="stock" >
                                 <p id="alerta_stock-prod" class="alerta"></p>
                             </div>
 
                             <div class="form-group contenedor__cate contenedor__atributo left">
                                 <label for="categoria">Categoria:</label><br>
-                                <select name="categoria" >
+                                <select id="categoria" name="categoria" >
                                     {% for c in categories%}
                                     <option value="{{c.id_categoria}}">{{c.nombre_categoria}}</option>
                                     {% endfor %}

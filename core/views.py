@@ -135,7 +135,7 @@ def agregarProducto(request):
 
     registroCategoria = Categoria.objects.get(id_categoria = categoriaP)
 
-    Producto.objects.create(nombre_prod = nombreP, descripcion = descripcionP, precio = precioP, stock = stockP, foto_prod = fotoP, unidad_medida = unidadP, categoria = registroCategoria)
+    Producto.objects.create(foto_prod = fotoP, nombre_prod = nombreP, descripcion = descripcionP, precio = precioP, stock = stockP, unidad_medida = unidadP, categoria = registroCategoria)
     return redirect('mostrarAgregar')
 
 
