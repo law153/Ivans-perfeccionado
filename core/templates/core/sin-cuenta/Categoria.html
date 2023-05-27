@@ -27,63 +27,22 @@
             <div class="row">
 
                 <div class="col-md-2"></div>
-                    
+                {% for i in products %}
                 <div class="col-md-2 contenedor__producto">
                     <div class="contenedor__producto-img">
-                        <img src="{% static 'core/img/Electricidad-cable.jpg'%}" alt="No hay imagen disponible">
+                        <img src="{{ i.foto_prod.url }}" alt="No hay imagen disponible">
                     </div>
                     <div class="contenedor__producto-texto">
-                        <a href="{% url 'mostrarProducto' %}">CABLE ELECTRICO CORDON ST 3 X 14 AWG</a> 
+                        <a href="{% url 'mostrarProducto' %}">{{ i.nombre_prod }}</a> 
                     </div>
                     <div class="contenedor__producto-precio">
-                        <p>$3.075  MT</p>
+                        <p>$ {{ i.precio }} {{ i.unidad_medida }}</p>
                     </div>
                     <div class="contenedor__producto-button">             
                         <a class="boton-fake-2" href="{% url 'mostrarIni_sesion' %}">Confirmar</a>
                     </div>
                 </div>
-                <div class="col-md-2 contenedor__producto">
-                    <div class="contenedor__producto-img">
-                        <img src="{% static 'core/img/Electricidad-interruptor.jpg'%}" alt="No hay imagen disponible">
-                    </div>
-                    <div class="contenedor__producto-texto">
-                        <a href="{% url 'mostrarProducto' %}">MODULO INTERRUPTOR 16A 9/12 BTICINO</a> 
-                    </div>
-                    <div class="contenedor__producto-precio">
-                        <p>$5.750  UNI</p>
-                    </div>
-                    <div class="contenedor__producto-button">
-                        <a class="boton-fake-2" href="{% url 'mostrarIni_sesion' %}">Confirmar</a>
-                    </div>
-                </div>
-                <div class="col-md-2 contenedor__producto">
-                    <div class="contenedor__producto-img">
-                        <img src="{% static 'core/img/Electricidad-cinta.jpg'%}" alt="No hay imagen disponible">
-                    </div>
-                    <div class="contenedor__producto-texto">
-                        <a href="{% url 'mostrarProducto' %}">CINTA AISLANTE VERDE 10MT IMCOEX</a> 
-                    </div>
-                    <div class="contenedor__producto-precio">
-                        <p>$575  UNI</p>
-                    </div>
-                    <div class="contenedor__producto-button">
-                        <a class="boton-fake-2" href="{% url 'mostrarIni_sesion' %}">Confirmar</a>
-                    </div>
-                </div>
-                <div class="col-md-2 contenedor__producto last-prod">
-                    <div class="contenedor__producto-img">
-                        <img src="{% static 'core/img/Electricidad-grampa.jpg'%}" alt="No hay imagen disponible">
-                    </div>
-                    <div class="contenedor__producto-texto">
-                        <a href="{% url 'mostrarProducto' %}">GRAMPAS COAXIAL NEGRO 6 MM</a>
-                    </div>
-                    <div class="contenedor__producto-precio">
-                        <p>$105  UNI</p>
-                    </div>
-                    <div class="contenedor__producto-button">
-                        <a class="boton-fake-2" href="{% url 'mostrarIni_sesion' %}">Confirmar</a>
-                    </div>
-                </div>
+                {% endfor %}
 
                 <div class="col-md-2"></div>
 

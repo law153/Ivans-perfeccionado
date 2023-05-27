@@ -26,7 +26,11 @@ def mostrarProducto(request):
     return render(request, 'core/sin-cuenta/Producto.html')
 
 def mostrarCategoria(request):
-    return render(request, 'core/sin-cuenta/Categoria.html')
+    productos = Producto.objects.all()
+    
+    contexto = {"products" : productos}
+
+    return render(request, 'core/sin-cuenta/Categoria.html',contexto)
 
 def registrarUsuario(request):
     rutU = request.POST['rut']
