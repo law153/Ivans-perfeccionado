@@ -134,8 +134,9 @@ def mostrarPerfilAdm(request):
         "rut": rutPerfil,
         "dvrut": dvrutPerfil,
         "telefono": telefonoPerfil,
-        "direccion": direccionPerfil
+        "direccion": direccionPerfil,
     }
+
     return render(request, 'core/administrador/perfil-adm.html',contexto)
 
 def mostrarCategoriaAdm(request):
@@ -149,9 +150,29 @@ def mostrarAgregar(request):
     return render(request, 'core/administrador/Agregar.html',contexto)
 
 def mostrarEditarPerfilAdm(request):
-    
+    nombrePerfil = "Abelardo"
+    apellidoPerfil = "Sánchez"
+    rutPerfil = 21342568
+    dvrutPerfil = 4
+    telefonoPerfil = 64982253
+    direccionPerfil = "Caupolicán 1257"
+    correoPerfil = "abelx3678@gmail.com"
+    preguntaObjeto = Pregunta.objects.all()
+    respuestaPerfil = "Sr Papu"
 
-    return render(request, 'core/administrador/Editar-perfil-adm.html')
+    contexto = {
+        "nombre": nombrePerfil,
+        "apellido": apellidoPerfil,
+        "rut": rutPerfil,
+        "dvrut": dvrutPerfil,
+        "telefono": telefonoPerfil,
+        "direccion": direccionPerfil,
+        "correo": correoPerfil,
+        "pregunta": preguntaObjeto,
+        "respuesta": respuestaPerfil
+    }
+    
+    return render(request, 'core/administrador/Editar-perfil-adm.html',contexto)
 
 def mostrarCambioContraAdm(request):
     return render(request, 'core/administrador/cambiar-contrasena-adm.html')
