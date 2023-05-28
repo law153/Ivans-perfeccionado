@@ -1,5 +1,5 @@
 from django.urls import path,include
-from .views import mostrarIndex, mostrarNosotros, mostrarRegistro,mostrarIni_sesion, mostrarOlv_contra, mostrarPregunta, mostrarProducto, mostrarCategoria, mostrarIndexAdm, mostrarPerfilAdm, mostrarCategoriaAdm, mostrarAgregar, mostrarEditarPerfilAdm, mostrarCambioContraAdm, mostrarProductoAdm, mostrarProductoCli, mostrarCategoriaCli, mostrarMetodoPago, mostrarNosotrosCli, mostrarPerfilCli, mostrarIndexCli, mostrarCarritoCli, mostrarCambioContraCli, mostrarEditarPerfilCli,registrarUsuario,consultar, agregarProducto, inicioSesion
+from .views import mostrarIndex, mostrarNosotros, mostrarRegistro,mostrarIni_sesion, mostrarOlv_contra, mostrarPregunta, mostrarProducto, mostrarCategoria, mostrarIndexAdm, mostrarPerfilAdm, mostrarCategoriaAdm, mostrarAgregar, mostrarEditarPerfilAdm, mostrarCambioContraAdm, mostrarProductoAdm, mostrarProductoCli, mostrarCategoriaCli, mostrarMetodoPago, mostrarNosotrosCli, mostrarPerfilCli, mostrarIndexCli, mostrarCarritoCli, mostrarCambioContraCli, mostrarEditarPerfilCli,registrarUsuario,consultar, agregarProducto, inicioSesion, agregarAlCarrito
 
 urlpatterns = [
 
@@ -25,6 +25,7 @@ urlpatterns = [
     path('perfil_cli/',mostrarPerfilCli,name="mostrarPerfilCli"),
     path('cambio_de_contrasena_cli/',mostrarCambioContraCli,name="mostrarCambioContraCli"),
     path('categoria_cli/',mostrarCategoriaCli,name="mostrarCategoriaCli"),
+    path('agregarAlCarrito/',agregarAlCarrito, name="agregarAlCarrito"),
     ### Paginas admin###
     path('principal/',mostrarIndexAdm,name="mostrarIndexAdm"),
     path('categoria_adm/', mostrarCategoriaAdm, name="mostrarCategoriaAdm"),

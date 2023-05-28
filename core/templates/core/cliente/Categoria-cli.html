@@ -29,11 +29,14 @@
                     <div class="contenedor__producto-texto">
                         <a href="{% url 'mostrarProducto' %}">{{ i.nombre_prod }}</a> 
                     </div>
+
                     <div class="contenedor__producto-precio">
-                        <p>$ {{ i.precio }} {{ i.unidad_medida }}</p>
+                        <p name="precio">$ {{ i.precio }}</p> <p name="medida"> {{ i.unidad_medida }}</p>
                     </div>
+                    
+
                     <div class="contenedor__producto-button">
-                        <form action="#" method="post" enctype="application/x-www-form-urlencoded" name="agregar">
+                        <form action="agregarAlCarrito" method="post" enctype="application/x-www-form-urlencoded" name="agregar">
                             {% csrf_token %}
                             <button type="submit">Agregar</button>
                         </form>
