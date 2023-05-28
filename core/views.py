@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Rol, Pregunta, Categoria, Consulta, Usuario, Producto, Venta, Detalle
-import time, datetime
+from datetime import date, timedelta
 # Create your views here.
 
 ###Paginas sin-cuenta###
@@ -117,17 +117,18 @@ def mostrarEditarPerfilCli(request):
 
 def agregarAlCarrito(request):
 
-    datetime.timedelta(days=1)
-    datetime.timedelta(1)
+    cod_produc = 1
+    
+    fecha_hoy = date.today()
+    dias = timedelta(3)
 
-    cod_produc = request.POST['id_prod']
-    fecha_hoy = (time.strftime("%d/%m/%y"))
-    fecha_e = fecha_hoy + datetime.timedelta(days=3)
-    precioP = request.POST['precio']
+    fecha_e = fecha_hoy + dias
 
     usuario_id = 1
 
     productoC = Producto.objects.get(cod_prod = cod_produc)
+
+    precioP = productoC.precio
 
     UsuarioC = Usuario.objects.get(id_usuario = usuario_id)
 
@@ -136,10 +137,11 @@ def agregarAlCarrito(request):
         estado = 'Agregado',
         fecha_entrega = fecha_e,
         total = precioP,
+        carrito = 1,
         usuario = UsuarioC
     )
 
-    ventaC = Venta.objects.get(id_venta = 1)
+    ventaC = Venta.objects.get(id_venta = 2)
 
     Detalle.objects.create(
         cantidad = 1,

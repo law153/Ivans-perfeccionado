@@ -22,7 +22,6 @@
             
             {% for i in products %}
                 <div class="col-md-2 contenedor__producto">
-                    <p name="id_prod"> {{ i.cod_prod }} </p>
                     <div class="contenedor__producto-img">
                         <img src="{{ i.foto_prod.url }}" alt="No hay imagen disponible">
                     </div>
@@ -36,7 +35,7 @@
                     
 
                     <div class="contenedor__producto-button">
-                        <form action="agregarAlCarrito" method="post" enctype="application/x-www-form-urlencoded" name="agregar">
+                        <form action="{% url 'agregarAlCarrito' %}" method="post" enctype="application/x-www-form-urlencoded" name="agregar">
                             {% csrf_token %}
                             <button type="submit">Agregar</button>
                         </form>
