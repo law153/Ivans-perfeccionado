@@ -70,7 +70,7 @@ def consultar(request):
     return redirect('mostrarNosotros')
 
 def inicioSesion(request):
-
+    
     correoI = request.POST['correo_ini']
     claveI = request.POST['contra_ini']
 
