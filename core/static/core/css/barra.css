@@ -304,8 +304,8 @@ input, textarea{
     }
 
     
-    .container-fluid{
-        min-height: 75vh;
+    .contenedor-barra{
+        min-height: 100vh;
     }
 
     .header-container{

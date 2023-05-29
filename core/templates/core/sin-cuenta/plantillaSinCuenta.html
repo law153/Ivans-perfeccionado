@@ -17,6 +17,16 @@
     {% block disenos %}
     {% endblock disenos %}
 </head>
+<style>
+    @media screen and (min-width: 0px) and (max-width: 576px){
+
+        .contenedor-barra{
+            min-height: 100vh;
+            
+        }
+        
+    }
+</style>
 <body>
     <div class="container-fluid contenedor-barra">
 
@@ -65,7 +75,7 @@
 
                     <div class="col-md-12 col-sm-12 col-lg-12 ">
                         <button class="navbar-toggler boton-nav" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
+                            <p style="color: #fff; margin: auto;">Menu</p>
                         </button>
                 
                         <div class="collapse navbar-collapse" id="navbarNav">
