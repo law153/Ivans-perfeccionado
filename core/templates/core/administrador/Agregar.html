@@ -28,7 +28,7 @@
                         <form action="{% url 'agregarProducto' %}" id="form_agregar" method="POST" name="agregar-prod" enctype="multipart/form-data" >
                             {% csrf_token %}
                             <div class="form-group contenedor__id contenedor__atributo left">
-                                <label for="nombre">ID:</label>
+                                <label for="id">ID:</label>
                                 <input class="id" type="text" id="id" name="id"  readonly>
                             </div>
             
@@ -54,10 +54,10 @@
                                 <label for="precio">Precio:</label><br>
                                 <input class="precio" type="text" id="precio" name="precio">
                                 <select name="medida" >
-                                    <option value="1">por Unidad</option>
-                                    <option value="2">por Par</option>
-                                    <option value="3">por Metro</option>
-                                    <option value="4">por Docena</option>
+                                    <option value="por Unidad">por Unidad</option>
+                                    <option value="por Par">por Par</option>
+                                    <option value="por Metro">por Metro</option>
+                                    <option value="por Docena">por Docena</option>
                                 </select>
                                 <p id="alerta_precio-prod" class="alerta"></p>
                             </div>
