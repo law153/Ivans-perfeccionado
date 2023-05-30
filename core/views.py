@@ -271,9 +271,9 @@ def mostrarCategoriaAdm(request, id_cate):
 
 def mostrarAgregar(request):
 
-    categorias = Categoria.objects.all()
+    categories = Categoria.objects.all()
     contexto = {
-        "categories" : categorias
+        "categorias" : categories
     }
     return render(request, 'core/administrador/Agregar.html',contexto)
 
@@ -356,6 +356,7 @@ def editarProducto(request):
     registroCategoria = Categoria.objects.get(id_categoria = categoriaP)
     producto.categoria = registroCategoria
     producto.save()
+    
     return redirect('mostrarProductoAdm')
 
 
