@@ -18,19 +18,19 @@ $(document).ready(function(){
         var respuesta = $("#respuesta").val()
 
         let msj = "";
-        let enviar = "false";
+        let enviar = false;
 
         //--Validacion Imágenes
 
         if ($("#imagen").val() === "") {
             msj += "Debe seleccionar una imagen<br>";
-            enviar = "true";
+            enviar = true;
         } else {
 
             if(!validarExtension(imagen, extensionesPermitidas)){
                 msj += "El archivo seleccionado no tiene una extensión permitida<br>";
                 $('#imagen').val('');
-                enviar = "true";
+                enviar = true;
             }
         }
 
@@ -57,12 +57,12 @@ $(document).ready(function(){
 
             if(nombre.trim().length < 3 || nombre.trim().length > 30){
                 msj += "El nombre debe ser entre 3 y 30 caracteres<br>";
-                enviar = "true";
+                enviar = true;
             }
 
             if(tieneEspNom(nombre) ){
                 msj += "El nombre no debe contener caracteres especiales<br>";
-                enviar = "true";
+                enviar = true;
             }
 
             letra = nombre.charAt(0);
@@ -101,24 +101,24 @@ $(document).ready(function(){
 
             if(apellido.trim().length < 4 || apellido.trim().length > 30){
                 msj += "El apellido debe ser entre 4 y 30 caracteres<br>";
-                enviar = "true";
+                enviar = true;
             }
 
             letra = apellido.charAt(0);
 
             if(!esMayuscula(letra)){
                 msj += "La primera letra debe ser mayúscula<br>";
-                enviar = "true";
+                enviar = true;
             }
             
             if(tieneNum(apellido)){
                 msj += "El nombre no debe contener un número<br>";
-                enviar = "true";
+                enviar = true;
             }
 
             if(tieneEspNom(apellido)){
                 msj += "El nombre no debe contener un caracteres especiales<br>";
-                enviar = "true";
+                enviar = true;
             }
         }
 
@@ -145,27 +145,27 @@ $(document).ready(function(){
 
             if(rut.trim().length != 8){
                 msj += "El rut debe ser valido (8 caracteres)<br>";
-                enviar = "true";
+                enviar = true;
             }
             
             if(dvrut.trim().length != 1){
                 msj += "El digito verificador debe ser valido (1 caracter)<br>";
-                enviar = "true";
+                enviar = true;
             }
 
             if(tieneLetra(rut) || tieneLetra(dvrut)){
                 msj += "El rut no puede contener letras<br>";
-                enviar = "true";
+                enviar = true;
             }
 
             if(tieneEsp(rut) || tieneEsp(dvrut)){
                 msj += "El rut no puede contener caracteres especiales<br>";
-                enviar = "true";
+                enviar = true;
             }
 
             if(!validarRun(rut,dvrut)){
                 msj += "El rut no es valido";
-                enviar = "true";
+                enviar = true;
             }
         }
 
@@ -191,17 +191,17 @@ $(document).ready(function(){
 
             if(telefono.trim().length != 8){
                 msj += "El telefono debe ser valido (8 caracteres)<br>";
-                enviar = "true";
+                enviar = true;
             }
 
             if(tieneLetra(telefono)){
                 msj += "El telefono no puede contener letras<br>";
-                enviar = "true";
+                enviar = true;
             }
 
             if(tieneEsp(telefono)){
                 msj += "El telefono no puede contener caracteres especiales<br>";
-                enviar = "true";
+                enviar = true;
             }
         }
 
@@ -235,22 +235,22 @@ $(document).ready(function(){
 
             if(!esMayuscula(letra)){
                 msj += "La primera letra debe ser mayúscula<br>";
-                enviar = "true";
+                enviar = true;
             }
 
             if(!tieneLetra(direccion)){
                 msj += "La dirección debe contener al menos una letra<br>";
-                enviar = "true";
+                enviar = true;
             }
 
             if(!tieneNum(direccion)){
                 msj += "La dirección debe contener al menos un número<br>";
-                enviar = "true";
+                enviar = true;
             }
 
             if(tieneEspNom(direccion)){
                 msj += "El nombre no debe contener un caracteres especiales<br>";
-                enviar = "true";
+                enviar = true;
             }
         }
 
@@ -303,7 +303,7 @@ $(document).ready(function(){
 
         if(pregunta == 0){
             msj += "Seleccione una pregunta<br>";
-            enviar = "true";
+            enviar = true;
         }
 
         if(enviar){

@@ -13,19 +13,19 @@ $(document).ready(function(){
         var precio = $("#precio").val();
         var stock = $("#stock").val();
         let msj = "";
-        let enviar = "false";
+        let enviar = false;
 
         //--Validacion Imágenes
 
         if ($("#imagen").val() === "") {
             msj += "Debe seleccionar una imagen<br>";
-            enviar = "true";
+            enviar = true;
         } else {
 
             if(!validarExtension(imagen, extensionesPermitidas)){
                 msj += "El archivo seleccionado no tiene una extensión permitida<br>";
                 $('#imagen').val('');
-                enviar = "true";
+                enviar = true;
             }
         }
 
@@ -52,12 +52,12 @@ $(document).ready(function(){
 
             if(nombre.trim().length < 3 || nombre.trim().length > 100){
             msj += "El nombre del producto debe poseer no más de 100 caracteres<br>";
-            enviar = "true";
+            enviar = true;
             }
 
             if(tieneEspNom(nombre) ){
                 msj += "El nombre no debe contener caracteres especiales<br>";
-                enviar = "true";
+                enviar = true;
             }
         }
 
@@ -84,12 +84,12 @@ $(document).ready(function(){
 
             if(descripcion.length < 3  || descripcion.length > 300){
                 msj += "La descripcion debe contener entre 3 y 300 caracteres<br>";
-                enviar = "true";
+                enviar = true;
             }
 
             if(tieneEspNom(descripcion) ){
                 msj += "La descripción no debe contener caracteres especiales<br>";
-                enviar = "true";
+                enviar = true;
             }
             
         }
@@ -115,17 +115,17 @@ $(document).ready(function(){
 
             if(precio <= 0){
                 msj += "El precio debe tener un valor mayor a 0<br>";
-                enviar = "true";
+                enviar = true;
             }
 
             if(tieneEsp(precio)){
                 msj += "El precio no debe contener caracteres especiales<br>"
-                enviar = "true";
+                enviar = true;
             }
 
             if(tieneLetra(precio)){
                 msj += "El precio no debe contener ninguna letra<br>";
-                enviar = "true";
+                enviar = true;
             }
         }
 
@@ -151,12 +151,12 @@ $(document).ready(function(){
 
             if(stock < 0 ){
                 msj += "El stock no puede ser menor a 0<br>";
-                enviar = "true";
+                enviar = true;
             }
 
             if(tieneEsp(stock)){
                 msj += "El stock no puede contener caracteres especiales<br>";
-                enviar = "true";
+                enviar = true;
             }
         }
 
