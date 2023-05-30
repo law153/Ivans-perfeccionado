@@ -78,17 +78,16 @@
                         <button class="navbar-toggler boton-nav" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
+
+                       
                 
                         <div class="collapse navbar-collapse" id="navbarNav">
                 
-                            <ul class="navbar-nav">
-                            <li class="nav-item"><a class="nav-link links" href="{% url 'mostrarCategoriaAdm' %}">HERRAMIENTAS</a></li> 
-                            <li class="nav-item"><a class="nav-link links" href="{% url 'mostrarCategoriaAdm' %}">GASFITERIA</a></li> 
-                            <li class="nav-item"><a class="nav-link links" href="{% url 'mostrarCategoriaAdm' %}">ELECTRICIDAD</a></li> 
-                            <li class="nav-item"><a class="nav-link links" href="{% url 'mostrarCategoriaAdm' %}">SEGURIDAD</a></li> 
-                            <li class="nav-item"><a class="nav-link links" href="{% url 'mostrarCategoriaAdm' %}">ROPA Y PROTECCIÓN</a></li> 
-                            <li class="nav-item"><a class="nav-link links" href="{% url 'mostrarCategoriaAdm' %}">FIJACIONES</a></li> 
-                            <li class="nav-item"><a class="nav-link links ultimo" href="{% url 'mostrarCategoriaAdm' %}">KITS</a></li> 
+                            <ul class="navbar-nav" style="margin-left: 10%;">
+                                {% for c in categorias %}
+                                <p style="display: none;">{{ c.id_categoria }}</p> 
+                                <li class="nav-item"  ><a class="nav-link links" href="{% url 'mostrarCategoriaAdm' c.id_categoria%}">{{c.nombre_categoria}}</a></li>
+                                {% endfor %}
                             </ul>
                 
                         </div>

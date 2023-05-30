@@ -24,11 +24,11 @@ urlpatterns = [
     path('editar_perfil_cli/',mostrarEditarPerfilCli,name="mostrarEditarPerfilCli"),
     path('perfil_cli/',mostrarPerfilCli,name="mostrarPerfilCli"),
     path('cambio_de_contrasena_cli/',mostrarCambioContraCli,name="mostrarCambioContraCli"),
-    path('categoria_cli/',mostrarCategoriaCli,name="mostrarCategoriaCli"),
+    path('categoria_cli/<id_cate>',mostrarCategoriaCli,name="mostrarCategoriaCli"),
     path('agregarAlCarrito/',agregarAlCarrito, name="agregarAlCarrito"),
     ### Paginas admin###
     path('principal/',mostrarIndexAdm,name="mostrarIndexAdm"),
-    path('categoria_adm/', mostrarCategoriaAdm, name="mostrarCategoriaAdm"),
+    path('categoria_adm/<id_cate>', mostrarCategoriaAdm, name="mostrarCategoriaAdm"),
     path('perfil_adm/',mostrarPerfilAdm, name="mostrarPerfilAdm"),
     path('agregar/', mostrarAgregar, name="mostrarAgregar"),
     path('editar_perfil_adm/', mostrarEditarPerfilAdm, name="mostrarEditarPerfilAdm"),

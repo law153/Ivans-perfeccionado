@@ -118,39 +118,67 @@ def inicioSesion(request):
 
 ###Paginas cliente###
 def mostrarProductoCli(request, id_prod):
-    producto = Producto.objects.get(cod_prod = id_prod)
+    categoria = Categoria.objects.all() 
 
-    contexto = {"product" : producto}
+    producto = Producto.objects.get(cod_prod = id_prod)
+    
+    contexto = {"product" : producto, "categorias" : categoria}
 
     return render(request, 'core/cliente/Producto-cli.html',contexto)
 
-def mostrarCategoriaCli(request):
-    productos = Producto.objects.all()
+def mostrarCategoriaCli(request, id_cate):
+    categoria = Categoria.objects.all()
+
+    cate = Categoria.objects.get(id_categoria = id_cate)
+
+    productos = Producto.objects.filter(categoria = cate).values()
     
-    contexto = {"products" : productos}
+    contexto = {"products" : productos ,"categorias" : categoria, "categoria" : cate}
 
     return render(request, 'core/cliente/Categoria-cli.html', contexto)
 
 def mostrarMetodoPago(request):
-    return render(request, 'core/cliente/Metodo-pago.html')
+    categoria = Categoria.objects.all()
+    
+    contexto = {"categorias" : categoria}
+    return render(request, 'core/cliente/Metodo-pago.html',contexto)
 
 def mostrarNosotrosCli(request):
-    return render(request, 'core/cliente/nosotros-cli.html')
+    categoria = Categoria.objects.all()
+    
+    contexto = {"categorias" : categoria}
+    return render(request, 'core/cliente/nosotros-cli.html',contexto)
 
 def mostrarPerfilCli(request):
-    return render(request, 'core/cliente/Perfil.html')
+    categoria = Categoria.objects.all()
+    
+    contexto = {"categorias" : categoria}
+    return render(request, 'core/cliente/Perfil.html',contexto)
 
 def mostrarIndexCli(request):
-    return render(request, 'core/cliente/index-cli.html')
+    categoria = Categoria.objects.all()
+    
+    contexto = {"categorias" : categoria}
+    return render(request, 'core/cliente/index-cli.html',contexto)
 
 def mostrarCarritoCli(request):
-    return render(request, 'core/cliente/carrito.html')
+    categoria = Categoria.objects.all()
+    
+    contexto = {"categorias" : categoria}
+    return render(request, 'core/cliente/carrito.html',contexto)
 
 def mostrarCambioContraCli(request):
-    return render(request, 'core/cliente/cambiar-contrasena-cli.html')
+    categoria = Categoria.objects.all()
+    
+    contexto = {"categorias" : categoria}
+    return render(request, 'core/cliente/cambiar-contrasena-cli.html',contexto)
 
 def mostrarEditarPerfilCli(request):
-    return render(request, 'core/cliente/Editar-perfil.html')
+    categoria = Categoria.objects.all()
+    
+    contexto = {"categorias" : categoria}
+
+    return render(request, 'core/cliente/Editar-perfil.html',contexto)
 
 def agregarAlCarrito(request):
 
@@ -192,9 +220,14 @@ def agregarAlCarrito(request):
 ###Paginas admin###
 
 def mostrarIndexAdm(request):
-    return render(request, 'core/administrador/index-adm.html')
+    categoria = Categoria.objects.all()
+    
+    contexto = {"categorias" : categoria}
+    return render(request, 'core/administrador/index-adm.html',contexto)
 
 def mostrarPerfilAdm(request):
+    categoria = Categoria.objects.all()
+
     nombrePerfil = "Abelardo"
     apellidoPerfil = "Sánchez"
     rutPerfil = 21342568
@@ -209,18 +242,24 @@ def mostrarPerfilAdm(request):
         "dvrut": dvrutPerfil,
         "telefono": telefonoPerfil,
         "direccion": direccionPerfil,
+        "categorias" : categoria
     }
 
     return render(request, 'core/administrador/perfil-adm.html',contexto)
 
-def mostrarCategoriaAdm(request):
-    productos = Producto.objects.all()
+def mostrarCategoriaAdm(request, id_cate):
+    categoria = Categoria.objects.all()
+
+    cate = Categoria.objects.get(id_categoria = id_cate)
+
+    productos = Producto.objects.filter(categoria = cate).values()
     
-    contexto = {"products" : productos}
+    contexto = {"products" : productos ,"categorias" : categoria, "categoria" : cate}
 
     return render(request, 'core/administrador/categoria-adm.html',contexto)
 
 def mostrarAgregar(request):
+
     categorias = Categoria.objects.all()
     contexto = {
         "categories" : categorias
@@ -228,6 +267,9 @@ def mostrarAgregar(request):
     return render(request, 'core/administrador/Agregar.html',contexto)
 
 def mostrarEditarPerfilAdm(request):
+    categoria = Categoria.objects.all()
+    
+
     nombrePerfil = "Abelardo"
     apellidoPerfil = "Sánchez"
     rutPerfil = 21342568
@@ -247,18 +289,24 @@ def mostrarEditarPerfilAdm(request):
         "direccion": direccionPerfil,
         "correo": correoPerfil,
         "pregunta": preguntaObjeto,
-        "respuesta": respuestaPerfil
+        "respuesta": respuestaPerfil,
+        "categorias" : categoria
     }
     
     return render(request, 'core/administrador/Editar-perfil-adm.html',contexto)
 
 def mostrarCambioContraAdm(request):
-    return render(request, 'core/administrador/cambiar-contrasena-adm.html')
+    categoria = Categoria.objects.all()
+    
+    contexto = {"categorias" : categoria}
+    return render(request, 'core/administrador/cambiar-contrasena-adm.html',contexto)
 
 def mostrarProductoAdm(request,id_prod):
-    producto = Producto.objects.get(cod_prod = id_prod)
+    categoria = Categoria.objects.all() 
 
-    contexto = {"product" : producto}
+    producto = Producto.objects.get(cod_prod = id_prod)
+    
+    contexto = {"product" : producto, "categorias" : categoria}
 
     return render(request, 'core/administrador/producto-adm.html',contexto)
 
