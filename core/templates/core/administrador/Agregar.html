@@ -26,12 +26,7 @@
 
                     <div class="col-md-8 ajustado-posicion">
                         <form action="{% url 'agregarProducto' %}" id="form_agregar" method="POST" name="agregar-prod" enctype="multipart/form-data" >
-                            {% csrf_token %}
-                            <div class="form-group contenedor__id contenedor__atributo left">
-                                <label for="id">ID:</label>
-                                <input class="id" type="text" id="id" name="id"  readonly>
-                            </div>
-            
+                            {% csrf_token %}            
                             <div class="form-group contenedor__img contenedor__atributo left">
                                 <label for="imagen">Imagen:</label><br>
                                 <input class="imagen" type="file" id="imagen" name="imagen">
