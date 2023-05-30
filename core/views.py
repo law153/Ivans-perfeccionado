@@ -88,8 +88,12 @@ def inicioSesion(request):
             return redirect('mostrarIni_sesion')
 
 ###Paginas cliente###
-def mostrarProductoCli(request):
-    return render(request, 'core/cliente/Producto-cli.html')
+def mostrarProductoCli(request, id_prod):
+    producto = Producto.objects.get(cod_prod = id_prod)
+
+    contexto = {"product" : producto}
+
+    return render(request, 'core/cliente/Producto-cli.html',contexto)
 
 def mostrarCategoriaCli(request):
     productos = Producto.objects.all()
@@ -181,7 +185,11 @@ def mostrarPerfilAdm(request):
     return render(request, 'core/administrador/perfil-adm.html',contexto)
 
 def mostrarCategoriaAdm(request):
-    return render(request, 'core/administrador/categoria-adm.html')
+    productos = Producto.objects.all()
+    
+    contexto = {"products" : productos}
+
+    return render(request, 'core/administrador/categoria-adm.html',contexto)
 
 def mostrarAgregar(request):
     categorias = Categoria.objects.all()
@@ -218,8 +226,12 @@ def mostrarEditarPerfilAdm(request):
 def mostrarCambioContraAdm(request):
     return render(request, 'core/administrador/cambiar-contrasena-adm.html')
 
-def mostrarProductoAdm(request):
-    return render(request, 'core/administrador/producto-adm.html')
+def mostrarProductoAdm(request,id_prod):
+    producto = Producto.objects.get(cod_prod = id_prod)
+
+    contexto = {"product" : producto}
+
+    return render(request, 'core/administrador/producto-adm.html',contexto)
 
 def agregarProducto(request):
     nombreP = request.POST['nombre']

@@ -16,7 +16,7 @@ urlpatterns = [
     path('consultar/',consultar,name="consultar"),
     path('inicioSesion/',inicioSesion, name="inicioSesion"),
     ### Paginas cliente###
-    path('producto_cli/',mostrarProductoCli,name="mostrarProductoCli"),
+    path('producto_cli/<id_prod>',mostrarProductoCli,name="mostrarProductoCli"),
     path('principal_cli/',mostrarIndexCli,name="mostrarIndexCli"),
     path('carrito_cli/',mostrarCarritoCli,name="mostrarCarritoCli"),
     path('metodo_de_pago/',mostrarMetodoPago,name="mostrarMetodoPago"),
@@ -33,7 +33,7 @@ urlpatterns = [
     path('agregar/', mostrarAgregar, name="mostrarAgregar"),
     path('editar_perfil_adm/', mostrarEditarPerfilAdm, name="mostrarEditarPerfilAdm"),
     path('cambio_contra_adm/', mostrarCambioContraAdm, name="mostrarCambioContraAdm"),
-    path('producto_adm/', mostrarProductoAdm, name="mostrarProductoAdm"),
+    path('producto_adm/<id_prod>', mostrarProductoAdm, name="mostrarProductoAdm"),
     path('agregarProducto/', agregarProducto, name="agregarProducto")
 
 ]
