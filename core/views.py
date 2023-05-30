@@ -5,34 +5,60 @@ from datetime import date, timedelta
 
 ###Paginas sin-cuenta###
 def mostrarIndex(request):
-    return render(request, 'core/index.html')
+    categoria = Categoria.objects.all()
+
+    contexto = {"categorias" : categoria}
+
+    return render(request, 'core/index.html',contexto)
 
 def mostrarNosotros(request):
-    return render(request, 'core/sin-cuenta/nosotros.html')
+    categoria = Categoria.objects.all()
+
+    contexto = {"categorias" : categoria}
+
+    return render(request, 'core/sin-cuenta/nosotros.html',contexto)
 
 def mostrarRegistro(request):
-    return render(request, 'core/sin-cuenta/registrarse.html')
+    categoria = Categoria.objects.all()
+
+    contexto = {"categorias" : categoria}
+
+    return render(request, 'core/sin-cuenta/registrarse.html',contexto)
 
 def mostrarIni_sesion(request):
-    return render(request, 'core/sin-cuenta/inicio-sesion.html')
+    categoria = Categoria.objects.all()
+
+    contexto = {"categorias" : categoria}
+
+    return render(request, 'core/sin-cuenta/inicio-sesion.html',contexto)
 
 def mostrarOlv_contra(request):
-    return render(request, 'core/sin-cuenta/olvidar-contrasena.html')
+    categoria = Categoria.objects.all()
+
+    contexto = {"categorias" : categoria}
+    return render(request, 'core/sin-cuenta/olvidar-contrasena.html',contexto)
 
 def mostrarPregunta(request):
-    return render(request, 'core/sin-cuenta/Pregunta.html')
+    categoria = Categoria.objects.all()
+
+    contexto = {"categorias" : categoria}
+    return render(request, 'core/sin-cuenta/Pregunta.html',contexto)
 
 def mostrarProducto(request, id_prod):
-    producto = Producto.objects.get(cod_prod = id_prod)
+    categoria = Categoria.objects.all() 
 
-    contexto = {"product" : producto}
+    producto = Producto.objects.get(cod_prod = id_prod)
+    
+    contexto = {"product" : producto, "categories" : categoria}
 
     return render(request, 'core/sin-cuenta/Producto.html',contexto)
 
 def mostrarCategoria(request):
+    categoria = Categoria.objects.all()
+
     productos = Producto.objects.all()
     
-    contexto = {"products" : productos}
+    contexto = {"products" : productos, "categorias" : categoria}
 
     return render(request, 'core/sin-cuenta/Categoria.html',contexto)
 
@@ -64,6 +90,7 @@ def registrarUsuario(request):
     return redirect('mostrarIni_sesion')
 
 def consultar(request):
+    
     nombreC = request.POST['nom-ap']
     asuntoC = request.POST['asunto']
     mensajeC = request.POST['msg']
