@@ -23,7 +23,7 @@
                         {% csrf_token %}
                         <div class="form-group contenedor__id contenedor__atributo left">
                             <label for="nombre">ID:</label>
-                            <input class="id" type="text" id="id" name="id" value="9"  readonly>
+                            <input class="id" type="text" id="id" name="id" value="{{product.cod_prod}}"  readonly>
                         </div>
         
                         <div class="form-group contenedor__img contenedor__atributo left">
