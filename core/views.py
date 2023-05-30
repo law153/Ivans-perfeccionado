@@ -6,7 +6,7 @@ from datetime import date, timedelta
 ###Paginas sin-cuenta###
 def mostrarIndex(request):
     categoria = Categoria.objects.all()
-
+    
     contexto = {"categorias" : categoria}
 
     return render(request, 'core/index.html',contexto)
@@ -49,16 +49,18 @@ def mostrarProducto(request, id_prod):
 
     producto = Producto.objects.get(cod_prod = id_prod)
     
-    contexto = {"product" : producto, "categories" : categoria}
+    contexto = {"product" : producto, "categorias" : categoria}
 
     return render(request, 'core/sin-cuenta/Producto.html',contexto)
 
-def mostrarCategoria(request):
+def mostrarCategoria(request, id_cate):
     categoria = Categoria.objects.all()
 
-    productos = Producto.objects.all()
+    cate = Categoria.objects.get(id_categoria = id_cate)
+
+    productos = Producto.objects.filter(categoria = cate).values()
     
-    contexto = {"products" : productos, "categorias" : categoria}
+    contexto = {"products" : productos ,"categorias" : categoria, "categoria" : cate}
 
     return render(request, 'core/sin-cuenta/Categoria.html',contexto)
 
@@ -271,31 +273,8 @@ def agregarProducto(request):
 
     registroCategoria = Categoria.objects.get(id_categoria = categoriaP)
 
-    Producto.objects.create(nombre_prod = nombreP, descripcion = descripcionP, precio = precioP, stock = stockP, foto_prod = fotoP, unidad_medida = unidadP, categoria = registroCategoria)
+    Producto.objects.create(foto_prod = fotoP, nombre_prod = nombreP, descripcion = descripcionP, precio = precioP, stock = stockP, unidad_medida = unidadP, categoria = registroCategoria)
     return redirect('mostrarAgregar')
-
-def editarProducto(request):
-    codigoP = request.POST['id']
-    nombreP = request.POST['nombre']
-    descripcionP = request.POST['descripcion']
-    precioP = request.POST['precio']
-    stockP = request.POST['stock']
-    fotoP = request.POST['imagen']
-    unidadP = request.POST['medida']
-    categoriaP = request.POST['categoria']
-
-    producto = Producto.objects.get(cod_prod = codigoP)
-    producto.nombre_prod = nombreP
-    producto.descripcion = descripcionP
-    producto.precio = precioP
-    producto.stock = stockP
-    producto.foto_prod = fotoP
-    producto.unidad_medida = unidadP
-
-    registroCategoria = Categoria.objects.get(id_categoria = categoriaP)
-    producto.categoria = registroCategoria
-    producto.save()
-    return redirect('mostrarProductoAdm')
 
 
 
