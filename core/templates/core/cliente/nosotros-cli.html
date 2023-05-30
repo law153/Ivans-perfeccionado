@@ -21,7 +21,7 @@
                 <p> Telefono: +56 9 2950 5843<br>
                     E-mail: serviciocliente@ivansbusiness.cl<br>
                 </p>
-                <form id="contacto-cli"action="#" method="post" enctype="application/x-www-form-urlencoded"> 
+                <form id="contacto-cli"action="{% url 'consultarCli' %}" method="post" enctype="application/x-www-form-urlencoded"> 
                     {% csrf_token %}
                     <div class="form-group">
                         <label style="font-weight: bold;" for="nom-ap">Nombre:</label><br>

@@ -217,6 +217,17 @@ def agregarAlCarrito(request):
 
     return redirect('mostrarCarritoCli')
 
+def consultarCli(request):
+    
+    nombreC = request.POST['nom-ap']
+    asuntoC = request.POST['asunto']
+    mensajeC = request.POST['msg']
+
+    Consulta.objects.create(nombre_consultante = nombreC,
+                            asunto_consulta = asuntoC,
+                            mensaje_consulta = mensajeC)
+    return redirect('mostrarNosotrosCli')
+
 ###Paginas admin###
 
 def mostrarIndexAdm(request):
