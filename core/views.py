@@ -6,7 +6,7 @@ from datetime import date, timedelta
 ###Paginas sin-cuenta###
 def mostrarIndex(request):
     categoria = Categoria.objects.all()
-
+    
     contexto = {"categorias" : categoria}
 
     return render(request, 'core/index.html',contexto)
@@ -53,12 +53,14 @@ def mostrarProducto(request, id_prod):
 
     return render(request, 'core/sin-cuenta/Producto.html',contexto)
 
-def mostrarCategoria(request):
+def mostrarCategoria(request, id_cate):
     categoria = Categoria.objects.all()
 
-    productos = Producto.objects.all()
+    cate = Categoria.objects.get(id_categoria = id_cate)
+
+    productos = Producto.objects.filter(categoria = cate).values()
     
-    contexto = {"products" : productos, "categorias" : categoria}
+    contexto = {"products" : productos ,"categorias" : categoria, "categoria" : cate}
 
     return render(request, 'core/sin-cuenta/Categoria.html',contexto)
 

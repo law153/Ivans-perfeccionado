@@ -81,9 +81,11 @@
                 
                         <div class="collapse navbar-collapse" id="navbarNav">
                 
-                            <ul class="navbar-nav">
-                                {% for c in categorias %}  
-                                    <li class="nav-item"><a class="nav-link links" href="{% url 'mostrarCategoria' %}">{{c.nombre_categoria}}</a></li>
+                            <ul class="navbar-nav" style="margin-left: 10%;">
+                                {% for c in categorias %}
+                                <p style="display: none;">{{ c.id_categoria }}</p> 
+                                <li class="nav-item"  ><a class="nav-link links" href="{% url 'mostrarCategoria' c.id_categoria%}">{{c.nombre_categoria}}</a></li>
+                                
                                 {% endfor %}
                             </ul>
                 
