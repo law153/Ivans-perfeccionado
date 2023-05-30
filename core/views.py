@@ -22,8 +22,12 @@ def mostrarOlv_contra(request):
 def mostrarPregunta(request):
     return render(request, 'core/sin-cuenta/Pregunta.html')
 
-def mostrarProducto(request):
-    return render(request, 'core/sin-cuenta/Producto.html')
+def mostrarProducto(request, id_prod):
+    producto = Producto.objects.get(cod_prod = id_prod)
+
+    contexto = {"product" : producto}
+
+    return render(request, 'core/sin-cuenta/Producto.html',contexto)
 
 def mostrarCategoria(request):
     productos = Producto.objects.all()

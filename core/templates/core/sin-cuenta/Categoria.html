@@ -28,12 +28,13 @@
 
                 <div class="col-md-2"></div>
                 {% for i in products %}
+                <p style="display: none;">{{i.cod_prod}}</p>
                 <div class="col-md-2 contenedor__producto">
                     <div class="contenedor__producto-img">
                         <img src="{{ i.foto_prod.url }}" alt="No hay imagen disponible">
                     </div>
                     <div class="contenedor__producto-texto">
-                        <a href="{% url 'mostrarProducto' %}">{{ i.nombre_prod }}</a> 
+                        <a href="{% url 'mostrarProducto' i.cod_prod%}">{{ i.nombre_prod }}</a> 
                     </div>
                     <div class="contenedor__producto-precio">
                         <p>$ {{ i.precio }} {{ i.unidad_medida }}</p>
