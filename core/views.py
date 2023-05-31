@@ -317,7 +317,10 @@ def mostrarProductoAdm(request,id_prod):
 
     producto = Producto.objects.get(cod_prod = id_prod)
     
-    contexto = {"product" : producto, "categorias" : categoria}
+    contexto = {
+        "product" : producto,
+        "categorias" : categoria
+    }
 
     return render(request, 'core/administrador/producto-adm.html',contexto)
 
@@ -341,7 +344,7 @@ def editarProducto(request):
     descripcionP = request.POST['descripcion']
     precioP = request.POST['precio']
     stockP = request.POST['stock']
-    fotoP = request.POST['imagen']
+    fotoP = request.FILES['imagen']
     unidadP = request.POST['medida']
     categoriaP = request.POST['categoria']
 
