@@ -396,6 +396,7 @@ def agregarProducto(request):
     registroCategoria = Categoria.objects.get(id_categoria = categoriaP)
 
     Producto.objects.create(nombre_prod = nombreP, descripcion = descripcionP, precio = precioP, stock = stockP, foto_prod = fotoP, unidad_medida = unidadP, categoria = registroCategoria)
+    messages.success(request,'El producto fue agregado correctamente')
     return redirect('mostrarAgregar')
 
 def editarProducto(request):
@@ -425,6 +426,7 @@ def editarProducto(request):
 def eliminarProducto(request,id_prod):
     producto = Producto.objects.get(cod_prod = id_prod)
     producto.delete()
+    messages.error(request,'Producto eliminado')
     return redirect('mostrarIndexAdm')
 
 def editarPerfilAdm(request):

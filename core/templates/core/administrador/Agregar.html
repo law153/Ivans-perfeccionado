@@ -87,6 +87,15 @@
             </div>
             
         </div>
+
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li class="{{ message.tags }} msg-bueno">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
     {% endblock cuerpo%}
 
     {% block js%}
