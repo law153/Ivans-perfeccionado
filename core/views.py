@@ -363,7 +363,7 @@ def editarProducto(request):
     producto.categoria = registroCategoria
     producto.save()
     
-    return redirect('mostrarProductoAdm')
+    return redirect('mostrarIndexAdm')
 
 
 
