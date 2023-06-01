@@ -256,6 +256,11 @@ def editarPerfilCli(request):
     
     return redirect('mostrarPerfilCli')
 
+def eliminarCuenta(request,id_user):
+    usuario = Usuario.objects.get(id_usuario = id_user)
+    usuario.delete()
+    return redirect('mostrarIndex')
+
 def agregarAlCarrito(request):
 
     cod_produc = request.POST['id_product']

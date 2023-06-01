@@ -23,7 +23,9 @@
                 <div class="col-md-8 ajustado-posicion">
                     <form id="form_editar-perfil" class="contenedor__perfil-form posicion-casillas-formulario editar" method="post" enctype="multipart/form-data" action="{% url 'editarPerfilCli' %}">
                         {% csrf_token %}
+                        
                         <div class="form-group left">
+                            
                             <div class="contenedor__perfil-foto-e">
                                 <img src="{{ user.foto.url }}" alt="No hay imagen">
                             </div> 
@@ -94,7 +96,7 @@
 
                         <div class="container-button">
                             <input type="submit" value="Guardar">
-                            <a href="{% url 'eliminarProducto' product.cod_prod%}" class="boton-fake-1">Eliminar cuenta</a>
+                            <a href="{% url 'eliminarCuenta' user.id_usuario%}" class="boton-fake-1">Eliminar cuenta</a>
                         </div>
                     </form>
                 </div>
