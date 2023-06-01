@@ -296,6 +296,19 @@ input, textarea{
     background: #cc0;
 }
 
+/*Para los mensahjes*/
+.msg-malo{
+    text-decoration: none;
+    color: #f50;
+    font-weight: bold;
+}
+
+.msg-bueno{
+    text-decoration: none;
+    color: #292;
+    font-weight: bold;
+}
+
 /**Medida small**/
 @media screen and (min-width: 0px) and (max-width: 576px){
 

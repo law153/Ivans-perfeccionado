@@ -48,6 +48,13 @@
                             <input type="reset" value="Limpiar" name="boton-limp"> 
                             <p class="alerta" id="alerta"></p>
                         </div>
+                        {% if messages %}
+                            <ul class="messages">
+                                {% for message in messages %}
+                                    <li class="{{ message.tags }}">{{ message }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
     
                     </form>
                 </div>
