@@ -28,7 +28,7 @@ urlpatterns = [
     path('agregarAlCarrito/',agregarAlCarrito, name="agregarAlCarrito"),
     path('consultarCli/',consultarCli,name="consultarCli"),
     ### Paginas admin###
-    path('principal/',mostrarIndexAdm,name="mostrarIndexAdm"),
+    path('principal_adm/',mostrarIndexAdm,name="mostrarIndexAdm"),
     path('categoria_adm/<id_cate>', mostrarCategoriaAdm, name="mostrarCategoriaAdm"),
     path('perfil_adm/',mostrarPerfilAdm, name="mostrarPerfilAdm"),
     path('agregar/', mostrarAgregar, name="mostrarAgregar"),
