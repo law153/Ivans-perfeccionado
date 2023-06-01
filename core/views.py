@@ -61,7 +61,7 @@ def mostrarCategoria(request, id_cate):
 
     cate = Categoria.objects.get(id_categoria = id_cate)
 
-    productos = Producto.objects.filter(categoria = cate).values()
+    productos = Producto.objects.filter(categoria = cate)
     
     contexto = {"products" : productos ,"categorias" : categoria, "categoria" : cate}
 
