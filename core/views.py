@@ -181,7 +181,7 @@ def mostrarNosotrosCli(request):
 def mostrarPerfilCli(request):
     categoria = Categoria.objects.all()
 
-    id_user = 1
+    id_user = 22
     usuario = Usuario.objects.get(id_usuario = id_user)
 
     contexto = {
@@ -212,7 +212,7 @@ def mostrarCambioContraCli(request):
 def mostrarEditarPerfilCli(request):
     categoria = Categoria.objects.all()
 
-    id_user = 1
+    id_user = 22
     usuario = Usuario.objects.get(id_usuario = id_user)
 
     preguntaObjeto = Pregunta.objects.all()
@@ -226,7 +226,7 @@ def mostrarEditarPerfilCli(request):
     return render(request, 'core/cliente/Editar-perfil.html',contexto)
 
 def editarPerfilCli(request):
-    codigoU = 1
+    codigoU = 22
     nombreU = request.POST['nombre']
     fotoU = request.FILES['imagen']
     apellidoU = request.POST['apellido']
@@ -266,7 +266,7 @@ def agregarAlCarrito(request):
     cod_produc = request.POST['id_product']
     productoC = Producto.objects.get(cod_prod = cod_produc)
 
-    id_user = 1
+    id_user = 22
     usuarioC = Usuario.objects.get(id_usuario = id_user)
     
     fecha_hoy = date.today()
@@ -314,7 +314,7 @@ def mostrarIndexAdm(request):
 def mostrarPerfilAdm(request):
     categoria = Categoria.objects.all()
 
-    id_user = 1
+    id_user = 22
     usuario = Usuario.objects.get(id_usuario = id_user)
 
     contexto = {
@@ -346,7 +346,7 @@ def mostrarAgregar(request):
 def mostrarEditarPerfilAdm(request):
     categoria = Categoria.objects.all()
 
-    id_user = 1
+    id_user = 22
     usuario = Usuario.objects.get(id_usuario = id_user)
 
     preguntaObjeto = Pregunta.objects.all()
@@ -421,7 +421,7 @@ def eliminarProducto(request,id_prod):
     return redirect('mostrarIndexAdm')
 
 def editarPerfilAdm(request):
-    codigoU = 1
+    codigoU = 22
     nombreU = request.POST['nombre']
     fotoU = request.FILES['imagen']
     apellidoU = request.POST['apellido']
