@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Rol, Pregunta, Categoria, Consulta, Usuario, Producto, Venta, Detalle
 from datetime import date, timedelta
+from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import check_password
 from django.contrib.auth import authenticate,login, logout
@@ -115,9 +116,30 @@ def inicioSesion(request):
     correoI = request.POST['correo_ini']
     claveI = request.POST['contra_ini']
 
-    datos = Usuario.objects.all()
-
-  
+    try:
+        user1 = User.objects.get(username = correoI)
+    except User.DoesNotExist:
+        messages.error(request,'El usuario o la contraseña son incorrectos')
+        return redirect('mostrarIni_sesion')
+    
+    pass_valida = check_password(claveI, user1.password)
+    if not pass_valida:
+        messages.error(request,'El usuario o la contraseña son incorrectos')
+        return redirect('mostrarIni_sesion')
+    usuario = Usuario.objects.get(correo = correoI, clave = claveI)
+    user = authenticate(username = correoI, password = claveI)
+    if user is not None:
+        login(request, user)
+        if(usuario.rol.id_rol == 1):
+            return redirect('mostrarIndexCli')
+        else:
+            return redirect('mostrarIndexAdm')
+    else:
+        messages.error(request,'El usuario no existe')
+        return redirect('mostrarIni_sesion')
+    
+def cierreSesion(request):
+    logout(request)
 
 ###Paginas cliente###
 def mostrarProductoCli(request, id_prod):

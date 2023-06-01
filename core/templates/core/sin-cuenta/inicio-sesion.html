@@ -41,6 +41,13 @@
                         <div class="form-group container-button">
                             <input style="width: 50%;" type="submit" value="Confirmar" id="btn-confirmar-sesion">
                         </div>
+                        {% if messages %}
+                            <ul class="messages">
+                                {% for message in messages %}
+                                    <li class="{{ message.tags }}">{{ message }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
                     </form>
                     <br><br>
                 </div>
