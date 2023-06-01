@@ -15,6 +15,9 @@ def mostrarIndex(request):
 
     return render(request, 'core/index.html',contexto)
 
+def mostrarError(request):
+    return render(request, 'core/error.html')
+
 def mostrarNosotros(request):
     categoria = Categoria.objects.all()
 

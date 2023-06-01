@@ -1,0 +1,49 @@
+{% extends 'core/sin-cuenta/plantillaSinCuenta.html'%}
+{% load static %}
+
+    {% block titulo %}
+    <title>Error</title>
+    {% endblock titulo %}
+
+    {% block disenos %}
+    <link rel="stylesheet" type="text/css" href="{% static  'core/css/formularios.css'%}">
+    {% endblock disenos %}
+
+    {% block cuerpo %}
+    
+        <!--Cuerpo-->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                </div>
+    
+    
+                <div class="col-md-4 ajustado-posicion">
+                    <h1>Error</h1>
+                    <form id="pregunta" name="pregunta" method="post" enctype="application/x-www-form-urlencoded" class="posicion-casillas-formulario">
+                        
+
+                        {% if messages %}
+                            <ul class="messages">
+                                {% for message in messages %}
+                                    <li class="{{ message.tags }}">{{ message }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                        
+    
+                        <br>
+                        
+                    </form> 
+                    <br>
+    
+                </div>
+    
+                <div class="col-md-4">
+                </div>
+            </div>
+        </div>
+        <!--Fin Cuerpo-->
+    {% endblock cuerpo %}
+
+
