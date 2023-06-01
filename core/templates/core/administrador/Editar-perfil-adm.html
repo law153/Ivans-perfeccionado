@@ -22,10 +22,9 @@
                 </div>
 
                 <div class="col-md-8 ajustado-posicion">
-                    <form id="form_editar-perfil" class="contenedor__perfil-form posicion-casillas-formulario editar" method="post" enctype="multipart/form-data">
+                    <form id="form_editar-perfil" class="contenedor__perfil-form posicion-casillas-formulario editar" method="post" enctype="multipart/form-data" action="{% url 'editarPerfilAdm' %}">
                         {% csrf_token %}
                         <div class="form-group left">
-
                             <div class="contenedor__perfil-foto-e">
                                 <img src="{{ user.foto.url }}" alt="No hay imagen">
                             </div> 
@@ -37,41 +36,41 @@
 
                         <div class="form-group left">
                             <label>Nombre:</label><br>
-                            <input type="text" value="{{user.nombre}}" id="nombre"><br>
+                            <input type="text" value="{{user.nombre}}" id="nombre" name="nombre"><br>
                             <p id="alerta_nombre-ed_perfil" class="alerta"></p>
                         </div>
                         <br>
 
                         <div class="form-group left">
                             <label>Apellido:</label><br>
-                            <input type="text" value="{{user.apellido}}" id="apellido"><br>
+                            <input type="text" value="{{user.apellido}}" id="apellido" name="apellido"><br>
                             <p id="alerta_apellido-ed_perfil" class="alerta"></p>
                         </div>
                         <br>
 
                         <div class="form-group left">
                             <label>Rut:</label><br>
-                            <input type="text" value="{{user.rut}}" style="width: 25%;" id="rut">
-                            <input style="width: 6%;" type="text" value="{{user.dvrut}}" id="dvrut"><br>
+                            <input type="text" value="{{user.rut}}" style="width: 25%;" id="rut" name="rut">
+                            <input style="width: 6%;" type="text" value="{{user.dvrut}}" id="dvrut" name="dvrut"><br>
                             <label for="aclaracion" style="font-size: 12px;">Anote su rut sin puntos ni guión, si termina en k digite 0</label>
                             <p id="alerta_rut-ed_perfil" class="alerta"></p>
                         </div>
                         <br>
                         <div class="form-group left">
                             <label>Télefono:</label><br>
-                            <input type="tel" min="11111111" max="99999999" value="{{user.telefono}}" id="telefono">
+                            <input type="tel" min="11111111" max="99999999" value="{{user.telefono}}" id="telefono" name="telefono">
                             <p id="alerta_telefono-ed_perfil" class="alerta"></p>
                         </div>
                         <br>
                         <div class="form-group left">
                             <label>Dirección:</label><br>
-                            <input type="text" value="{{user.direccion}}" id="direccion">
+                            <input type="text" value="{{user.direccion}}" id="direccion" name="direccion">
                             <p id="alerta_direccion-ed_perfil" class="alerta"></p>
                         </div>
                         <br>
                         <div class="form-group left">
-                            <label for="correo_reg">Correo Electrónico:</label><br>
-                            <input type="email" id="correo" name="correo_reg" value="{{user.correo}}">
+                            <label for="correo">Correo Electrónico:</label><br>
+                            <input type="email" id="correo" value="{{user.correo}}" name="correo">
                             <p id="alerta_correo" class="alerta"></p>
                         </div>
 
@@ -80,7 +79,11 @@
                             <label>Pregunta de seguridad:</label><br>
                             <select id="pregunta" name="pregunta">
                                 {% for pr in pregunta %}
-                                <option value="{{pr.id_pregunta}}" selected>{{pr.nombre_pregunta}}</option>
+                                    {% if pr.id_pregunta == user.pregunta.id_pregunta %}
+                                        <option value="{{pr.id_pregunta}}" selected>{{pr.nombre_pregunta}}</option>
+                                    {% else %}
+                                        <option value="{{pr.id_pregunta}}">{{pr.nombre_pregunta}}</option>
+                                    {% endif%}
                                 {% endfor %}
                             </select><br><br>
                             <p id="alerta_pregunta-ed_perfil" class="alerta"></p>

@@ -225,6 +225,37 @@ def mostrarEditarPerfilCli(request):
     
     return render(request, 'core/cliente/Editar-perfil.html',contexto)
 
+def editarPerfilCli(request):
+    codigoU = 1
+    nombreU = request.POST['nombre']
+    fotoU = request.FILES['imagen']
+    apellidoU = request.POST['apellido']
+    rutU = request.POST['rut']
+    dvrutU = request.POST['dvrut']
+    telefonoU = request.POST['telefono']
+    direccionU = request.POST['direccion']
+    correoU = request.POST['correo']
+    idpreguntaU = request.POST['pregunta']
+    respuestaU = request.POST['respuesta']
+
+    usuario = Usuario.objects.get(id_usuario = codigoU)
+    usuario.rut = rutU
+    usuario.dvrut = dvrutU
+    usuario.nombre = nombreU
+    usuario.apellido = apellidoU
+    usuario.telefono = telefonoU
+    usuario.correo = correoU
+    usuario.direccion = direccionU
+    usuario.respuesta = respuestaU
+    usuario.foto_usuario = fotoU
+
+    registroPregunta = Pregunta.objects.get(id_pregunta = idpreguntaU)
+    usuario.pregunta = registroPregunta
+
+    usuario.save()
+    
+    return redirect('mostrarPerfilCli')
+
 def agregarAlCarrito(request):
 
     cod_produc = request.POST['id_product']
@@ -384,6 +415,36 @@ def eliminarProducto(request,id_prod):
     producto.delete()
     return redirect('mostrarIndexAdm')
 
+def editarPerfilAdm(request):
+    codigoU = 1
+    nombreU = request.POST['nombre']
+    fotoU = request.FILES['imagen']
+    apellidoU = request.POST['apellido']
+    rutU = request.POST['rut']
+    dvrutU = request.POST['dvrut']
+    telefonoU = request.POST['telefono']
+    direccionU = request.POST['direccion']
+    correoU = request.POST['correo']
+    idpreguntaU = request.POST['pregunta']
+    respuestaU = request.POST['respuesta']
+
+    usuario = Usuario.objects.get(id_usuario = codigoU)
+    usuario.rut = rutU
+    usuario.dvrut = dvrutU
+    usuario.nombre = nombreU
+    usuario.apellido = apellidoU
+    usuario.telefono = telefonoU
+    usuario.correo = correoU
+    usuario.direccion = direccionU
+    usuario.respuesta = respuestaU
+    usuario.foto_usuario = fotoU
+
+    registroPregunta = Pregunta.objects.get(id_pregunta = idpreguntaU)
+    usuario.pregunta = registroPregunta
+
+    usuario.save()
+    
+    return redirect('mostrarPerfilAdm')
 
 
 
