@@ -5,6 +5,8 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import check_password
 from django.contrib.auth import authenticate,login, logout
+from django.core.files import File
+import os
 # Create your views here.
 
 ###Paginas sin-cuenta###
@@ -81,10 +83,14 @@ def registrarUsuario(request):
     correoU = request.POST['correo_reg']
     claveU = request.POST['contra_ini']
     respuestaU = ' '
+    ruta_imagen = 'core/img/icono-perfil.png'  
+
+    fotoU = ruta_imagen
+
     registroRol = Rol.objects.get(id_rol = 1) ##Los usuarios registrados son clientes
     registroPregunta = Pregunta.objects.get(id_pregunta = 1) ##Pregunta asiganada por defecto
 
-    Usuario.objects.create(rut = rutU,
+    Usuario.objects.create( rut = rutU,
                             dvrut = dvrutU,
                             nombre = nombreU,
                             apellido = apellidoU,
@@ -93,6 +99,7 @@ def registrarUsuario(request):
                             clave = claveU,
                             direccion = direccionU,
                             respuesta = respuestaU,
+                            foto_usuario = fotoU,
                             rol = registroRol,
                             pregunta = registroPregunta)
     
