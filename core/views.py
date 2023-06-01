@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
 from .models import Rol, Pregunta, Categoria, Consulta, Usuario, Producto, Venta, Detalle
 from datetime import date, timedelta
+from django.contrib.auth.models import User
+from django.contrib.auth.hashers import check_password
+from django.contrib.auth import authenticate,login, logout
 # Create your views here.
 
 ###Paginas sin-cuenta###
@@ -89,6 +92,11 @@ def registrarUsuario(request):
                             rol = registroRol,
                             pregunta = registroPregunta)
     
+    user = User.objects.create_user(username = correoU, email = correoU, password = claveU )
+    user.is_staff = False
+    user.is_active = True
+    user.save()
+
     return redirect('mostrarIni_sesion')
 
 def consultar(request):
@@ -109,12 +117,7 @@ def inicioSesion(request):
 
     datos = Usuario.objects.all()
 
-    for i in datos:
-
-        if (i.correo == correoI and i.clave == claveI ):
-            return redirect('mostrarIndexCli')
-        else:
-            return redirect('mostrarIni_sesion')
+  
 
 ###Paginas cliente###
 def mostrarProductoCli(request, id_prod):
