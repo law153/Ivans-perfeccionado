@@ -208,35 +208,29 @@ def mostrarEditarPerfilCli(request):
 
 def agregarAlCarrito(request):
 
-    cod_produc = 1
-    
-    fecha_hoy = date.today()
-    dias = timedelta(3)
-
-    fecha_e = fecha_hoy + dias
-
-    usuario_id = 1
-
+    cod_produc = request.POST['id_product']
     productoC = Producto.objects.get(cod_prod = cod_produc)
 
-    precioP = productoC.precio
+    id_user = 1
+    usuarioC = Usuario.objects.get(id_usuario = id_user)
+    
+    fecha_hoy = date.today()
+    entrega = timedelta(3)
 
-    UsuarioC = Usuario.objects.get(id_usuario = usuario_id)
+    fecha_e = fecha_hoy + entrega
 
-    Venta.objects.create(
+    ventaC = Venta.objects.create(
         fecha_venta = fecha_hoy,
-        estado = 'Agregado',
+        estado = 'En proceso',
         fecha_entrega = fecha_e,
-        total = precioP,
+        total = productoC.precio,
         carrito = 1,
-        usuario = UsuarioC
+        usuario = usuarioC
     )
-
-    ventaC = Venta.objects.get(id_venta = 2)
 
     Detalle.objects.create(
         cantidad = 1,
-        subtotal = precioP,
+        subtotal = productoC.precio,
         venta = ventaC,
         producto = productoC
     )

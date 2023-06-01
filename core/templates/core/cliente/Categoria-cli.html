@@ -21,6 +21,7 @@
             <div class="col-md-2"></div>      
             
             {% for i in products %}
+                <p style="display: none;" name="id_product">{{i.cod_prod}}</p>
                 <div class="col-md-2 contenedor__producto">
                     <div class="contenedor__producto-img">
                         <img src="{{ i.foto_prod.url }}" alt="No hay imagen disponible">
