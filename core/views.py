@@ -140,6 +140,7 @@ def inicioSesion(request):
     
 def cierreSesion(request):
     logout(request)
+    redirect('mostrarIndex')
 
 ###Paginas cliente###
 def mostrarProductoCli(request, id_prod):
