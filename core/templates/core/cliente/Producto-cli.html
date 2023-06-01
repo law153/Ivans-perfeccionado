@@ -16,15 +16,15 @@
                 <img alt="No hay imagen disponible" src="{% static 'core/img/Electricidad-cable.jpg'%}">
             </div>
             <div class="col-md-7 contenedor-texto"> 
-                <h1>Cable electrico cordon ST 3 X 14 AWG</h1>
-                <p>Cordon St 3 X 14 </p>
+                <h1>{{product.nombre_prod}}</h1>
+                <p>{{product.descripcion}}</p>
                 <div class="contenedor-precio">
-                    <p>$3.075 el metro</p>
+                    <p>${{product.precio}} {{product.unidad_medida.}}</p>
                 </div>
-                <div class="contenedor-boton">
+                <div class="contenedor-boton" style="text-align: center;">
                     <form action="{% url 'mostrarCarritoCli' %}">
                         {% csrf_token %}
-                        <button  style="margin-left: 27%;" class="boton-fake-2">Agregar</button>
+                        <button   class="boton-fake-2">Agregar</button>
                     </form>
                 </div>
             </div>
