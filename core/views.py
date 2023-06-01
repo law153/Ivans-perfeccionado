@@ -379,6 +379,12 @@ def editarProducto(request):
     
     return redirect('mostrarIndexAdm')
 
+def eliminarProducto(request,id_prod):
+    producto = Producto.objects.get(cod_prod = id_prod)
+    producto.delete()
+    return redirect('mostrarIndexAdm')
+
+
 
 
 
