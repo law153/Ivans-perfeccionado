@@ -5,7 +5,7 @@ urlpatterns = [
 
     ### Paginas sin-cuenta###
     path('',mostrarIndex,name="mostrarIndex"),
-    path('mostrarError/',mostrarError,name="mostrarError"),
+    path('error/',mostrarError,name="mostrarError"),
     path('nosotros/',mostrarNosotros,name="mostrarNosotros"),
     path('registro/',mostrarRegistro,name="mostrarRegistro"),
     path('iniciar_sesion/',mostrarIni_sesion,name="mostrarIni_sesion"),

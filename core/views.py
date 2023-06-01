@@ -180,8 +180,15 @@ def mostrarNosotrosCli(request):
 
 def mostrarPerfilCli(request):
     categoria = Categoria.objects.all()
-    
-    contexto = {"categorias" : categoria}
+
+    id_user = 1
+    usuario = Usuario.objects.get(id_usuario = id_user)
+
+    contexto = {
+        "user" : usuario,
+        "categorias" : categoria
+    }
+
     return render(request, 'core/cliente/Perfil.html',contexto)
 
 def mostrarIndexCli(request):
@@ -204,9 +211,18 @@ def mostrarCambioContraCli(request):
 
 def mostrarEditarPerfilCli(request):
     categoria = Categoria.objects.all()
-    
-    contexto = {"categorias" : categoria}
 
+    id_user = 1
+    usuario = Usuario.objects.get(id_usuario = id_user)
+
+    preguntaObjeto = Pregunta.objects.all()
+
+    contexto = {
+        "user" : usuario,
+        "pregunta": preguntaObjeto,
+        "categorias" : categoria
+    }
+    
     return render(request, 'core/cliente/Editar-perfil.html',contexto)
 
 def agregarAlCarrito(request):
@@ -262,20 +278,11 @@ def mostrarIndexAdm(request):
 def mostrarPerfilAdm(request):
     categoria = Categoria.objects.all()
 
-    nombrePerfil = "Abelardo"
-    apellidoPerfil = "Sánchez"
-    rutPerfil = 21342568
-    dvrutPerfil = 4
-    telefonoPerfil = 64982253
-    direccionPerfil = "Caupolicán 1257"
+    id_user = 1
+    usuario = Usuario.objects.get(id_usuario = id_user)
 
     contexto = {
-        "nombre": nombrePerfil,
-        "apellido": apellidoPerfil,
-        "rut": rutPerfil,
-        "dvrut": dvrutPerfil,
-        "telefono": telefonoPerfil,
-        "direccion": direccionPerfil,
+        "user" : usuario,
         "categorias" : categoria
     }
 
@@ -302,28 +309,15 @@ def mostrarAgregar(request):
 
 def mostrarEditarPerfilAdm(request):
     categoria = Categoria.objects.all()
-    
 
-    nombrePerfil = "Abelardo"
-    apellidoPerfil = "Sánchez"
-    rutPerfil = 21342568
-    dvrutPerfil = 4
-    telefonoPerfil = 64982253
-    direccionPerfil = "Caupolicán 1257"
-    correoPerfil = "abelx3678@gmail.com"
+    id_user = 1
+    usuario = Usuario.objects.get(id_usuario = id_user)
+
     preguntaObjeto = Pregunta.objects.all()
-    respuestaPerfil = "Sr Papu"
 
     contexto = {
-        "nombre": nombrePerfil,
-        "apellido": apellidoPerfil,
-        "rut": rutPerfil,
-        "dvrut": dvrutPerfil,
-        "telefono": telefonoPerfil,
-        "direccion": direccionPerfil,
-        "correo": correoPerfil,
+        "user" : usuario,
         "pregunta": preguntaObjeto,
-        "respuesta": respuestaPerfil,
         "categorias" : categoria
     }
     

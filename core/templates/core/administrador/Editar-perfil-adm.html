@@ -27,7 +27,7 @@
                         <div class="form-group left">
 
                             <div class="contenedor__perfil-foto-e">
-                                <img src="{% static 'core/img/icono-perfil.png' %}" alt="No hay imagen">
+                                <img src="{{ user.foto.url }}" alt="No hay imagen">
                             </div> 
                             <label for="imagen">Imagen:</label><br>
                             <input class="imagen" type="file" id="imagen" name="imagen">
@@ -37,41 +37,41 @@
 
                         <div class="form-group left">
                             <label>Nombre:</label><br>
-                            <input type="text" value="{{nombre}}" id="nombre"><br>
+                            <input type="text" value="{{user.nombre}}" id="nombre"><br>
                             <p id="alerta_nombre-ed_perfil" class="alerta"></p>
                         </div>
                         <br>
 
                         <div class="form-group left">
                             <label>Apellido:</label><br>
-                            <input type="text" value="{{apellido}}" id="apellido"><br>
+                            <input type="text" value="{{user.apellido}}" id="apellido"><br>
                             <p id="alerta_apellido-ed_perfil" class="alerta"></p>
                         </div>
                         <br>
 
                         <div class="form-group left">
                             <label>Rut:</label><br>
-                            <input type="text" value="{{rut}}" style="width: 25%;" id="rut">
-                            <input style="width: 6%;" type="text" value="{{dvrut}}" id="dvrut"><br>
+                            <input type="text" value="{{user.rut}}" style="width: 25%;" id="rut">
+                            <input style="width: 6%;" type="text" value="{{user.dvrut}}" id="dvrut"><br>
                             <label for="aclaracion" style="font-size: 12px;">Anote su rut sin puntos ni guión, si termina en k digite 0</label>
                             <p id="alerta_rut-ed_perfil" class="alerta"></p>
                         </div>
                         <br>
                         <div class="form-group left">
                             <label>Télefono:</label><br>
-                            <input type="tel" min="11111111" max="99999999" value="{{telefono}}" id="telefono">
+                            <input type="tel" min="11111111" max="99999999" value="{{user.telefono}}" id="telefono">
                             <p id="alerta_telefono-ed_perfil" class="alerta"></p>
                         </div>
                         <br>
                         <div class="form-group left">
                             <label>Dirección:</label><br>
-                            <input type="text" value="{{direccion}}" id="direccion">
+                            <input type="text" value="{{user.direccion}}" id="direccion">
                             <p id="alerta_direccion-ed_perfil" class="alerta"></p>
                         </div>
                         <br>
                         <div class="form-group left">
                             <label for="correo_reg">Correo Electrónico:</label><br>
-                            <input type="email" id="correo" name="correo_reg" value="{{correo}}">
+                            <input type="email" id="correo" name="correo_reg" value="{{user.correo}}">
                             <p id="alerta_correo" class="alerta"></p>
                         </div>
 
@@ -85,7 +85,7 @@
                             </select><br><br>
                             <p id="alerta_pregunta-ed_perfil" class="alerta"></p>
                             <label for="contra_confirm">Respuesta:</label><br>
-                            <input type="text" id="respuesta" name="respuesta" value="{{respuesta}}" id="respuesta"><br>
+                            <input type="text" id="respuesta" name="respuesta" value="{{user.respuesta}}" id="respuesta"><br>
                             <p id="alerta_respuesta-ed_perfil" class="alerta"></p>
                         </div>
                         <br>

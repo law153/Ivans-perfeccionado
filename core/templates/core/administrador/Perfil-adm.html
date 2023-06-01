@@ -22,23 +22,24 @@
 
                 <div class="col-md-4 col-sm-12">
                     <div class="contenedor__perfil-foto">
-                        <img src="{% static 'core/img/icono-perfil.png' %}" alt="No hay imagen">
+                        <img src="{{ user.foto.url }}" alt="No hay imagen">
                     </div>  
                 </div>
 
                 <div class="col-md-4 col-sm-12">
                     <div class="contenedor__perfil-texto">
-                        <p> Nombre: {{nombre}} <br>
-                            Apellido: {{apellido}} <br>
-                            Rut: {{rut}}-{{dvrut}} <br>
-                            Télefono: +56 9 {{telefono}} <br>
-                            Dirección: {{direccion}}
+                        <p> Nombre: {{user.nombre}} <br>
+                            Apellido: {{user.apellido}} <br>
+                            Rut: {{user.rut}}-{{user.dvrut}} <br>
+                            Télefono: 9 {{user.telefono}} <br>
+                            Dirección: {{user.direccion}}
                         </p>
                         <div class="container-button">
                             <a class="boton-fake-2" href="{% url 'mostrarEditarPerfilAdm' %}">Editar</a>
                         </div>
-                        <div class="container-button">
-                            <a class="boton-fake-2" href="{% url 'mostrarCambioContraAdm' %}">Editar</a>
+                        <br>
+                        <div class="container-button">  
+                            <a class="boton-fake-2" href="{% url 'mostrarCambioContraAdm' %}">Cambiar contraseña</a>
                         </div>
                         
                         
