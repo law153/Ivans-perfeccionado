@@ -302,6 +302,7 @@ input, textarea{
     color: #f50;
     font-weight: bold;
     text-align: center;
+    font-family: 'Roboto';
 }
 
 .msg-bueno{
@@ -309,6 +310,7 @@ input, textarea{
     color: #292;
     font-weight: bold;
     text-align: center;
+    font-family: 'Roboto';
 }
 
 /**Medida small**/

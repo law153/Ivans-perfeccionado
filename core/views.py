@@ -163,10 +163,10 @@ def revisarDatos(request):
         messages.error(request,'El rut no está registrado')
         return redirect('mostrarPregunta')
 
-    if usuario.dvrut == dvrutR:
+    if str(usuario.dvrut) == str(dvrutR):
 
         preguntaR = Pregunta.objects.get(id_pregunta = idPreguntaR)
-        if usuario.pregunta == preguntaR and usuario.respuesta == respuestaR:
+        if str(usuario.pregunta).strip().lower() == str(preguntaR).strip().lower() and str(usuario.respuesta).strip().lower() == str(respuestaR).strip().lower():
             return redirect('mostrarOlv_contra')
         else:
             messages.error(request,'La pregunta o respuesta no son correctas')
