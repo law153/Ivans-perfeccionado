@@ -33,11 +33,10 @@
     
                         <div class="form-group" style="text-align: left;">
                             <label for="elección">Seleccione su pregunta de seguridad:</label><br>
-                            <select id="preg" name="pregunta">
-                                <option value="0"></option>
-                                <option value="1">¿Cual es el nombre de tu mascota?</option>
-                                <option value="2">¿Cual es tu color favorito?</option>
-                                <option value="3">¿Cual es tu ciudad natal?</option>
+                            <select id="pregunta" name="pregunta">
+                                {% for pr in preguntas %}
+                                    <option value="{{pr.id_pregunta}}">{{pr.nombre_pregunta}}</option>
+                                {% endfor %}
                             </select><br>
                             <p class="alerta" id="alerta_preg"></p>
                         </div>

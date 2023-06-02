@@ -49,8 +49,10 @@ def mostrarOlv_contra(request):
 
 def mostrarPregunta(request):
     categoria = Categoria.objects.all()
+    pregunta = Pregunta.objects.all()
 
-    contexto = {"categorias" : categoria}
+    contexto = {"categorias" : categoria,
+                "preguntas" : pregunta}
     return render(request, 'core/sin-cuenta/Pregunta.html',contexto)
 
 def mostrarProducto(request, id_prod):
@@ -174,6 +176,8 @@ def revisarDatos(request):
     else:
         messages.error(request,'El digito verificador no es correcto')
         return redirect('mostrarPregunta')
+    
+
 
 
 ###Paginas cliente###
