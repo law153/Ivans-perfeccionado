@@ -341,7 +341,24 @@ def consultarCli(request):
     return redirect('mostrarNosotrosCli')
 
 
+def cambiarClaveCli(request):
 
+    user_id = 22
+    contraA = request.POST['contra_actual']
+    contraN = request.POST['contra_nueva']
+
+    usuario = Usuario.objects.get(id_usuario = user_id)
+
+    if str(usuario.clave) == str(contraA):
+
+        usuario.clave = contraN
+        usuario.save()
+        messages.success(request,'Contraseña cambiada correctamente')
+        return redirect('mostrarPerfilCli')
+
+    else:
+        messages.error(request,'La contraseña actual es incorrecta')
+        return redirect('mostrarCambioContraCli')
     
 
 ###Paginas admin###
@@ -355,7 +372,7 @@ def mostrarIndexAdm(request):
 def mostrarPerfilAdm(request):
     categoria = Categoria.objects.all()
 
-    id_user = 1
+    id_user = 22
     usuario = Usuario.objects.get(id_usuario = id_user)
 
     contexto = {
@@ -387,7 +404,7 @@ def mostrarAgregar(request):
 def mostrarEditarPerfilAdm(request):
     categoria = Categoria.objects.all()
 
-    id_user = 1
+    id_user = 22
     usuario = Usuario.objects.get(id_usuario = id_user)
 
     preguntaObjeto = Pregunta.objects.all()
@@ -465,7 +482,7 @@ def eliminarProducto(request,id_prod):
     return redirect('mostrarIndexAdm')
 
 def editarPerfilAdm(request):
-    codigoU = 1
+    codigoU = 22
     nombreU = request.POST['nombre']
     fotoU = request.FILES['imagen']
     apellidoU = request.POST['apellido']
@@ -496,6 +513,24 @@ def editarPerfilAdm(request):
     
     return redirect('mostrarPerfilAdm')
 
+def cambiarClaveAdm(request):
 
+    user_id = 22
+    contraA = request.POST['contra_actual']
+    contraN = request.POST['contra_nueva']
+
+    usuario = Usuario.objects.get(id_usuario = user_id)
+
+    if str(usuario.clave) == str(contraA):
+
+        usuario.clave = contraN
+        usuario.save()
+        messages.success(request,'Contraseña cambiada correctamente')
+        return redirect('mostrarPerfilAdm')
+
+    else:
+        messages.error(request,'La contraseña actual es incorrecta')
+        return redirect('mostrarCambioContraAdm')
+    
 
 

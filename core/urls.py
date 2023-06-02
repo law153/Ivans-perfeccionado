@@ -1,5 +1,5 @@
 from django.urls import path,include
-from .views import mostrarIndex, mostrarNosotros, mostrarRegistro,mostrarIni_sesion, mostrarOlv_contra, mostrarPregunta, mostrarProducto, mostrarCategoria, mostrarIndexAdm, mostrarPerfilAdm, mostrarCategoriaAdm, mostrarAgregar, mostrarEditarPerfilAdm, mostrarCambioContraAdm, mostrarProductoAdm, mostrarProductoCli, mostrarCategoriaCli, mostrarMetodoPago, mostrarNosotrosCli, mostrarPerfilCli, mostrarIndexCli, mostrarCarritoCli, mostrarCambioContraCli, mostrarEditarPerfilCli,registrarUsuario,consultar, agregarProducto, inicioSesion, agregarAlCarrito, consultarCli, editarProducto, eliminarProducto, cierreSesion,mostrarError, editarPerfilCli, editarPerfilAdm, eliminarCuenta, revisarDatos
+from .views import mostrarIndex, mostrarNosotros, mostrarRegistro,mostrarIni_sesion, mostrarOlv_contra, mostrarPregunta, mostrarProducto, mostrarCategoria, mostrarIndexAdm, mostrarPerfilAdm, mostrarCategoriaAdm, mostrarAgregar, mostrarEditarPerfilAdm, mostrarCambioContraAdm, mostrarProductoAdm, mostrarProductoCli, mostrarCategoriaCli, mostrarMetodoPago, mostrarNosotrosCli, mostrarPerfilCli, mostrarIndexCli, mostrarCarritoCli, mostrarCambioContraCli, mostrarEditarPerfilCli,registrarUsuario,consultar, agregarProducto, inicioSesion, agregarAlCarrito, consultarCli, editarProducto, eliminarProducto, cierreSesion,mostrarError, editarPerfilCli, editarPerfilAdm, eliminarCuenta, revisarDatos, cambiarClaveAdm, cambiarClaveCli
 
 urlpatterns = [
 
@@ -32,6 +32,7 @@ urlpatterns = [
     path('consultarCli/',consultarCli,name="consultarCli"),
     path('editarPerfilCli/',editarPerfilCli,name="editarPerfilCli"),
     path('eliminarCuenta/<id_user>',eliminarCuenta,name="eliminarCuenta"),
+    path('cambiarClaveCli',cambiarClaveCli,name="cambiarClaveCli"),
     ### Paginas admin###
     path('principal_adm/',mostrarIndexAdm,name="mostrarIndexAdm"),
     path('categoria_adm/<id_cate>', mostrarCategoriaAdm, name="mostrarCategoriaAdm"),
@@ -44,5 +45,6 @@ urlpatterns = [
     path('editarProducto/', editarProducto, name="editarProducto"),
     path('eliminarProducto/<id_prod>', eliminarProducto, name="eliminarProducto"),
     path('editarPerfilAdm/',editarPerfilAdm,name="editarPerfilAdm"),
+    path('cambiarClaveAdm/',cambiarClaveAdm,name="cambiarClaveAdm"),
 
 ]

@@ -16,11 +16,11 @@
 
                 <div class="col-md-4 ajustado-posicion">
                     <h1>Cambio de Contraseña</h1>
-                    <form id="cambiar_contra" method="post" enctype="application/x-www-form-urlencoded">
+                    <form id="cambiar_contra" method="POST" enctype="application/x-www-form-urlencoded" action="{% url 'cambiarClaveAdm' %}">
                         {% csrf_token %}
                         <div class="form-group">
                             <label for="contra_nueva">Contraseña actual:</label><br>
-                            <input type="password" id="contra_actual" name="contra_actual" value="SoyAbel/57"><br>
+                            <input type="password" id="contra_actual" name="contra_actual" value=""><br>
                             <p  id="alerta-actual" class="alerta"></p><br>
                         </div>
 
@@ -47,7 +47,22 @@
                 <div class="col-md-4">
                 </div>
             </div>
+
+            
         </div>
+        {% if messages %}
+                {% for message in messages %}
+                <script>
+                    Swal.fire({
+                        "title": "Acción Exitosa",
+                        "text": "{{message}}",
+                        "icon": "error",
+                        "confirmButtonColor": "#000",
+                        "background": "#ff0"
+                    })
+                </script>
+                {% endfor %}
+        {% endif %}
     {% endblock cuerpo%}
     
     {% block js%}
