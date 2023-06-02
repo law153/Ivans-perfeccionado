@@ -452,6 +452,7 @@ def editarProducto(request):
     registroCategoria = Categoria.objects.get(id_categoria = categoriaP)
     producto.categoria = registroCategoria
     producto.save()
+    messages.success(request,'El producto fue editado correctamente')
     
     return redirect('mostrarIndexAdm')
 

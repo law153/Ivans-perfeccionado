@@ -41,13 +41,6 @@
                         <div class="form-group container-button">
                             <input style="width: 50%;" type="submit" value="Confirmar" id="btn-confirmar-sesion">
                         </div>
-                        {% if messages %}
-                            <ul class="messages">
-                                {% for message in messages %}
-                                    <li class="{{ message.tags }}  msg-malo">{{ message }}</li>
-                                {% endfor %}
-                            </ul>
-                        {% endif %}
                     </form>
                     <br><br>
                 </div>
@@ -57,6 +50,21 @@
             </div>
         </div>
         <!--Fin Cuerpo-->
+
+            {% if messages %}
+                {% for message in messages %}
+                <script>
+                    Swal.fire({
+                        "title": "Error",
+                        "text": "{{message}}",
+                        "icon": "error",
+                        "confirmButtonColor": "#000",
+                        "background": "#ff0"
+                    })
+                </script>
+                {% endfor %}
+            
+            {% endif %}
     {% endblock cuerpo %}
 
     {% block js %}

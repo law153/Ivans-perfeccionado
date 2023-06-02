@@ -51,14 +51,6 @@
                             <input type="submit" value="Confirmar" id="btn-confirmar">
                             
                         </div>
-                        {% if messages %}
-                            <ul class="messages">
-                                {% for message in messages %}
-                                    <li class="{{ message.tags }}  msg-malo">{{ message }}</li>
-                                {% endfor %}
-                            </ul>
-                        {% endif %}
-                        <br>
                         
                     </form> 
                     <br>
@@ -70,6 +62,20 @@
             </div>
         </div>
         <!--Fin Cuerpo-->
+
+        {% if messages %}
+            {% for message in messages %}
+            <script>
+                Swal.fire({
+                    "title": "Error",
+                    "text": "{{message}}",
+                    "icon": "error",
+                    "confirmButtonColor": "#000",
+                    "background": "#ff0"
+                })
+            </script>
+            {% endfor %}
+        {% endif %}
     {% endblock cuerpo %}
     
     {% block js %}
