@@ -301,12 +301,14 @@ input, textarea{
     text-decoration: none;
     color: #f50;
     font-weight: bold;
+    text-align: center;
 }
 
 .msg-bueno{
     text-decoration: none;
     color: #292;
     font-weight: bold;
+    text-align: center;
 }
 
 /**Medida small**/

@@ -150,7 +150,31 @@ def inicioSesion(request):
     
 def cierreSesion(request):
     logout(request)
-    redirect('mostrarIndex')
+
+def revisarDatos(request):
+    rutR = request.POST['rut']
+    dvrutR = request.POST['dvrut']
+    idPreguntaR = request.POST['pregunta']
+    respuestaR = request.POST['respuesta']
+
+    try:    
+        usuario = Usuario.objects.get(rut = rutR)
+    except Usuario.DoesNotExist:
+        messages.error(request,'El rut no está registrado')
+        return redirect('mostrarPregunta')
+
+    if usuario.dvrut == dvrutR:
+
+        preguntaR = Pregunta.objects.get(id_pregunta = idPreguntaR)
+        if usuario.pregunta == preguntaR and usuario.respuesta == respuestaR:
+            return redirect('mostrarOlv_contra')
+        else:
+            messages.error(request,'La pregunta o respuesta no son correctas')
+            return redirect('mostrarPregunta')
+    else:
+        messages.error(request,'El digito verificador no es correcto')
+        return redirect('mostrarPregunta')
+
 
 ###Paginas cliente###
 def mostrarProductoCli(request, id_prod):
@@ -309,6 +333,10 @@ def consultarCli(request):
                             asunto_consulta = asuntoC,
                             mensaje_consulta = mensajeC)
     return redirect('mostrarNosotrosCli')
+
+
+
+    
 
 ###Paginas admin###
 
