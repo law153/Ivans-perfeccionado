@@ -288,12 +288,14 @@ def editarPerfilCli(request):
     usuario.pregunta = registroPregunta
 
     usuario.save()
+    messages.success(request,'Perfil editado correctamente')
     
     return redirect('mostrarPerfilCli')
 
 def eliminarCuenta(request,id_user):
     usuario = Usuario.objects.get(id_usuario = id_user)
     usuario.delete()
+    messages.success(request,'Cuenta borrada exitosamente')
     return redirect('mostrarIndex')
 
 def agregarAlCarrito(request):
@@ -353,7 +355,7 @@ def mostrarIndexAdm(request):
 def mostrarPerfilAdm(request):
     categoria = Categoria.objects.all()
 
-    id_user = 22
+    id_user = 1
     usuario = Usuario.objects.get(id_usuario = id_user)
 
     contexto = {
@@ -385,7 +387,7 @@ def mostrarAgregar(request):
 def mostrarEditarPerfilAdm(request):
     categoria = Categoria.objects.all()
 
-    id_user = 22
+    id_user = 1
     usuario = Usuario.objects.get(id_usuario = id_user)
 
     preguntaObjeto = Pregunta.objects.all()
@@ -463,7 +465,7 @@ def eliminarProducto(request,id_prod):
     return redirect('mostrarIndexAdm')
 
 def editarPerfilAdm(request):
-    codigoU = 22
+    codigoU = 1
     nombreU = request.POST['nombre']
     fotoU = request.FILES['imagen']
     apellidoU = request.POST['apellido']
@@ -490,6 +492,7 @@ def editarPerfilAdm(request):
     usuario.pregunta = registroPregunta
 
     usuario.save()
+    messages.success(request,'Perfil editado correctamente')
     
     return redirect('mostrarPerfilAdm')
 

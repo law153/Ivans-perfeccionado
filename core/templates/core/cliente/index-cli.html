@@ -63,6 +63,21 @@
     
         </div>
         <!--Fin Cuerpo-->
+
+        {% if messages %}
+            {% for message in messages %}
+                <script>
+                    Swal.fire({
+                        "title": "Acción Exitosa",
+                        "text": "{{message}}",
+                        "icon": "success",
+                        "confirmButtonColor": "#000",
+                        "background": "#ff0"
+                    })
+                </script>
+            {% endfor %}
+        {% endif %}
+
         {% endblock cuerpo %}
     
     {% block js %}
