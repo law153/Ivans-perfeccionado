@@ -152,6 +152,7 @@ def inicioSesion(request):
     
 def cierreSesion(request):
     logout(request)
+    return redirect('mostrarIndex')
 
 def revisarDatos(request):
     rutR = request.POST['rut']
