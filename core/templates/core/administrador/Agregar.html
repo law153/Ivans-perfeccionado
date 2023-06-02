@@ -89,11 +89,16 @@
         </div>
 
         {% if messages %}
-            <ul class="messages">
                 {% for message in messages %}
-                    <li class="{{ message.tags }} msg-bueno">{{ message }}</li>
+                    <script>
+                        Swal.fire({
+                            "title": "Acción Exitosa",
+                            "text": "{{message}}",
+                            "icon": "success",
+                            "confirmButtonColor": "f00"
+                        })
+                    </script>
                 {% endfor %}
-            </ul>
         {% endif %}
 
     {% endblock cuerpo%}

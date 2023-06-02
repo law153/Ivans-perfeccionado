@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
+
 
 # Application definition
 
@@ -77,7 +79,7 @@ WSGI_APPLICATION = 'Ivans_perfeccionado.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.oracle',
-        'NAME': '192.168.1.143/orcl', #Para la inmensa mayoria 127.0.0.1, para Abel 192.168.1.143
+        'NAME': '127.0.0.1/orcl', #Para la inmensa mayoria 127.0.0.1, para Abel 192.168.1.143
         'USER': 'ivan1',
         'PASSWORD': 'ivan1',
         'TEST':{
@@ -132,7 +134,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-LOGOUT_REDIRECT_URL = '/'
 
 
