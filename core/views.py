@@ -85,10 +85,6 @@ def registrarUsuario(request):
     correoU = request.POST['correo_reg']
     claveU = request.POST['contra_ini']
     respuestaU = ' '
-    ruta_imagen = 'core/img/icono-perfil.png'  
-
-    fotoU = ruta_imagen
-
     registroRol = Rol.objects.get(id_rol = 1) ##Los usuarios registrados son clientes
     registroPregunta = Pregunta.objects.get(id_pregunta = 1) ##Pregunta asiganada por defecto
 
@@ -101,7 +97,6 @@ def registrarUsuario(request):
                             clave = claveU,
                             direccion = direccionU,
                             respuesta = respuestaU,
-                            foto_usuario = fotoU,
                             rol = registroRol,
                             pregunta = registroPregunta)
     
@@ -146,6 +141,7 @@ def inicioSesion(request):
             request.session['username'] = user1.username
             return redirect('mostrarIndexCli')
         else:
+            request.session['username'] = user1.username
             return redirect('mostrarIndexAdm')
     else:
         messages.error(request,'El usuario no existe')
