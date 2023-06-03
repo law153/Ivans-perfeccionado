@@ -36,11 +36,9 @@
                     
 
                     <div class="contenedor__producto-button">
-                        <form action="{% url 'agregarAlCarrito' %}" method="post" enctype="application/x-www-form-urlencoded" name="agregar">
-                            {% csrf_token %}
-                            <button type="submit">Agregar</button>
-                        </form>
+                        <a href="{% url 'agregarAlCarrito' %}" class="boton-fake-2">Agregar</a>
                     </div>
+                    
                 </div>
                 {% endfor %}
 

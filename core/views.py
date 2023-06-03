@@ -314,25 +314,26 @@ def agregarAlCarrito(request):
     usuarioC = Usuario.objects.get(id_usuario = id_user)
     
     fecha_hoy = date.today()
-    entrega = timedelta(3)
-
+    entrega = timedelta(999)
     fecha_e = fecha_hoy + entrega
 
-    ventaC = Venta.objects.create(
-        fecha_venta = fecha_hoy,
-        estado = 'En proceso',
-        fecha_entrega = fecha_e,
-        total = productoC.precio,
-        carrito = 1,
-        usuario = usuarioC
-    )
+    if Venta.objects.get(usuario = usuarioC).DoesNotExist:
+        ventaC = Venta.objects.create(fecha_venta = fecha_hoy,
+                                      estado = "Carrito",
+                                      fecha_entrega = fecha_e,
+                                      total = productoC.precio,
+                                      carrito = 1,
+                                      usuario = usuarioC)
+    else:
+        ventaC = Venta.objects.get(usuario = usuarioC)
 
-    Detalle.objects.create(
-        cantidad = 1,
-        subtotal = productoC.precio,
-        venta = ventaC,
-        producto = productoC
-    )
+    detalleC = Detalle.objects.create(cantidad = 1,
+                                      subtotal = productoC.precio,
+                                      venta = ventaC,
+                                      usuario = usuarioC)
+    
+    
+
 
     return redirect('mostrarCarritoCli')
 
@@ -360,7 +361,7 @@ def cambiarClaveCli(request):
 
         usuario.clave = contraN
         usuario2.password = contraN
-        
+
         usuario.save()
         usuario2.save()
         messages.success(request,'Contraseña cambiada correctamente')
