@@ -187,7 +187,7 @@ def olvideClave(request):
     contraN = request.POST['contra_nueva']
 
     usuario.clave = contraN
-    user.password = contraN
+    user.set_password(contraN)
 
     usuario.save()
     user.save()
@@ -381,7 +381,7 @@ def cambiarClaveCli(request):
     if str(usuario.clave) == str(contraA):
 
         usuario.clave = contraN
-        usuario2.password = contraN
+        usuario2.set_password(contraN)
 
         usuario.save()
         usuario2.save()
@@ -562,7 +562,7 @@ def cambiarClaveAdm(request):
     if str(usuario.clave) == str(contraA):
 
         usuario.clave = contraN
-        usuario2.password = contraN
+        usuario2.set_password(contraN)
         usuario.save()
         usuario2.save()
         messages.success(request,'Contraseña cambiada correctamente')
