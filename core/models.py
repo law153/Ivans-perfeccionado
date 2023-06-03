@@ -38,7 +38,7 @@ class Usuario(models.Model):
     clave = models.CharField(max_length=20)
     direccion = models.CharField(max_length=60)
     respuesta = models.CharField(max_length=50)
-    foto_usuario = models.ImageField(upload_to="usuarios")
+    foto_usuario = models.ImageField(upload_to="usuarios", default='usuarios/icono-perfil.png')
     rol = models.ForeignKey(Rol, on_delete=models.CASCADE)
     pregunta = models.ForeignKey(Pregunta, on_delete=models.CASCADE)
     def __str__(self) -> str:
