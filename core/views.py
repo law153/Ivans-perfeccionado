@@ -275,6 +275,8 @@ def editarPerfilCli(request):
     respuestaU = request.POST['respuesta']
 
     usuario = Usuario.objects.get(id_usuario = codigoU)
+    usuario2 = User.objects.get(username = usuario.correo)
+
     usuario.rut = rutU
     usuario.dvrut = dvrutU
     usuario.nombre = nombreU
@@ -284,11 +286,15 @@ def editarPerfilCli(request):
     usuario.direccion = direccionU
     usuario.respuesta = respuestaU
     usuario.foto_usuario = fotoU
-
     registroPregunta = Pregunta.objects.get(id_pregunta = idpreguntaU)
     usuario.pregunta = registroPregunta
 
+    usuario2.username = correoU
+    usuario2.email = correoU
+
     usuario.save()
+    usuario2.save()
+
     messages.success(request,'Perfil editado correctamente')
     
     return redirect('mostrarPerfilCli')
@@ -349,11 +355,14 @@ def cambiarClaveCli(request):
     contraN = request.POST['contra_nueva']
 
     usuario = Usuario.objects.get(id_usuario = user_id)
-
+    usuario2 = User.objects.get(username = usuario.correo)
     if str(usuario.clave) == str(contraA):
 
         usuario.clave = contraN
+        usuario2.password = contraN
+        
         usuario.save()
+        usuario2.save()
         messages.success(request,'Contraseña cambiada correctamente')
         return redirect('mostrarPerfilCli')
 
@@ -496,6 +505,7 @@ def editarPerfilAdm(request):
     respuestaU = request.POST['respuesta']
 
     usuario = Usuario.objects.get(id_usuario = codigoU)
+    usuario2 = User.objects.get(username = usuario.correo)
     usuario.rut = rutU
     usuario.dvrut = dvrutU
     usuario.nombre = nombreU
@@ -505,11 +515,14 @@ def editarPerfilAdm(request):
     usuario.direccion = direccionU
     usuario.respuesta = respuestaU
     usuario.foto_usuario = fotoU
-
     registroPregunta = Pregunta.objects.get(id_pregunta = idpreguntaU)
     usuario.pregunta = registroPregunta
 
+    usuario2.username = correoU
+    usuario2.email = correoU
+
     usuario.save()
+    usuario2.save()
     messages.success(request,'Perfil editado correctamente')
     
     return redirect('mostrarPerfilAdm')
@@ -521,11 +534,14 @@ def cambiarClaveAdm(request):
     contraN = request.POST['contra_nueva']
 
     usuario = Usuario.objects.get(id_usuario = user_id)
+    usuario2 = User.objects.get(username = usuario.correo)
 
     if str(usuario.clave) == str(contraA):
 
         usuario.clave = contraN
+        usuario2.password = contraN
         usuario.save()
+        usuario2.save()
         messages.success(request,'Contraseña cambiada correctamente')
         return redirect('mostrarPerfilAdm')
 
