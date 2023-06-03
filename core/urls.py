@@ -1,6 +1,5 @@
 from django.urls import path,include
-from .views import mostrarIndex, mostrarNosotros, mostrarRegistro,mostrarIni_sesion, mostrarOlv_contra, mostrarPregunta, mostrarProducto, mostrarCategoria, mostrarIndexAdm, mostrarPerfilAdm, mostrarCategoriaAdm, mostrarAgregar, mostrarEditarPerfilAdm, mostrarCambioContraAdm, mostrarProductoAdm, mostrarProductoCli, mostrarCategoriaCli, mostrarMetodoPago, mostrarNosotrosCli, mostrarPerfilCli, mostrarIndexCli, mostrarCarritoCli, mostrarCambioContraCli, mostrarEditarPerfilCli,registrarUsuario,consultar, agregarProducto, inicioSesion, agregarAlCarrito, consultarCli, editarProducto, eliminarProducto, cierreSesion,mostrarError, editarPerfilCli, editarPerfilAdm, eliminarCuenta, revisarDatos, cambiarClaveAdm, cambiarClaveCli
-
+from .views import mostrarIndex, mostrarNosotros, mostrarRegistro,mostrarIni_sesion, mostrarOlv_contra, mostrarPregunta, mostrarProducto, mostrarCategoria, mostrarIndexAdm, mostrarPerfilAdm, mostrarCategoriaAdm, mostrarAgregar, mostrarEditarPerfilAdm, mostrarCambioContraAdm, mostrarProductoAdm, mostrarProductoCli, mostrarCategoriaCli, mostrarMetodoPago, mostrarNosotrosCli, mostrarPerfilCli, mostrarIndexCli, mostrarCarritoCli, mostrarCambioContraCli, mostrarEditarPerfilCli,registrarUsuario,consultar, agregarProducto, inicioSesion, agregarAlCarrito, consultarCli, editarProducto, eliminarProducto, cierreSesion,mostrarError, editarPerfilCli, editarPerfilAdm, eliminarCuenta, revisarDatos, cambiarClaveAdm, cambiarClaveCli, olvideClave
 urlpatterns = [
 
     ### Paginas sin-cuenta###
@@ -18,6 +17,7 @@ urlpatterns = [
     path('inicioSesion/',inicioSesion, name="inicioSesion"),
     path('cierreSesion/',cierreSesion,name="cierreSesion"),
     path('revisarDatos/',revisarDatos,name="revisarDatos"),
+    path('olvideClave/',olvideClave,name="olvideClave"),
     ### Paginas cliente###
     path('producto_cli/<id_prod>',mostrarProductoCli,name="mostrarProductoCli"),
     path('principal_cli/',mostrarIndexCli,name="mostrarIndexCli"),

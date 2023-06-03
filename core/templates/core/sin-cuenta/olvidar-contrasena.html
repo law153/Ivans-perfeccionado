@@ -20,7 +20,7 @@
     
                 <div class="col-md-4 ajustado-posicion">
                     <h1>Cambio de Contraseña</h1>
-                    <form id="cambio-contra" method="post" enctype="application/x-www-form-urlencoded">
+                    <form id="cambio-contra" method="post" enctype="application/x-www-form-urlencoded" action="{% url 'olvideClave' %}">
                         {% csrf_token %}
                         <div class="form-group">
                             <label for="contra_nueva">Contraseña nueva:</label><br>

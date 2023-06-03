@@ -192,7 +192,7 @@ def olvideClave(request):
     usuario.save()
     user.save()
 
-    redirect('mostrarIni_sesion') 
+    return redirect('mostrarIni_sesion') 
         
 
 
