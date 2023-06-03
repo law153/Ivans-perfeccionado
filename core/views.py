@@ -161,6 +161,7 @@ def revisarDatos(request):
     idPreguntaR = request.POST['pregunta']
     respuestaR = request.POST['respuesta']
 
+
     try:    
         usuario = Usuario.objects.get(rut = rutR)
     except Usuario.DoesNotExist:
@@ -171,6 +172,9 @@ def revisarDatos(request):
 
         preguntaR = Pregunta.objects.get(id_pregunta = idPreguntaR)
         if str(usuario.pregunta).strip().lower() == str(preguntaR).strip().lower() and str(usuario.respuesta).strip().lower() == str(respuestaR).strip().lower():
+            user = User.objects.get(username = usuario.correo)
+            login(request, user)
+            request.session['username'] = user.username 
             return redirect('mostrarOlv_contra')
         else:
             messages.error(request,'La pregunta o respuesta no son correctas')
@@ -179,6 +183,21 @@ def revisarDatos(request):
         messages.error(request,'El digito verificador no es correcto')
         return redirect('mostrarPregunta')
     
+def olvideClave(request):
+    usernameP = request.session.get('username')
+    usuario = Usuario.objects.get(correo = usernameP)
+    user = User.objects.get(username = usernameP)
+
+    contraN = request.POST['contra_nueva']
+
+    usuario.clave = contraN
+    user.password = contraN
+
+    usuario.save()
+    user.save()
+
+    redirect('mostrarIni_sesion') 
+        
 
 
 
