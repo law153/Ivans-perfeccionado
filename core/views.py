@@ -143,6 +143,7 @@ def inicioSesion(request):
     if user is not None:
         login(request, user)
         if(usuario.rol.id_rol == 1):
+            request.session['username'] = user1.username
             return redirect('mostrarIndexCli')
         else:
             return redirect('mostrarIndexAdm')
@@ -217,8 +218,8 @@ def mostrarNosotrosCli(request):
 def mostrarPerfilCli(request):
     categoria = Categoria.objects.all()
 
-    id_user = 22
-    usuario = Usuario.objects.get(id_usuario = id_user)
+    username = request.session.get('username')
+    usuario = Usuario.objects.get(correo = username)
 
     contexto = {
         "user" : usuario,
@@ -248,8 +249,9 @@ def mostrarCambioContraCli(request):
 def mostrarEditarPerfilCli(request):
     categoria = Categoria.objects.all()
 
-    id_user = 22
-    usuario = Usuario.objects.get(id_usuario = id_user)
+    username = request.session.get('username')
+
+    usuario = Usuario.objects.get(correo = username)
 
     preguntaObjeto = Pregunta.objects.all()
 
@@ -262,7 +264,8 @@ def mostrarEditarPerfilCli(request):
     return render(request, 'core/cliente/Editar-perfil.html',contexto)
 
 def editarPerfilCli(request):
-    codigoU = 22
+    usernameP = request.session.get('username')
+
     nombreU = request.POST['nombre']
     fotoU = request.FILES['imagen']
     apellidoU = request.POST['apellido']
@@ -274,7 +277,7 @@ def editarPerfilCli(request):
     idpreguntaU = request.POST['pregunta']
     respuestaU = request.POST['respuesta']
 
-    usuario = Usuario.objects.get(id_usuario = codigoU)
+    usuario = Usuario.objects.get(correo = usernameP)
     usuario2 = User.objects.get(username = usuario.correo)
 
     usuario.rut = rutU
@@ -310,8 +313,8 @@ def agregarAlCarrito(request):
     cod_produc = request.POST['id_product']
     productoC = Producto.objects.get(cod_prod = cod_produc)
 
-    id_user = 22
-    usuarioC = Usuario.objects.get(id_usuario = id_user)
+    username = request.session.get('username')
+    usuarioC = Usuario.objects.get(correo = username)
     
     fecha_hoy = date.today()
     entrega = timedelta(999)
@@ -332,18 +335,21 @@ def agregarAlCarrito(request):
                                       venta = ventaC,
                                       usuario = usuarioC)
     
-    
+
 
 
     return redirect('mostrarCarritoCli')
 
 def consultarCli(request):
     
-    nombreC = request.POST['nom-ap']
+    username = request.session.get('username')
+    usuario = Usuario.objects.get(correo = username)
+
+
     asuntoC = request.POST['asunto']
     mensajeC = request.POST['msg']
 
-    Consulta.objects.create(nombre_consultante = nombreC,
+    Consulta.objects.create(nombre_consultante = usuario.nombre,
                             asunto_consulta = asuntoC,
                             mensaje_consulta = mensajeC)
     return redirect('mostrarNosotrosCli')
@@ -351,11 +357,11 @@ def consultarCli(request):
 
 def cambiarClaveCli(request):
 
-    user_id = 22
+    usernameP = request.session.get('username')
     contraA = request.POST['contra_actual']
     contraN = request.POST['contra_nueva']
 
-    usuario = Usuario.objects.get(id_usuario = user_id)
+    usuario = Usuario.objects.get(correo = usernameP)
     usuario2 = User.objects.get(username = usuario.correo)
     if str(usuario.clave) == str(contraA):
 
@@ -383,8 +389,8 @@ def mostrarIndexAdm(request):
 def mostrarPerfilAdm(request):
     categoria = Categoria.objects.all()
 
-    id_user = 22
-    usuario = Usuario.objects.get(id_usuario = id_user)
+    username = request.session.get('username')
+    usuario = Usuario.objects.get(correo = username)
 
     contexto = {
         "user" : usuario,
@@ -415,8 +421,8 @@ def mostrarAgregar(request):
 def mostrarEditarPerfilAdm(request):
     categoria = Categoria.objects.all()
 
-    id_user = 22
-    usuario = Usuario.objects.get(id_usuario = id_user)
+    username = request.session.get('username')
+    usuario = Usuario.objects.get(correo = username)
 
     preguntaObjeto = Pregunta.objects.all()
 
@@ -493,7 +499,8 @@ def eliminarProducto(request,id_prod):
     return redirect('mostrarIndexAdm')
 
 def editarPerfilAdm(request):
-    codigoU = 22
+    usernameP = request.session.get('username')
+
     nombreU = request.POST['nombre']
     fotoU = request.FILES['imagen']
     apellidoU = request.POST['apellido']
@@ -505,7 +512,7 @@ def editarPerfilAdm(request):
     idpreguntaU = request.POST['pregunta']
     respuestaU = request.POST['respuesta']
 
-    usuario = Usuario.objects.get(id_usuario = codigoU)
+    usuario = Usuario.objects.get(correo = usernameP)
     usuario2 = User.objects.get(username = usuario.correo)
     usuario.rut = rutU
     usuario.dvrut = dvrutU
@@ -530,11 +537,11 @@ def editarPerfilAdm(request):
 
 def cambiarClaveAdm(request):
 
-    user_id = 22
+    usernameP = request.session.get('username')
     contraA = request.POST['contra_actual']
     contraN = request.POST['contra_nueva']
 
-    usuario = Usuario.objects.get(id_usuario = user_id)
+    usuario = Usuario.objects.get(correo = usernameP)
     usuario2 = User.objects.get(username = usuario.correo)
 
     if str(usuario.clave) == str(contraA):
