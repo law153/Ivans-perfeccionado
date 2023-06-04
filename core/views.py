@@ -490,10 +490,12 @@ def mostrarProductoAdm(request,id_prod):
     return render(request, 'core/administrador/producto-adm.html',contexto)
 
 def mostrarEditarRol(request):
+    categoria = Categoria.objects.all()
     clientes = Usuario.objects.all()
 
     contexto = {
-        "clients": clientes
+        "clients": clientes,
+        "categorias": categoria
     }
     return render(request, 'core/administrador/Editar-rol.html',contexto)
 

@@ -12,8 +12,8 @@
     {% block cuerpo%}
         <div class="container">
 
-            <table class="contenedor-tabla" cellpadding="5" border="2" bgcolor="#ff0">
-                <tr>
+            <table class="contenedor-tabla" cellspacing="5" cellpadding="2" border="2" bgcolor="#ff0">
+                <tr align="center">
                     <th>ID</th>
                     <th>Nombre</th>
                     <th>Foto</th>
@@ -21,7 +21,7 @@
                 </tr>
         
                 {% for c in clients %}
-                <tr>
+                <tr align="center">
                     <td>{{c.id_usuario}}</td>
                     <td>{{ c.nombre }}</td>
                     <td class="contenedor-imagen">
