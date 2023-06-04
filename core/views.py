@@ -192,7 +192,7 @@ def olvideClave(request):
     usuario.save()
     user.save()
 
-    return redirect('mostrarIni_sesion') 
+    return redirect('cierreSesion')  
         
 
 
@@ -251,8 +251,20 @@ def mostrarIndexCli(request):
 
 def mostrarCarritoCli(request):
     categoria = Categoria.objects.all()
+
+    username = request.session.get('username')
+    usuario1 = Usuario.objects.get(correo = username)
+
+    carrito = Venta.objects.filter(usuario = usuario1, estado='ACTIVO').first()
+
+    if carrito:
+        detalles = Detalle.objects.filter(venta = carrito)
+        contexto = {"categorias" : categoria,
+                    "carrito" : detalles}
+    else:
+        contexto = {"categorias" : categoria}
+        messages.error(request,'No hay productos en el carrito actualmente')
     
-    contexto = {"categorias" : categoria}
     return render(request, 'core/cliente/carrito.html',contexto)
 
 def mostrarCambioContraCli(request):
@@ -335,24 +347,29 @@ def agregarAlCarrito(request):
     entrega = timedelta(999)
     fecha_e = fecha_hoy + entrega
 
-    if Venta.objects.get(usuario = usuarioC).DoesNotExist:
-        ventaC = Venta.objects.create(fecha_venta = fecha_hoy,
-                                      estado = "Carrito",
-                                      fecha_entrega = fecha_e,
-                                      total = productoC.precio,
-                                      carrito = 1,
-                                      usuario = usuarioC)
+
+    carrito = Venta.objects.filter(usuario = usuarioC, estado='ACTIVO').first()
+
+    if carrito:
+        Detalle.objects.create(cantidad = 1,
+                                subtotal = productoC.precio,
+                                venta = carrito,
+                                producto = productoC)
+
+
     else:
-        ventaC = Venta.objects.get(usuario = usuarioC)
+        carrito = Venta.objects.create(fecha_venta = fecha_hoy,
+                                       estado = "ACTIVO",
+                                       fecha_entrega = fecha_e,
+                                       total = productoC.precio,
+                                       carrito = 1,
+                                       usuario = usuarioC)
 
-    detalleC = Detalle.objects.create(cantidad = 1,
-                                      subtotal = productoC.precio,
-                                      venta = ventaC,
-                                      usuario = usuarioC)
-    
-
-
-
+        Detalle.objects.create(cantidad = 1,
+                                subtotal = productoC.precio,
+                                venta = carrito,
+                                producto = productoC)
+        
     return redirect('mostrarCarritoCli')
 
 def consultarCli(request):

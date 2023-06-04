@@ -34,13 +34,13 @@
                         <img src="{{ i.foto_prod.url }}" alt="No hay imagen disponible">
                     </div>
                     <div class="contenedor__producto-texto">
-                        <a href="{% url 'mostrarProducto' i.cod_prod%}">{{ i.nombre_prod }}</a> 
+                        <p>{{ i.nombre_prod }}</p> 
                     </div>
                     <div class="contenedor__producto-precio">
                         <p>$ {{ i.precio }} {{ i.unidad_medida }}</p>
                     </div>
                     <div class="contenedor__producto-button">             
-                        <a class="boton-fake-2" href="{% url 'mostrarIni_sesion' %}">Confirmar</a>
+                        <a class="boton-fake-2" href="{% url 'mostrarProducto' i.cod_prod%}">Ver</a>
                     </div>
                 </div>
                 {% endfor %}

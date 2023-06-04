@@ -17,71 +17,53 @@
                 <h1 style="font-size: 45px; text-align: center; text-decoration: underline; margin-top: 2%;">TU CARRITO</h1>
             </div>
         </div>
-        <div class="row contenedor__producto ">                
-            <div class="col-md-6">
-                <div class="contenedor__producto-img">
-                    <img src="{% static 'core/img/Electricidad-cable.jpg'%}" alt="No hay imagen disponible">
-                </div>
-            </div>                
-            <div class="col-md-6">
-                <div class="contenedor__producto-texto">
-                    <h2>CABLE ELECTRICO CORDON ST 3 X 14 AWG</h2>
-                </div>
-                <div class="contenedor__producto-precio">
-                    <p>$3.075  MT</p>
-                </div>
-                <form name="contador" class="container-button">
-                    {% csrf_token %}
-                    <input type="number" min="1" value="1" class="contador" name="cantidad">
-                    <input type="button" value="Aceptar" name="fijar_cant">
-                    <button class="borrar"><i class="fa-solid fa-trash"></i></button> 
-                </form>
-            </div>
-        </div>
-        <div class="row contenedor__producto">
-            <div class="col-md-6">
-                <div class="contenedor__producto-img">
-                    <img src="{% static 'core/img/Fijaciones-golilla.jpg'%}" alt="No hay imagen disponible">
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="contenedor__producto-texto">
-                    <h2>GOLILLA PLANA ZINCADA 3/8\"</h2> 
-                </div>
-                <div class="contenedor__producto-precio">
-                    <p>$180  UNI</p>
-                </div>
-                <form name="contador" class="container-button">
-                    {% csrf_token %}
-                    <input type="number" min="1" value="1" class="contador" name="cantidad">
-                    <input type="button" value="Aceptar" name="fijar_cant">
 
-                    <button class="borrar"><i class="fa-solid fa-trash"></i></button> 
-                </form>
-            </div>
-        </div>
-        <div class="row contenedor__producto last-prod">
-            <div class="col-md-6">
-                <div class="contenedor__producto-img">
-                    <img src="{% static 'core/img/Gasfiteria-bomba.png'%}" alt="No hay imagen disponible">
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="contenedor__producto-texto">
-                    <h2>BOMBA PM 45 S/T 220 V.1 X 1 PENTAX</h2>
-                </div>
-                <div class="contenedor__producto-precio">
-                    <p>$130.650  UNI</p>
-                </div>
-                <form name="contador" class="container-button">
-                    {% csrf_token %}
-                    <input type="number" min="1" value="1" class="contador" name="cantidad">
-                    <input type="button" value="Aceptar" name="fijar_cant">
+        {% if carrito.doesNotExist %}
 
-                    <button class="borrar"><i class="fa-solid fa-trash"></i></button> 
-                </form>
+            {% if messages %}
+                {% for message in messages %}
+                    <script>
+                        Swal.fire({
+                            "title": "Aviso",
+                            "text": "{{message}}",
+                            "icon": "warning",
+                            "confirmButtonColor": "#000",
+                            "background": "#ff0"
+                        })
+                    </script>
+                {% endfor %}
+            {% endif %}
+
+        {% else %}  
+
+            {% for i in carrito %}
+
+            <div class="row contenedor__producto ">                
+                <div class="col-md-6">
+                    <div class="contenedor__producto-img">
+                        <img src="{{ i.producto.foto_prod.url }}" alt="No hay imagen disponible">
+                    </div>
+                </div>                
+                <div class="col-md-6">
+                    <div class="contenedor__producto-texto">
+                        <h2>{{ i.producto.nombre_prod }}</h2>
+                    </div>
+                    <div class="contenedor__producto-precio">
+                        <p>${{ i.subtotal }}</p>
+                    </div>
+                    <form name="contador" class="container-button">
+                        {% csrf_token %}
+                        <input type="number" min="1" value="1" class="contador" name="cantidad">
+                        <input type="button" value="Aceptar" name="fijar_cant">
+                        <button class="borrar"><i class="fa-solid fa-trash"></i></button> 
+                    </form>
+                </div>
             </div>
-        </div>
+            
+            {% endfor %}
+
+        {% endif %}     
+        
         <div class="row">
             <div class="col-md-4"></div>
             <div class="col-md-4">

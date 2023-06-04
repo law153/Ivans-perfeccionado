@@ -21,26 +21,25 @@
             <div class="col-md-2"></div>      
             
             {% for i in products %}
-                <p style="display: none;" name="id_product">{{i.cod_prod}}</p>
                 <div class="col-md-2 contenedor__producto">
                     <div class="contenedor__producto-img">
                         <img src="{{ i.foto_prod.url }}" alt="No hay imagen disponible">
                     </div>
                     <div class="contenedor__producto-texto">
-                        <a href="{% url 'mostrarProductoCli' i.cod_prod%}">{{ i.nombre_prod }}</a> 
+                        <p>{{ i.nombre_prod }}</p> 
                     </div>
 
                     <div class="contenedor__producto-precio">
-                        <p name="precio">$ {{ i.precio }}</p> <p name="medida"> {{ i.unidad_medida }}</p>
+                        <p name="precio">$ {{ i.precio }} {{ i.unidad_medida }}</p>
                     </div>
                     
 
                     <div class="contenedor__producto-button">
-                        <a href="{% url 'agregarAlCarrito' %}" class="boton-fake-2">Agregar</a>
+                        <a href="{% url 'mostrarProductoCli' i.cod_prod%}" class="boton-fake-2">Ver</a>
                     </div>
                     
                 </div>
-                {% endfor %}
+            {% endfor %}
 
             
             <div class="col-md-2"></div>

@@ -13,19 +13,19 @@
     <div class="container">
         <div class="row contenedor-padre">
             <div class="col-md-5 contenedor-img">
-                <img alt="No hay imagen disponible" src="{% static 'core/img/Electricidad-cable.jpg'%}">
+                <img alt="No hay imagen disponible" src="{{ product.foto_prod.url }}">
             </div>
-            <div class="col-md-7 contenedor-texto"> 
+            <div class="col-md-7 contenedor-texto">
                 <h1>{{product.nombre_prod}}</h1>
                 <p>{{product.descripcion}}</p>
                 <div class="contenedor-precio">
-                    <p>${{product.precio}} {{product.unidad_medida.}}</p>
+                    <p>${{product.precio}} {{product.unidad_medida}}</p>
                 </div>
                 <div class="contenedor-boton" style="text-align: center;">
-                    <form action="{% url 'agregarAlCarrito' %}">
+                    <form action="{% url 'agregarAlCarrito' %}" method="POST" >
                         {% csrf_token %}
                         <button class="boton-fake-2">Agregar</button>
-                        <label style="display: none;" name="id_product">{{product.cod_prod}}</label>
+                        <input type="hidden" name="id_product" value="{{ product.cod_prod }}">
                     </form>
                 </div>
             </div>
