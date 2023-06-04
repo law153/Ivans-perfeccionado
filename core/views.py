@@ -351,10 +351,15 @@ def agregarAlCarrito(request):
     carrito = Venta.objects.filter(usuario = usuarioC, estado='ACTIVO').first()
 
     if carrito:
-        Detalle.objects.create(cantidad = 1,
-                                subtotal = productoC.precio,
-                                venta = carrito,
-                                producto = productoC)
+        detalle = Detalle.objects.get(venta = carrito, producto = productoC)
+        if detalle:
+            detalle.cantidad += 1
+            detalle.save()
+        else:
+            Detalle.objects.create(cantidad = 1,
+                                    subtotal = productoC.precio,
+                                    venta = carrito,
+                                    producto = productoC)
 
 
     else:

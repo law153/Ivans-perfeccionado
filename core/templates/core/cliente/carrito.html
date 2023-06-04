@@ -53,7 +53,7 @@
                     </div>
                     <form name="contador" class="container-button">
                         {% csrf_token %}
-                        <input type="number" min="1" value="1" class="contador" name="cantidad">
+                        <input type="number" min="1" value="{{ i.cantidad }}" class="contador" name="cantidad">
                         <input type="button" value="Aceptar" name="fijar_cant">
                         <button class="borrar"><i class="fa-solid fa-trash"></i></button> 
                     </form>
