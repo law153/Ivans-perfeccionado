@@ -1,0 +1,16 @@
+.contenedor-tabla{
+    height: 80%;
+    border-radius: 2px solid #000;
+}
+
+.contenedor-imagen{
+    height: 50%;
+    width: 50%;
+    object-fit: cover;
+}
+
+.imagenes{
+    text-align: center;
+    width: 35%;
+}
+

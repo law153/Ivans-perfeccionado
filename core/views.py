@@ -467,6 +467,14 @@ def mostrarProductoAdm(request,id_prod):
 
     return render(request, 'core/administrador/producto-adm.html',contexto)
 
+def mostrarEditarRol(request):
+    clientes = Usuario.objects.all()
+
+    contexto = {
+        "clients": clientes
+    }
+    return render(request, 'core/administrador/Editar-rol.html',contexto)
+
 def agregarProducto(request):
     nombreP = request.POST['nombre']
     descripcionP = request.POST['descripcion']
@@ -570,7 +578,7 @@ def cambiarClaveAdm(request):
 
     else:
         messages.error(request,'La contraseña actual es incorrecta')
-        return redirect('mostrarCambioContraAdm')
+        return redirect('mostrarCambioContraAdm')    
     
 
 

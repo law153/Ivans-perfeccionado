@@ -1,0 +1,55 @@
+{% extends 'core/administrador/plantillaAdministrador.html'%}
+{% load static %}
+    {% block titulo%}
+    <title>Editar Rol</title>
+    {% endblock titulo%}
+    
+    {% block disenos%}
+    <link rel="stylesheet" type="text/css" href="{% static 'core/css/formularios.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'core/css/editar-rol.css' %}">
+    {% endblock disenos%}
+
+    {% block cuerpo%}
+        <div class="container">
+
+            <table class="contenedor-tabla" cellpadding="5" border="2" bgcolor="#ff0">
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Foto</th>
+                    <th>Acciones</th>
+                </tr>
+        
+                {% for c in clients %}
+                <tr>
+                    <td>{{c.id_usuario}}</td>
+                    <td>{{ c.nombre }}</td>
+                    <td class="contenedor-imagen">
+        
+                        <img class="imagenes" src="{{ c.foto_usuario.url }}" alt="No foto">
+        
+                    </td>
+                    <td>
+                        <a href=""class="boton-fake-1">Modificar</a><br>
+                    </td>
+        
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        {% if messages %}
+                {% for message in messages %}
+                    <script>
+                        Swal.fire({
+                            "title": "Acción Exitosa",
+                            "text": "{{message}}",
+                            "icon": "success",
+                            "confirmButtonColor": "#000",
+                            "background": "#ff0"
+                        })
+                    </script>
+                {% endfor %}
+        {% endif %}
+
+    {% endblock cuerpo%}
