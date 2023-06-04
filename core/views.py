@@ -377,6 +377,11 @@ def agregarAlCarrito(request):
         
     return redirect('mostrarCarritoCli')
 
+def sacarDelCarro(request, cod_detalle):
+    detalle = Detalle.objects.get(id_detalle = cod_detalle)
+    detalle.delete()
+    return redirect('mostrarCarritoCli')
+
 def consultarCli(request):
     
     username = request.session.get('username')
@@ -605,11 +610,18 @@ def cambiarClaveAdm(request):
         return redirect('mostrarCambioContraAdm')
 
 def editarRol(request,id):
-    registroRol = Rol.objects.get(id_rol = 2)
     usuario = Usuario.objects.get(id_usuario = id)
     usuario2 = User.objects.get(username = usuario.correo)
-    usuario.rol = registroRol
-    usuario2.is_staff = True
+    
+    if usuario.rol.id_rol == 1:
+        registrolRol = Rol.objects.get(id_rol = 2)
+        usuario.rol = registrolRol
+        usuario2.is_staff = True
+    else:
+        registrolRol = Rol.objects.get(id_rol = 1)
+        usuario.rol = registrolRol
+        usuario2.is_staff = False
+    
     usuario.save()
     usuario2.save()
     messages.success(request,"Rol cambiado con éxito")

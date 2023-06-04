@@ -51,11 +51,15 @@
                     <div class="contenedor__producto-precio">
                         <p>${{ i.subtotal }}</p>
                     </div>
-                    <form name="contador" class="container-button">
+                    <form name="contador" class="container-button" method="POST">
                         {% csrf_token %}
                         <input type="number" min="1" value="{{ i.cantidad }}" class="contador" name="cantidad">
-                        <input type="button" value="Aceptar" name="fijar_cant">
-                        <button class="borrar"><i class="fa-solid fa-trash"></i></button> 
+                        <button type="submit">Aceptar</button>
+                    </form>
+                    <form name="borrar-form" style="margin-top: -48px;" class="container-button"  method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="producto_id" value="{{ i.producto.id }}">
+                        <button type="submit" class="borrar"><i class="fa-solid fa-trash"></i></button>
                     </form>
                 </div>
             </div>
