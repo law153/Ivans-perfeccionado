@@ -602,7 +602,18 @@ def cambiarClaveAdm(request):
 
     else:
         messages.error(request,'La contraseña actual es incorrecta')
-        return redirect('mostrarCambioContraAdm')    
+        return redirect('mostrarCambioContraAdm')
+
+def editarRol(request,id):
+    registroRol = Rol.objects.get(id_rol = 2)
+    usuario = Usuario.objects.get(id_usuario = id)
+    usuario2 = User.objects.get(username = usuario.correo)
+    usuario.rol = registroRol
+    usuario2.is_staff = True
+    usuario.save()
+    usuario2.save()
+    messages.success(request,"Rol cambiado con éxito")
+    return redirect('mostrarEditarRol')    
     
 
 
