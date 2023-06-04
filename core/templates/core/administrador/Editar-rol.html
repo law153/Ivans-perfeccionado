@@ -17,6 +17,7 @@
                     <th>ID</th>
                     <th>Nombre</th>
                     <th>Foto</th>
+                    <th>Rol</th>
                     <th>Administrar</th>
                 </tr>
         
@@ -29,7 +30,9 @@
                         <img class="imagenes" src="{{ c.foto_usuario.url }}" alt="No foto">
         
                     </td>
+                    <td>{{c.rol.nombre_rol}}</td>
                     <td>
+                        
                         <a href="{% url 'editarRol' c.id_usuario %}"class="boton-fake-1">Hacer Admin</a><br>
                     </td>
         
