@@ -220,496 +220,627 @@ def mostrarProductoCli(request, id_prod):
         return render(request, 'core/cliente/Producto-cli.html',contexto)
     
     else:
-        
+
         messages.warning(request,'Debe estar registrado para acceder a esta pagina')
-        return redirect('mostrarError')
+        return redirect('mostrarIni_sesion')
 
 def mostrarCategoriaCli(request, id_cate):
-    categoria = Categoria.objects.all()
+        
+    if request.user.is_authenticated:
 
-    cate = Categoria.objects.get(id_categoria = id_cate)
+        categoria = Categoria.objects.all()
 
-    productos = Producto.objects.filter(categoria = cate)
+        cate = Categoria.objects.get(id_categoria = id_cate)
+
+        productos = Producto.objects.filter(categoria = cate)
+        
+        contexto = {"products" : productos ,"categorias" : categoria, "categoria" : cate}
+
+        return render(request, 'core/cliente/Categoria-cli.html', contexto)
     
-    contexto = {"products" : productos ,"categorias" : categoria, "categoria" : cate}
+    else:
 
-    return render(request, 'core/cliente/Categoria-cli.html', contexto)
+        messages.warning(request,'Debe estar registrado para acceder a esta pagina')
+        return redirect('mostrarIni_sesion')
 
 def mostrarMetodoPago(request):
-    categoria = Categoria.objects.all()
-    
-    contexto = {"categorias" : categoria}
-    return render(request, 'core/cliente/Metodo-pago.html',contexto)
+
+    if request.user.is_authenticated:
+
+        categoria = Categoria.objects.all()
+        
+        contexto = {"categorias" : categoria}
+        return render(request, 'core/cliente/Metodo-pago.html',contexto)
+
+    else:
+
+        messages.warning(request,'Debe estar registrado para acceder a esta pagina')
+        return redirect('mostrarIni_sesion')
 
 def mostrarNosotrosCli(request):
-    categoria = Categoria.objects.all()
-    
-    contexto = {"categorias" : categoria}
-    return render(request, 'core/cliente/nosotros-cli.html',contexto)
+    if request.user.is_authenticated:
+        categoria = Categoria.objects.all()
+        
+        contexto = {"categorias" : categoria}
+        return render(request, 'core/cliente/nosotros-cli.html',contexto)
+    else:
+
+        messages.warning(request,'Debe estar registrado para acceder a esta pagina')
+        return redirect('mostrarIni_sesion')
 
 def mostrarPerfilCli(request):
-    categoria = Categoria.objects.all()
+    if request.user.is_authenticated:
+        categoria = Categoria.objects.all()
 
-    username = request.session.get('username')
-    usuario = Usuario.objects.get(correo = username)
+        username = request.session.get('username')
+        usuario = Usuario.objects.get(correo = username)
 
-    contexto = {
-        "user" : usuario,
-        "categorias" : categoria
-    }
+        contexto = {
+            "user" : usuario,
+            "categorias" : categoria
+        }
 
-    return render(request, 'core/cliente/Perfil.html',contexto)
+        return render(request, 'core/cliente/Perfil.html',contexto)
+    else:
+
+        messages.warning(request,'Debe estar registrado para acceder a esta pagina')
+        return redirect('mostrarIni_sesion')
 
 def mostrarIndexCli(request):
-    categoria = Categoria.objects.all()
-    
-    contexto = {"categorias" : categoria}
-    return render(request, 'core/cliente/index-cli.html',contexto)
+    if request.user.is_authenticated:
+
+        categoria = Categoria.objects.all()
+        
+        contexto = {"categorias" : categoria}
+        return render(request, 'core/cliente/index-cli.html',contexto)
+    else:
+
+        messages.warning(request,'Debe estar registrado para acceder a esta pagina')
+        return redirect('mostrarIni_sesion')
 
 def mostrarCarritoCli(request):
-    categoria = Categoria.objects.all()
+    if request.user.is_authenticated:
 
-    username = request.session.get('username')
-    usuario1 = Usuario.objects.get(correo = username)
+        categoria = Categoria.objects.all()
 
-    carrito = Venta.objects.filter(usuario = usuario1, estado='ACTIVO').first()
+        username = request.session.get('username')
+        usuario1 = Usuario.objects.get(correo = username)
 
-    if carrito:
-        detalles = Detalle.objects.filter(venta = carrito)
-        totalV = 0
-        for i in detalles:
-            totalV += i.subtotal
-        carrito.total = totalV
-        carrito.save()
-        contexto = {"categorias" : categoria,
-                    "carrito" : detalles,
-                    "venta" : carrito}
-        if not detalles:
-            carrito.estado = 'INACTIVO'
+        carrito = Venta.objects.filter(usuario = usuario1, estado='ACTIVO').first()
+
+        if carrito:
+            detalles = Detalle.objects.filter(venta = carrito)
+            totalV = 0
+            for i in detalles:
+                totalV += i.subtotal
+            carrito.total = totalV
             carrito.save()
-    else:
-        contexto = {"categorias" : categoria}
-        messages.warning(request,'No hay productos en el carrito actualmente')
+            contexto = {"categorias" : categoria,
+                        "carrito" : detalles,
+                        "venta" : carrito}
+            if not detalles:
+                carrito.estado = 'INACTIVO'
+                carrito.save()
+        else:
+            contexto = {"categorias" : categoria}
+            messages.warning(request,'No hay productos en el carrito actualmente')
+        
+        return render(request, 'core/cliente/carrito.html',contexto)
     
-    return render(request, 'core/cliente/carrito.html',contexto)
+    else:
+
+        messages.warning(request,'Debe estar registrado para acceder a esta pagina')
+        return redirect('mostrarIni_sesion')
 
 def mostrarCambioContraCli(request):
-    categoria = Categoria.objects.all()
+    if request.user.is_authenticated:
+        categoria = Categoria.objects.all()
+        
+        contexto = {"categorias" : categoria}
+        return render(request, 'core/cliente/cambiar-contrasena-cli.html',contexto)
     
-    contexto = {"categorias" : categoria}
-    return render(request, 'core/cliente/cambiar-contrasena-cli.html',contexto)
+    else:
+        messages.warning(request,'Debe estar registrado para acceder a esta pagina')
+        return redirect('mostrarIni_sesion')
 
 def mostrarEditarPerfilCli(request):
-    categoria = Categoria.objects.all()
+    if request.user.is_authenticated:
+        categoria = Categoria.objects.all()
 
-    username = request.session.get('username')
+        username = request.session.get('username')
 
-    usuario = Usuario.objects.get(correo = username)
+        usuario = Usuario.objects.get(correo = username)
 
-    preguntaObjeto = Pregunta.objects.all()
+        preguntaObjeto = Pregunta.objects.all()
 
-    contexto = {
-        "user" : usuario,
-        "pregunta": preguntaObjeto,
-        "categorias" : categoria
-    }
+        contexto = {
+            "user" : usuario,
+            "pregunta": preguntaObjeto,
+            "categorias" : categoria
+        }
+        
+        return render(request, 'core/cliente/Editar-perfil.html',contexto)
     
-    return render(request, 'core/cliente/Editar-perfil.html',contexto)
+    else:
+        messages.warning(request,'Debe estar registrado para acceder a esta pagina')
+        return redirect('mostrarIni_sesion')
 
 def editarPerfilCli(request):
-    usernameP = request.session.get('username')
+    if request.user.is_authenticated:
 
-    nombreU = request.POST['nombre']
-    apellidoU = request.POST['apellido']
-    rutU = request.POST['rut']
-    dvrutU = request.POST['dvrut']
-    telefonoU = request.POST['telefono']
-    direccionU = request.POST['direccion']
-    correoU = request.POST['correo']
-    idpreguntaU = request.POST['pregunta']
-    respuestaU = request.POST['respuesta']
+        usernameP = request.session.get('username')
 
-    usuario = Usuario.objects.get(correo = usernameP)
-    usuario2 = User.objects.get(username = usuario.correo)
+        nombreU = request.POST['nombre']
+        apellidoU = request.POST['apellido']
+        rutU = request.POST['rut']
+        dvrutU = request.POST['dvrut']
+        telefonoU = request.POST['telefono']
+        direccionU = request.POST['direccion']
+        correoU = request.POST['correo']
+        idpreguntaU = request.POST['pregunta']
+        respuestaU = request.POST['respuesta']
 
-    fotoU = request.FILES.get('imagen',usuario.foto_usuario)
+        usuario = Usuario.objects.get(correo = usernameP)
+        usuario2 = User.objects.get(username = usuario.correo)
 
-    if Usuario.objects.filter(rut = rutU).exclude(id_usuario = usuario.id_usuario).exists():
-        messages.error(request, 'Ya existe un usuario con ese RUT.')
-        return redirect('mostrarEditarPerfilCli')
-    
-    if Usuario.objects.filter(correo = correoU).exclude(correo = usuario.correo).exists():
-        messages.error(request, 'Ya existe un usuario con ese correo.')
-        return redirect('mostrarEditarPerfilCli')
+        fotoU = request.FILES.get('imagen',usuario.foto_usuario)
 
-    usuario.rut = rutU
-    usuario.dvrut = dvrutU
-    usuario.nombre = nombreU
-    usuario.apellido = apellidoU
-    usuario.telefono = telefonoU
-    usuario.correo = correoU
-    usuario.direccion = direccionU
-    usuario.respuesta = respuestaU
-    usuario.foto_usuario = fotoU
-    registroPregunta = Pregunta.objects.get(id_pregunta = idpreguntaU)
-    usuario.pregunta = registroPregunta
+        if Usuario.objects.filter(rut = rutU).exclude(id_usuario = usuario.id_usuario).exists():
+            messages.error(request, 'Ya existe un usuario con ese RUT.')
+            return redirect('mostrarEditarPerfilCli')
+        
+        if Usuario.objects.filter(correo = correoU).exclude(correo = usuario.correo).exists():
+            messages.error(request, 'Ya existe un usuario con ese correo.')
+            return redirect('mostrarEditarPerfilCli')
 
-    usuario2.username = correoU
-    usuario2.email = correoU
+        usuario.rut = rutU
+        usuario.dvrut = dvrutU
+        usuario.nombre = nombreU
+        usuario.apellido = apellidoU
+        usuario.telefono = telefonoU
+        usuario.correo = correoU
+        usuario.direccion = direccionU
+        usuario.respuesta = respuestaU
+        usuario.foto_usuario = fotoU
+        registroPregunta = Pregunta.objects.get(id_pregunta = idpreguntaU)
+        usuario.pregunta = registroPregunta
 
-    usuario.save()
-    usuario2.save()
+        usuario2.username = correoU
+        usuario2.email = correoU
 
-    messages.success(request,'Perfil editado correctamente (o no cambió nada)')        
-    return redirect('mostrarPerfilCli')
+        usuario.save()
+        usuario2.save()
+
+        messages.success(request,'Perfil editado correctamente (o no cambió nada)')        
+        return redirect('mostrarPerfilCli')
+    else:
+        messages.warning(request,'Debe estar registrado para acceder a esta pagina')
+        return redirect('mostrarIni_sesion')
 
 def eliminarCuenta(request,id_user):
-    usuario = Usuario.objects.get(id_usuario = id_user)
-    user = User.objects.get(username = usuario.correo)
-    usuario.delete()
-    user.delete()
+    if request.user.is_authenticated:
+        usuario = Usuario.objects.get(id_usuario = id_user)
+        user = User.objects.get(username = usuario.correo)
+        usuario.delete()
+        user.delete()
 
-    messages.success(request,'Cuenta borrada exitosamente')
-    return redirect('mostrarIndex')
+        messages.success(request,'Cuenta borrada exitosamente')
+        return redirect('mostrarIndex')
+    else:
+        messages.warning(request,'Debe estar registrado para acceder a esta pagina')
+        return redirect('mostrarIni_sesion')
 
 def agregarAlCarrito(request):
+    if request.user.is_authenticated:
+        cod_produc = request.POST['id_product']
+        productoC = Producto.objects.get(cod_prod = cod_produc)
 
-    cod_produc = request.POST['id_product']
-    productoC = Producto.objects.get(cod_prod = cod_produc)
-
-    username = request.session.get('username')
-    usuarioC = Usuario.objects.get(correo = username)
-    
-    fecha_hoy = date.today()
-    entrega = timedelta(999)
-    fecha_e = fecha_hoy + entrega
+        username = request.session.get('username')
+        usuarioC = Usuario.objects.get(correo = username)
+        
+        fecha_hoy = date.today()
+        entrega = timedelta(999)
+        fecha_e = fecha_hoy + entrega
 
 
-    carrito = Venta.objects.filter(usuario = usuarioC, estado='ACTIVO').first()
+        carrito = Venta.objects.filter(usuario = usuarioC, estado='ACTIVO').first()
 
-    if carrito:
-        detalle = Detalle.objects.get(venta = carrito, producto = productoC)
-        if detalle:
-            detalle.cantidad += 1
-            detalle.subtotal += productoC.precio
-            detalle.save()
+        if carrito:
+            detalle = Detalle.objects.get(venta = carrito, producto = productoC)
+            if detalle:
+                detalle.cantidad += 1
+                detalle.subtotal += productoC.precio
+                detalle.save()
 
-            
+                
+            else:
+                Detalle.objects.create(cantidad = 1,
+                                        subtotal = productoC.precio,
+                                        venta = carrito,
+                                        producto = productoC)
+
+
         else:
+            carrito = Venta.objects.create(fecha_venta = fecha_hoy,
+                                        estado = "ACTIVO",
+                                        fecha_entrega = fecha_e,
+                                        total = productoC.precio,
+                                        carrito = 1,
+                                        usuario = usuarioC)
+
             Detalle.objects.create(cantidad = 1,
                                     subtotal = productoC.precio,
                                     venta = carrito,
                                     producto = productoC)
-
-
+            
+        return redirect('mostrarCarritoCli')
     else:
-        carrito = Venta.objects.create(fecha_venta = fecha_hoy,
-                                       estado = "ACTIVO",
-                                       fecha_entrega = fecha_e,
-                                       total = productoC.precio,
-                                       carrito = 1,
-                                       usuario = usuarioC)
-
-        Detalle.objects.create(cantidad = 1,
-                                subtotal = productoC.precio,
-                                venta = carrito,
-                                producto = productoC)
-        
-    return redirect('mostrarCarritoCli')
+        messages.warning(request,'Debe estar registrado para acceder a esta pagina')
+        return redirect('mostrarIni_sesion')
 
 def sacarDelCarro(request, cod_detalle):
-    detalle = Detalle.objects.get(id_detalle = cod_detalle)
-    detalle.delete()
-    
+    if request.user.is_authenticated:
+        detalle = Detalle.objects.get(id_detalle = cod_detalle)
+        detalle.delete()
+        
 
-    return redirect('mostrarCarritoCli')
-
-def cambiarCantidad(request, cod_detalle):
-    detalle = Detalle.objects.get(id_detalle = cod_detalle)
-    cant = int(request.POST['nueva_cantidad_{}'.format(cod_detalle)])
-
-    cantidadC = int(cant)
-
-    if cantidadC >= 0:
-        detalle.cantidad = cantidadC
-        detalle.subtotal = detalle.producto.precio * cantidadC
-        detalle.save()
         return redirect('mostrarCarritoCli')
     else:
-        messages.warning(request,'La cantidad no puede ser menor a 1')
-        return redirect('mostrarCarritoCli')
+        messages.warning(request,'Debe estar registrado para acceder a esta pagina')
+        return redirect('mostrarIni_sesion')
+
+def cambiarCantidad(request, cod_detalle):
+    if request.user.is_authenticated:
+        detalle = Detalle.objects.get(id_detalle = cod_detalle)
+        cant = int(request.POST['nueva_cantidad_{}'.format(cod_detalle)])
+
+        cantidadC = int(cant)
+
+        if cantidadC >= 0:
+            detalle.cantidad = cantidadC
+            detalle.subtotal = detalle.producto.precio * cantidadC
+            detalle.save()
+            return redirect('mostrarCarritoCli')
+        else:
+            messages.warning(request,'La cantidad no puede ser menor a 1')
+            return redirect('mostrarCarritoCli')
+    else:
+        messages.warning(request,'Debe estar registrado para acceder a esta pagina')
+        return redirect('mostrarIni_sesion')
     
 def pagarCarrito(request):
+    if request.user.is_authenticated:
+        username = request.session.get('username')
+        usuarioC = Usuario.objects.get(correo = username)
+        
+        carritoP = Venta.objects.filter(usuario = usuarioC, estado='ACTIVO').first()
 
-    username = request.session.get('username')
-    usuarioC = Usuario.objects.get(correo = username)
-    
-    carritoP = Venta.objects.filter(usuario = usuarioC, estado='ACTIVO').first()
+        carritoP.estado = 'PAGANDO'
 
-    carritoP.estado = 'PAGANDO'
+        carritoP.carrito = 0
 
-    carritoP.carrito = 0
+        carritoP.save()
 
-    carritoP.save()
-
-    messages.warning(request,'Esta función no está implementada')
-    return redirect('mostrarError')
+        messages.warning(request,'Esta función no está implementada')
+        return redirect('mostrarError')
+    else:
+        messages.warning(request,'Debe estar registrado para acceder a esta pagina')
+        return redirect('mostrarIni_sesion')
 
 
 def consultarCli(request):
-    
-    username = request.session.get('username')
-    usuario = Usuario.objects.get(correo = username)
+    if request.user.is_authenticated:
+        username = request.session.get('username')
+        usuario = Usuario.objects.get(correo = username)
 
 
-    asuntoC = request.POST['asunto']
-    mensajeC = request.POST['msg']
+        asuntoC = request.POST['asunto']
+        mensajeC = request.POST['msg']
 
-    Consulta.objects.create(nombre_consultante = usuario.nombre,
-                            asunto_consulta = asuntoC,
-                            mensaje_consulta = mensajeC)
-    return redirect('mostrarNosotrosCli')
+        Consulta.objects.create(nombre_consultante = usuario.nombre,
+                                asunto_consulta = asuntoC,
+                                mensaje_consulta = mensajeC)
+        return redirect('mostrarNosotrosCli')
+    else:
+        messages.warning(request,'Debe estar registrado para acceder a esta pagina')
+        return redirect('mostrarIni_sesion')
 
 
 def cambiarClaveCli(request):
+    if request.user.is_authenticated:
+        usernameP = request.session.get('username')
+        contraA = request.POST['contra_actual']
+        contraN = request.POST['contra_nueva']
 
-    usernameP = request.session.get('username')
-    contraA = request.POST['contra_actual']
-    contraN = request.POST['contra_nueva']
+        usuario = Usuario.objects.get(correo = usernameP)
+        usuario2 = User.objects.get(username = usuario.correo)
+        if str(usuario.clave) == str(contraA):
 
-    usuario = Usuario.objects.get(correo = usernameP)
-    usuario2 = User.objects.get(username = usuario.correo)
-    if str(usuario.clave) == str(contraA):
+            usuario.clave = contraN
+            usuario2.set_password(contraN)
 
-        usuario.clave = contraN
-        usuario2.set_password(contraN)
+            usuario.save()
+            usuario2.save()
+            messages.success(request,'Contraseña cambiada correctamente')
+            return redirect('mostrarPerfilCli')
 
-        usuario.save()
-        usuario2.save()
-        messages.success(request,'Contraseña cambiada correctamente')
-        return redirect('mostrarPerfilCli')
-
+        else:
+            messages.error(request,'La contraseña actual es incorrecta')
+            return redirect('mostrarCambioContraCli')
     else:
-        messages.error(request,'La contraseña actual es incorrecta')
-        return redirect('mostrarCambioContraCli')
+        messages.warning(request,'Debe estar registrado para acceder a esta pagina')
+        return redirect('mostrarIni_sesion')
     
 
 ###Paginas admin###
 
 def mostrarIndexAdm(request):
-    categoria = Categoria.objects.all()
-    
-    contexto = {"categorias" : categoria}
-    return render(request, 'core/administrador/index-adm.html',contexto)
+    if request.user.is_authenticated:
+        categoria = Categoria.objects.all()
+        
+        contexto = {"categorias" : categoria}
+        return render(request, 'core/administrador/index-adm.html',contexto)
+    else:
+        messages.warning(request,'Debe estar registrado para acceder a esta pagina')
+        return redirect('mostrarIni_sesion')
 
 def mostrarPerfilAdm(request):
-    categoria = Categoria.objects.all()
+    if request.user.is_authenticated:
+        categoria = Categoria.objects.all()
 
-    username = request.session.get('username')
-    usuario = Usuario.objects.get(correo = username)
+        username = request.session.get('username')
+        usuario = Usuario.objects.get(correo = username)
 
-    contexto = {
-        "user" : usuario,
-        "categorias" : categoria
-    }
+        contexto = {
+            "user" : usuario,
+            "categorias" : categoria
+        }
 
-    return render(request, 'core/administrador/perfil-adm.html',contexto)
+        return render(request, 'core/administrador/perfil-adm.html',contexto)
+    else:
+        messages.warning(request,'Debe estar registrado para acceder a esta pagina')
+        return redirect('mostrarIni_sesion')
 
 def mostrarCategoriaAdm(request, id_cate):
-    categoria = Categoria.objects.all()
+    if request.user.is_authenticated:
+        categoria = Categoria.objects.all()
 
-    cate = Categoria.objects.get(id_categoria = id_cate)
+        cate = Categoria.objects.get(id_categoria = id_cate)
 
-    productos = Producto.objects.filter(categoria = cate)
-    
-    contexto = {"products" : productos ,"categorias" : categoria, "categoria" : cate}
+        productos = Producto.objects.filter(categoria = cate)
+        
+        contexto = {"products" : productos ,"categorias" : categoria, "categoria" : cate}
 
-    return render(request, 'core/administrador/categoria-adm.html',contexto)
+        return render(request, 'core/administrador/categoria-adm.html',contexto)
+    else:
+        messages.warning(request,'Debe estar registrado para acceder a esta pagina')
+        return redirect('mostrarIni_sesion')
 
 def mostrarAgregar(request):
-
-    categories = Categoria.objects.all()
-    contexto = {
-        "categorias" : categories
-    }
-    return render(request, 'core/administrador/Agregar.html',contexto)
+    if request.user.is_authenticated:
+        categories = Categoria.objects.all()
+        contexto = {
+            "categorias" : categories
+        }
+        return render(request, 'core/administrador/Agregar.html',contexto)
+    else:
+        messages.warning(request,'Debe estar registrado para acceder a esta pagina')
+        return redirect('mostrarIni_sesion')
 
 def mostrarEditarPerfilAdm(request):
-    categoria = Categoria.objects.all()
+    if request.user.is_authenticated:
+        categoria = Categoria.objects.all()
 
-    username = request.session.get('username')
-    usuario = Usuario.objects.get(correo = username)
+        username = request.session.get('username')
+        usuario = Usuario.objects.get(correo = username)
 
-    preguntaObjeto = Pregunta.objects.all()
+        preguntaObjeto = Pregunta.objects.all()
 
-    contexto = {
-        "user" : usuario,
-        "pregunta": preguntaObjeto,
-        "categorias" : categoria
-    }
-    
-    return render(request, 'core/administrador/Editar-perfil-adm.html',contexto)
+        contexto = {
+            "user" : usuario,
+            "pregunta": preguntaObjeto,
+            "categorias" : categoria
+        }
+        
+        return render(request, 'core/administrador/Editar-perfil-adm.html',contexto)
+    else:
+        messages.warning(request,'Debe estar registrado para acceder a esta pagina')
+        return redirect('mostrarIni_sesion')
 
 def mostrarCambioContraAdm(request):
-    categoria = Categoria.objects.all()
-    
-    contexto = {"categorias" : categoria}
-    return render(request, 'core/administrador/cambiar-contrasena-adm.html',contexto)
+    if request.user.is_authenticated:
+        categoria = Categoria.objects.all()
+        
+        contexto = {"categorias" : categoria}
+        return render(request, 'core/administrador/cambiar-contrasena-adm.html',contexto)
+    else:
+        messages.warning(request,'Debe estar registrado para acceder a esta pagina')
+        return redirect('mostrarIni_sesion')
 
 def mostrarProductoAdm(request,id_prod):
-    categoria = Categoria.objects.all() 
+    if request.user.is_authenticated:
+        categoria = Categoria.objects.all() 
 
-    producto = Producto.objects.get(cod_prod = id_prod)
-    
-    contexto = {
-        "product" : producto,
-        "categorias" : categoria
-    }
+        producto = Producto.objects.get(cod_prod = id_prod)
+        
+        contexto = {
+            "product" : producto,
+            "categorias" : categoria
+        }
 
-    return render(request, 'core/administrador/producto-adm.html',contexto)
+        return render(request, 'core/administrador/producto-adm.html',contexto)
+    else:
+        messages.warning(request,'Debe estar registrado para acceder a esta pagina')
+        return redirect('mostrarIni_sesion')
 
 def mostrarEditarRol(request):
-    categoria = Categoria.objects.all()
-    clientes = Usuario.objects.all()
+    if request.user.is_authenticated:
+        categoria = Categoria.objects.all()
+        clientes = Usuario.objects.all()
 
-    contexto = {
-        "clients": clientes,
-        "categorias": categoria
-    }
-    return render(request, 'core/administrador/Editar-rol.html',contexto)
+        contexto = {
+            "clients": clientes,
+            "categorias": categoria
+        }
+        return render(request, 'core/administrador/Editar-rol.html',contexto)
+    else:
+        messages.warning(request,'Debe estar registrado para acceder a esta pagina')
+        return redirect('mostrarIni_sesion')
 
 def agregarProducto(request):
-    nombreP = request.POST['nombre']
-    descripcionP = request.POST['descripcion']
-    precioP = request.POST['precio']
-    stockP = request.POST['stock']
-    fotoP = request.FILES['imagen']
-    unidadP = request.POST['medida']
-    categoriaP = request.POST['categoria']
+    if request.user.is_authenticated:
+        nombreP = request.POST['nombre']
+        descripcionP = request.POST['descripcion']
+        precioP = request.POST['precio']
+        stockP = request.POST['stock']
+        fotoP = request.FILES['imagen']
+        unidadP = request.POST['medida']
+        categoriaP = request.POST['categoria']
 
-    registroCategoria = Categoria.objects.get(id_categoria = categoriaP)
+        registroCategoria = Categoria.objects.get(id_categoria = categoriaP)
 
-    Producto.objects.create(nombre_prod = nombreP, descripcion = descripcionP, precio = precioP, stock = stockP, foto_prod = fotoP, unidad_medida = unidadP, categoria = registroCategoria)
-    messages.success(request,'El producto fue agregado correctamente')
-    return redirect('mostrarAgregar')
+        Producto.objects.create(nombre_prod = nombreP, descripcion = descripcionP, precio = precioP, stock = stockP, foto_prod = fotoP, unidad_medida = unidadP, categoria = registroCategoria)
+        messages.success(request,'El producto fue agregado correctamente')
+        return redirect('mostrarAgregar')
+    else:
+        messages.warning(request,'Debe estar registrado para acceder a esta pagina')
+        return redirect('mostrarIni_sesion')
 
 def editarProducto(request):
-    codigoP = request.POST['id']
-    nombreP = request.POST['nombre']
-    descripcionP = request.POST['descripcion']
-    precioP = request.POST['precio']
-    stockP = request.POST['stock']
-    fotoP = request.FILES['imagen']
-    unidadP = request.POST['medida']
-    categoriaP = request.POST['categoria']
+    if request.user.is_authenticated:
+        codigoP = request.POST['id']
+        nombreP = request.POST['nombre']
+        descripcionP = request.POST['descripcion']
+        precioP = request.POST['precio']
+        stockP = request.POST['stock']
+        fotoP = request.FILES['imagen']
+        unidadP = request.POST['medida']
+        categoriaP = request.POST['categoria']
 
-    producto = Producto.objects.get(cod_prod = codigoP)
-    producto.nombre_prod = nombreP
-    producto.descripcion = descripcionP
-    producto.precio = precioP
-    producto.stock = stockP
-    producto.foto_prod = fotoP
-    producto.unidad_medida = unidadP
+        producto = Producto.objects.get(cod_prod = codigoP)
+        producto.nombre_prod = nombreP
+        producto.descripcion = descripcionP
+        producto.precio = precioP
+        producto.stock = stockP
+        producto.foto_prod = fotoP
+        producto.unidad_medida = unidadP
 
-    registroCategoria = Categoria.objects.get(id_categoria = categoriaP)
-    producto.categoria = registroCategoria
-    producto.save()
-    messages.success(request,'El producto fue editado correctamente')
-    
-    return redirect('mostrarIndexAdm')
+        registroCategoria = Categoria.objects.get(id_categoria = categoriaP)
+        producto.categoria = registroCategoria
+        producto.save()
+        messages.success(request,'El producto fue editado correctamente')
+        
+        return redirect('mostrarIndexAdm')
+    else:
+        messages.warning(request,'Debe estar registrado para acceder a esta pagina')
+        return redirect('mostrarIni_sesion')
 
 def eliminarProducto(request,id_prod):
-    producto = Producto.objects.get(cod_prod = id_prod)
-    producto.delete()
-    messages.error(request,'Producto eliminado')
-    return redirect('mostrarIndexAdm')
+    if request.user.is_authenticated:
+        producto = Producto.objects.get(cod_prod = id_prod)
+        producto.delete()
+        messages.error(request,'Producto eliminado')
+        return redirect('mostrarIndexAdm')
+    else:
+        messages.warning(request,'Debe estar registrado para acceder a esta pagina')
+        return redirect('mostrarIni_sesion')
 
 def editarPerfilAdm(request):
-    usernameP = request.session.get('username')
+    if request.user.is_authenticated:
+        usernameP = request.session.get('username')
 
-    nombreU = request.POST['nombre']
-    apellidoU = request.POST['apellido']
-    rutU = request.POST['rut']
-    dvrutU = request.POST['dvrut']
-    telefonoU = request.POST['telefono']
-    direccionU = request.POST['direccion']
-    correoU = request.POST['correo']
-    idpreguntaU = request.POST['pregunta']
-    respuestaU = request.POST['respuesta']
+        nombreU = request.POST['nombre']
+        apellidoU = request.POST['apellido']
+        rutU = request.POST['rut']
+        dvrutU = request.POST['dvrut']
+        telefonoU = request.POST['telefono']
+        direccionU = request.POST['direccion']
+        correoU = request.POST['correo']
+        idpreguntaU = request.POST['pregunta']
+        respuestaU = request.POST['respuesta']
 
-    usuario = Usuario.objects.get(correo = usernameP)
-    usuario2 = User.objects.get(username = usuario.correo)
+        usuario = Usuario.objects.get(correo = usernameP)
+        usuario2 = User.objects.get(username = usuario.correo)
 
-    fotoU = request.FILES.get('imagen',usuario.foto_usuario)
+        fotoU = request.FILES.get('imagen',usuario.foto_usuario)
 
-    if Usuario.objects.filter(rut = rutU).exclude(id_usuario = usuario.id_usuario).exists():
-        messages.error(request, 'Ya existe un usuario con ese RUT.')
-        return redirect('mostrarEditarPerfilAdm')
-    
-    if Usuario.objects.filter(correo = correoU).exclude(correo = usuario.correo).exists():
-        messages.error(request, 'Ya existe un usuario con ese correo.')
-        return redirect('mostrarEditarPerfilAdm')
+        if Usuario.objects.filter(rut = rutU).exclude(id_usuario = usuario.id_usuario).exists():
+            messages.error(request, 'Ya existe un usuario con ese RUT.')
+            return redirect('mostrarEditarPerfilAdm')
+        
+        if Usuario.objects.filter(correo = correoU).exclude(correo = usuario.correo).exists():
+            messages.error(request, 'Ya existe un usuario con ese correo.')
+            return redirect('mostrarEditarPerfilAdm')
 
-    usuario.rut = rutU
-    usuario.dvrut = dvrutU
-    usuario.nombre = nombreU
-    usuario.apellido = apellidoU
-    usuario.telefono = telefonoU
-    usuario.correo = correoU
-    usuario.direccion = direccionU
-    usuario.respuesta = respuestaU
-    usuario.foto_usuario = fotoU
-    registroPregunta = Pregunta.objects.get(id_pregunta = idpreguntaU)
-    usuario.pregunta = registroPregunta
+        usuario.rut = rutU
+        usuario.dvrut = dvrutU
+        usuario.nombre = nombreU
+        usuario.apellido = apellidoU
+        usuario.telefono = telefonoU
+        usuario.correo = correoU
+        usuario.direccion = direccionU
+        usuario.respuesta = respuestaU
+        usuario.foto_usuario = fotoU
+        registroPregunta = Pregunta.objects.get(id_pregunta = idpreguntaU)
+        usuario.pregunta = registroPregunta
 
-    usuario2.username = correoU
-    usuario2.email = correoU
+        usuario2.username = correoU
+        usuario2.email = correoU
 
-    usuario.save()
-    usuario2.save()
-    messages.success(request,'Perfil editado correctamente (o no cambió nada)')
-    
-    return redirect('mostrarPerfilAdm')
-
-def cambiarClaveAdm(request):
-
-    usernameP = request.session.get('username')
-    contraA = request.POST['contra_actual']
-    contraN = request.POST['contra_nueva']
-
-    usuario = Usuario.objects.get(correo = usernameP)
-    usuario2 = User.objects.get(username = usuario.correo)
-
-    if str(usuario.clave) == str(contraA):
-
-        usuario.clave = contraN
-        usuario2.set_password(contraN)
         usuario.save()
         usuario2.save()
-        messages.success(request,'Contraseña cambiada correctamente')
+        messages.success(request,'Perfil editado correctamente (o no cambió nada)')
+        
         return redirect('mostrarPerfilAdm')
-
     else:
-        messages.error(request,'La contraseña actual es incorrecta')
-        return redirect('mostrarCambioContraAdm')
+        messages.warning(request,'Debe estar registrado para acceder a esta pagina')
+        return redirect('mostrarIni_sesion')
+
+def cambiarClaveAdm(request):
+    if request.user.is_authenticated:
+        usernameP = request.session.get('username')
+        contraA = request.POST['contra_actual']
+        contraN = request.POST['contra_nueva']
+
+        usuario = Usuario.objects.get(correo = usernameP)
+        usuario2 = User.objects.get(username = usuario.correo)
+
+        if str(usuario.clave) == str(contraA):
+
+            usuario.clave = contraN
+            usuario2.set_password(contraN)
+            usuario.save()
+            usuario2.save()
+            messages.success(request,'Contraseña cambiada correctamente')
+            return redirect('mostrarPerfilAdm')
+
+        else:
+            messages.error(request,'La contraseña actual es incorrecta')
+            return redirect('mostrarCambioContraAdm')
+    else:
+        messages.warning(request,'Debe estar registrado para acceder a esta pagina')
+        return redirect('mostrarIni_sesion')
 
 def editarRol(request,id):
-    usuario = Usuario.objects.get(id_usuario = id)
-    usuario2 = User.objects.get(username = usuario.correo)
+    if request.user.is_authenticated:
+        usuario = Usuario.objects.get(id_usuario = id)
+        usuario2 = User.objects.get(username = usuario.correo)
 
-    if usuario.rol.id_rol == 1:
-        registrolRol = Rol.objects.get(id_rol = 2)
-        usuario.rol = registrolRol
-        usuario2.is_staff = True
+        if usuario.rol.id_rol == 1:
+            registrolRol = Rol.objects.get(id_rol = 2)
+            usuario.rol = registrolRol
+            usuario2.is_staff = True
+        else:
+            registrolRol = Rol.objects.get(id_rol = 1)
+            usuario.rol = registrolRol
+            usuario2.is_staff = False
+        
+        usuario.save()
+        usuario2.save()
+        messages.success(request,"Rol cambiado con éxito")
+        return redirect('mostrarEditarRol')    
     else:
-        registrolRol = Rol.objects.get(id_rol = 1)
-        usuario.rol = registrolRol
-        usuario2.is_staff = False
-    
-    usuario.save()
-    usuario2.save()
-    messages.success(request,"Rol cambiado con éxito")
-    return redirect('mostrarEditarRol')    
-    
+        messages.warning(request,'Debe estar registrado para acceder a esta pagina')
+        return redirect('mostrarIni_sesion')
 
 
