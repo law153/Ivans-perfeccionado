@@ -24,23 +24,3 @@ th,td{
     width: 90%;
     padding: 5%;
 }
-
-/*Medium*/
-@media screen and (min-width: 577px) and (max-width: 768px){
-
-
-
-}
-/*Large*/
-@media screen and (min-width: 769px) and (max-width: 992px){
-
-
-
-}
-/*Extra Large*/
-@media screen and (min-width: 993px) and (max-width: 1200px){
-
-
-
-}
-
