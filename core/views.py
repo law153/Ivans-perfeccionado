@@ -272,7 +272,7 @@ def mostrarCarritoCli(request):
             carrito.save()
     else:
         contexto = {"categorias" : categoria}
-        messages.error(request,'No hay productos en el carrito actualmente')
+        messages.warning(request,'No hay productos en el carrito actualmente')
     
     return render(request, 'core/cliente/carrito.html',contexto)
 
@@ -398,6 +398,22 @@ def sacarDelCarro(request, cod_detalle):
     
 
     return redirect('mostrarCarritoCli')
+
+def cambiarCantidad(request, cod_detalle):
+    detalle = Detalle.objects.get(id_detalle = cod_detalle)
+    cant = int(request.POST['nueva_cantidad_{}'.format(cod_detalle)])
+
+    cantidadC = int(cant)
+
+    if cantidadC >= 0:
+        detalle.cantidad = cantidadC
+        detalle.subtotal = detalle.producto.precio * cantidadC
+        detalle.save()
+        return redirect('mostrarCarritoCli')
+    else:
+        messages.warning(request,'La cantidad no puede ser menor a 1')
+        return redirect('mostrarCarritoCli')
+    
 
 def consultarCli(request):
     
