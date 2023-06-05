@@ -195,8 +195,6 @@ def olvideClave(request):
     return redirect('cierreSesion')  
         
 
-
-
 ###Paginas cliente###
 def mostrarProductoCli(request, id_prod):
     categoria = Categoria.objects.all() 
@@ -414,6 +412,22 @@ def cambiarCantidad(request, cod_detalle):
         messages.warning(request,'La cantidad no puede ser menor a 1')
         return redirect('mostrarCarritoCli')
     
+def pagarCarrito(request):
+
+    username = request.session.get('username')
+    usuarioC = Usuario.objects.get(correo = username)
+    
+    carritoP = Venta.objects.filter(usuario = usuarioC, estado='ACTIVO').first()
+
+    carritoP.estado = 'PAGANDO'
+
+    carritoP.carrito = 0
+
+    carritoP.save()
+
+    messages.warning(request,'Esta función no está implementada')
+    return redirect('mostrarError')
+
 
 def consultarCli(request):
     
