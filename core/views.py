@@ -259,8 +259,14 @@ def mostrarCarritoCli(request):
 
     if carrito:
         detalles = Detalle.objects.filter(venta = carrito)
+        totalV = 0
+        for i in detalles:
+            totalV += i.subtotal
+        carrito.total = totalV
+        carrito.save()
         contexto = {"categorias" : categoria,
-                    "carrito" : detalles}
+                    "carrito" : detalles,
+                    "venta" : carrito}
         if not detalles:
             carrito.estado = 'INACTIVO'
             carrito.save()
@@ -334,7 +340,10 @@ def editarPerfilCli(request):
 
 def eliminarCuenta(request,id_user):
     usuario = Usuario.objects.get(id_usuario = id_user)
+    user = User.objects.get(username = usuario.correo)
     usuario.delete()
+    user.delete()
+
     messages.success(request,'Cuenta borrada exitosamente')
     return redirect('mostrarIndex')
 
@@ -359,6 +368,8 @@ def agregarAlCarrito(request):
             detalle.cantidad += 1
             detalle.subtotal += productoC.precio
             detalle.save()
+
+            
         else:
             Detalle.objects.create(cantidad = 1,
                                     subtotal = productoC.precio,
