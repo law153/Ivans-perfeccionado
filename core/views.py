@@ -10,6 +10,17 @@ import os
 from django.contrib.auth.decorators import user_passes_test
 # Create your views here.
 
+
+
+###Sobre errores
+def mostrarError(request):
+    return render(request, 'core/error.html')
+
+def error_404(request, exception):
+    messages.warning(request,'Esa pagina no existe :/')
+    return redirect('mostrarError')
+
+
 ###Paginas sin-cuenta###
 def mostrarIndex(request):
     categoria = Categoria.objects.all()
@@ -905,19 +916,12 @@ def editarRol(request,id):
             usuario2.save()
             messages.success(request,"Rol cambiado con éxito")
             return redirect('mostrarEditarRol')
-        else:
-            messages.warning(request,'Debe ser un administrador para acceder a esta pagina')
-            return redirect('mostrarIni_sesion')    
+            
     else:
         messages.warning(request,'Debe estar registrado para acceder a esta pagina')
         return redirect('mostrarIni_sesion')
 
 
-###Sobre errores
-def mostrarError(request):
-    return render(request, 'core/error.html')
 
-def error404(request):
-    messages.warning(request,'Esa pagina no existe :/')
-    return render(request, 'core/error.html', status=404)
+
 
