@@ -7,6 +7,7 @@ from django.contrib.auth.hashers import check_password
 from django.contrib.auth import authenticate,login, logout
 from django.core.files import File
 import os
+from django.contrib.auth.decorators import user_passes_test
 # Create your views here.
 
 ###Paginas sin-cuenta###
@@ -17,8 +18,6 @@ def mostrarIndex(request):
 
     return render(request, 'core/index.html',contexto)
 
-def mostrarError(request):
-    return render(request, 'core/error.html')
 
 def mostrarNosotros(request):
     categoria = Categoria.objects.all()
@@ -574,273 +573,351 @@ def cambiarClaveCli(request):
 
 ###Paginas admin###
 
+
 def mostrarIndexAdm(request):
     if request.user.is_authenticated:
-        categoria = Categoria.objects.all()
-        
-        contexto = {"categorias" : categoria}
-        return render(request, 'core/administrador/index-adm.html',contexto)
+        if request.user.is_staff:
+            categoria = Categoria.objects.all()
+            
+            contexto = {"categorias" : categoria}
+            return render(request, 'core/administrador/index-adm.html',contexto)
+        else:
+            messages.warning(request,'Debe ser un administrador para acceder a esta pagina')
+            return redirect('mostrarIni_sesion')
     else:
         messages.warning(request,'Debe estar registrado para acceder a esta pagina')
         return redirect('mostrarIni_sesion')
+    
 
 def mostrarPerfilAdm(request):
     if request.user.is_authenticated:
-        categoria = Categoria.objects.all()
+        if request.user.is_staff:
+            categoria = Categoria.objects.all()
 
-        username = request.session.get('username')
-        usuario = Usuario.objects.get(correo = username)
+            username = request.session.get('username')
+            usuario = Usuario.objects.get(correo = username)
 
-        contexto = {
-            "user" : usuario,
-            "categorias" : categoria
-        }
+            contexto = {
+                "user" : usuario,
+                "categorias" : categoria
+            }
 
-        return render(request, 'core/administrador/perfil-adm.html',contexto)
+            return render(request, 'core/administrador/perfil-adm.html',contexto)
+        else:
+            messages.warning(request,'Debe ser un administrador para acceder a esta pagina')
+            return redirect('mostrarIni_sesion')
     else:
         messages.warning(request,'Debe estar registrado para acceder a esta pagina')
         return redirect('mostrarIni_sesion')
+    
 
 def mostrarCategoriaAdm(request, id_cate):
     if request.user.is_authenticated:
-        categoria = Categoria.objects.all()
+        if request.user.is_staff:
+            categoria = Categoria.objects.all()
 
-        cate = Categoria.objects.get(id_categoria = id_cate)
+            cate = Categoria.objects.get(id_categoria = id_cate)
 
-        productos = Producto.objects.filter(categoria = cate)
-        
-        contexto = {"products" : productos ,"categorias" : categoria, "categoria" : cate}
+            productos = Producto.objects.filter(categoria = cate)
+            
+            contexto = {"products" : productos ,"categorias" : categoria, "categoria" : cate}
 
-        return render(request, 'core/administrador/categoria-adm.html',contexto)
+            return render(request, 'core/administrador/categoria-adm.html',contexto)
+        else:
+            messages.warning(request,'Debe ser un administrador para acceder a esta pagina')
+            return redirect('mostrarIni_sesion')
     else:
         messages.warning(request,'Debe estar registrado para acceder a esta pagina')
         return redirect('mostrarIni_sesion')
+    
 
 def mostrarAgregar(request):
     if request.user.is_authenticated:
-        categories = Categoria.objects.all()
-        contexto = {
-            "categorias" : categories
-        }
-        return render(request, 'core/administrador/Agregar.html',contexto)
+        if request.user.is_staff:
+            categories = Categoria.objects.all()
+            contexto = {
+                "categorias" : categories
+            }
+            return render(request, 'core/administrador/Agregar.html',contexto)
+        else:
+            messages.warning(request,'Debe ser un administrador para acceder a esta pagina')
+            return redirect('mostrarIni_sesion')
     else:
         messages.warning(request,'Debe estar registrado para acceder a esta pagina')
         return redirect('mostrarIni_sesion')
+    
 
 def mostrarEditarPerfilAdm(request):
     if request.user.is_authenticated:
-        categoria = Categoria.objects.all()
+        if request.user.is_staff:
+            categoria = Categoria.objects.all()
 
-        username = request.session.get('username')
-        usuario = Usuario.objects.get(correo = username)
+            username = request.session.get('username')
+            usuario = Usuario.objects.get(correo = username)
 
-        preguntaObjeto = Pregunta.objects.all()
+            preguntaObjeto = Pregunta.objects.all()
 
-        contexto = {
-            "user" : usuario,
-            "pregunta": preguntaObjeto,
-            "categorias" : categoria
-        }
-        
-        return render(request, 'core/administrador/Editar-perfil-adm.html',contexto)
+            contexto = {
+                "user" : usuario,
+                "pregunta": preguntaObjeto,
+                "categorias" : categoria
+            }
+            
+            return render(request, 'core/administrador/Editar-perfil-adm.html',contexto)
+        else:
+            messages.warning(request,'Debe ser un administrador para acceder a esta pagina')
+            return redirect('mostrarIni_sesion')
     else:
         messages.warning(request,'Debe estar registrado para acceder a esta pagina')
         return redirect('mostrarIni_sesion')
+    
 
 def mostrarCambioContraAdm(request):
     if request.user.is_authenticated:
-        categoria = Categoria.objects.all()
-        
-        contexto = {"categorias" : categoria}
-        return render(request, 'core/administrador/cambiar-contrasena-adm.html',contexto)
+        if request.user.is_staff:
+            categoria = Categoria.objects.all()
+            
+            contexto = {"categorias" : categoria}
+            return render(request, 'core/administrador/cambiar-contrasena-adm.html',contexto)
+        else:
+            messages.warning(request,'Debe ser un administrador para acceder a esta pagina')
+            return redirect('mostrarIni_sesion')
     else:
         messages.warning(request,'Debe estar registrado para acceder a esta pagina')
         return redirect('mostrarIni_sesion')
+    
 
 def mostrarProductoAdm(request,id_prod):
     if request.user.is_authenticated:
-        categoria = Categoria.objects.all() 
+        if request.user.is_staff:
+            categoria = Categoria.objects.all() 
 
-        producto = Producto.objects.get(cod_prod = id_prod)
-        
-        contexto = {
-            "product" : producto,
-            "categorias" : categoria
-        }
+            producto = Producto.objects.get(cod_prod = id_prod)
+            
+            contexto = {
+                "product" : producto,
+                "categorias" : categoria
+            }
 
-        return render(request, 'core/administrador/producto-adm.html',contexto)
+            return render(request, 'core/administrador/producto-adm.html',contexto)
+        else:
+            messages.warning(request,'Debe ser un administrador para acceder a esta pagina')
+            return redirect('mostrarIni_sesion')
     else:
         messages.warning(request,'Debe estar registrado para acceder a esta pagina')
         return redirect('mostrarIni_sesion')
-
+    
+ 
 def mostrarEditarRol(request):
     if request.user.is_authenticated:
-        categoria = Categoria.objects.all()
-        clientes = Usuario.objects.all()
+        if request.user.is_staff:
+            categoria = Categoria.objects.all()
+            clientes = Usuario.objects.all()
 
-        contexto = {
-            "clients": clientes,
-            "categorias": categoria
-        }
-        return render(request, 'core/administrador/Editar-rol.html',contexto)
+            contexto = {
+                "clients": clientes,
+                "categorias": categoria
+            }
+            return render(request, 'core/administrador/Editar-rol.html',contexto)
+        else:
+            messages.warning(request,'Debe ser un administrador para acceder a esta pagina')
+            return redirect('mostrarIni_sesion')
     else:
         messages.warning(request,'Debe estar registrado para acceder a esta pagina')
         return redirect('mostrarIni_sesion')
-
+    
+ 
 def agregarProducto(request):
     if request.user.is_authenticated:
-        nombreP = request.POST['nombre']
-        descripcionP = request.POST['descripcion']
-        precioP = request.POST['precio']
-        stockP = request.POST['stock']
-        fotoP = request.FILES['imagen']
-        unidadP = request.POST['medida']
-        categoriaP = request.POST['categoria']
+        if request.user.is_staff:
+            nombreP = request.POST['nombre']
+            descripcionP = request.POST['descripcion']
+            precioP = request.POST['precio']
+            stockP = request.POST['stock']
+            fotoP = request.FILES['imagen']
+            unidadP = request.POST['medida']
+            categoriaP = request.POST['categoria']
 
-        registroCategoria = Categoria.objects.get(id_categoria = categoriaP)
+            registroCategoria = Categoria.objects.get(id_categoria = categoriaP)
 
-        Producto.objects.create(nombre_prod = nombreP, descripcion = descripcionP, precio = precioP, stock = stockP, foto_prod = fotoP, unidad_medida = unidadP, categoria = registroCategoria)
-        messages.success(request,'El producto fue agregado correctamente')
-        return redirect('mostrarAgregar')
+            Producto.objects.create(nombre_prod = nombreP, descripcion = descripcionP, precio = precioP, stock = stockP, foto_prod = fotoP, unidad_medida = unidadP, categoria = registroCategoria)
+            messages.success(request,'El producto fue agregado correctamente')
+            return redirect('mostrarAgregar')
+        else:
+            messages.warning(request,'Debe ser un administrador para acceder a esta pagina')
+            return redirect('mostrarIni_sesion')
     else:
         messages.warning(request,'Debe estar registrado para acceder a esta pagina')
         return redirect('mostrarIni_sesion')
 
+ 
 def editarProducto(request):
     if request.user.is_authenticated:
-        codigoP = request.POST['id']
-        nombreP = request.POST['nombre']
-        descripcionP = request.POST['descripcion']
-        precioP = request.POST['precio']
-        stockP = request.POST['stock']
-        fotoP = request.FILES['imagen']
-        unidadP = request.POST['medida']
-        categoriaP = request.POST['categoria']
+        if request.user.is_staff:
+            codigoP = request.POST['id']
+            nombreP = request.POST['nombre']
+            descripcionP = request.POST['descripcion']
+            precioP = request.POST['precio']
+            stockP = request.POST['stock']
+            fotoP = request.FILES['imagen']
+            unidadP = request.POST['medida']
+            categoriaP = request.POST['categoria']
 
-        producto = Producto.objects.get(cod_prod = codigoP)
-        producto.nombre_prod = nombreP
-        producto.descripcion = descripcionP
-        producto.precio = precioP
-        producto.stock = stockP
-        producto.foto_prod = fotoP
-        producto.unidad_medida = unidadP
+            producto = Producto.objects.get(cod_prod = codigoP)
+            producto.nombre_prod = nombreP
+            producto.descripcion = descripcionP
+            producto.precio = precioP
+            producto.stock = stockP
+            producto.foto_prod = fotoP
+            producto.unidad_medida = unidadP
 
-        registroCategoria = Categoria.objects.get(id_categoria = categoriaP)
-        producto.categoria = registroCategoria
-        producto.save()
-        messages.success(request,'El producto fue editado correctamente')
-        
-        return redirect('mostrarIndexAdm')
+            registroCategoria = Categoria.objects.get(id_categoria = categoriaP)
+            producto.categoria = registroCategoria
+            producto.save()
+            messages.success(request,'El producto fue editado correctamente')
+            
+            return redirect('mostrarIndexAdm')
+        else:
+            messages.warning(request,'Debe ser un administrador para acceder a esta pagina')
+            return redirect('mostrarIni_sesion')
     else:
         messages.warning(request,'Debe estar registrado para acceder a esta pagina')
         return redirect('mostrarIni_sesion')
 
+ 
 def eliminarProducto(request,id_prod):
     if request.user.is_authenticated:
-        producto = Producto.objects.get(cod_prod = id_prod)
-        producto.delete()
-        messages.error(request,'Producto eliminado')
-        return redirect('mostrarIndexAdm')
+        if request.user.is_staff:
+            producto = Producto.objects.get(cod_prod = id_prod)
+            producto.delete()
+            messages.error(request,'Producto eliminado')
+            return redirect('mostrarIndexAdm')
+        else:
+            messages.warning(request,'Debe ser un administrador para acceder a esta pagina')
+            return redirect('mostrarIni_sesion')
     else:
         messages.warning(request,'Debe estar registrado para acceder a esta pagina')
         return redirect('mostrarIni_sesion')
 
+ 
 def editarPerfilAdm(request):
     if request.user.is_authenticated:
-        usernameP = request.session.get('username')
+        if request.user.is_staff:
+            usernameP = request.session.get('username')
 
-        nombreU = request.POST['nombre']
-        apellidoU = request.POST['apellido']
-        rutU = request.POST['rut']
-        dvrutU = request.POST['dvrut']
-        telefonoU = request.POST['telefono']
-        direccionU = request.POST['direccion']
-        correoU = request.POST['correo']
-        idpreguntaU = request.POST['pregunta']
-        respuestaU = request.POST['respuesta']
+            nombreU = request.POST['nombre']
+            apellidoU = request.POST['apellido']
+            rutU = request.POST['rut']
+            dvrutU = request.POST['dvrut']
+            telefonoU = request.POST['telefono']
+            direccionU = request.POST['direccion']
+            correoU = request.POST['correo']
+            idpreguntaU = request.POST['pregunta']
+            respuestaU = request.POST['respuesta']
 
-        usuario = Usuario.objects.get(correo = usernameP)
-        usuario2 = User.objects.get(username = usuario.correo)
+            usuario = Usuario.objects.get(correo = usernameP)
+            usuario2 = User.objects.get(username = usuario.correo)
 
-        fotoU = request.FILES.get('imagen',usuario.foto_usuario)
+            fotoU = request.FILES.get('imagen',usuario.foto_usuario)
 
-        if Usuario.objects.filter(rut = rutU).exclude(id_usuario = usuario.id_usuario).exists():
-            messages.error(request, 'Ya existe un usuario con ese RUT.')
-            return redirect('mostrarEditarPerfilAdm')
-        
-        if Usuario.objects.filter(correo = correoU).exclude(correo = usuario.correo).exists():
-            messages.error(request, 'Ya existe un usuario con ese correo.')
-            return redirect('mostrarEditarPerfilAdm')
+            if Usuario.objects.filter(rut = rutU).exclude(id_usuario = usuario.id_usuario).exists():
+                messages.error(request, 'Ya existe un usuario con ese RUT.')
+                return redirect('mostrarEditarPerfilAdm')
+            
+            if Usuario.objects.filter(correo = correoU).exclude(correo = usuario.correo).exists():
+                messages.error(request, 'Ya existe un usuario con ese correo.')
+                return redirect('mostrarEditarPerfilAdm')
 
-        usuario.rut = rutU
-        usuario.dvrut = dvrutU
-        usuario.nombre = nombreU
-        usuario.apellido = apellidoU
-        usuario.telefono = telefonoU
-        usuario.correo = correoU
-        usuario.direccion = direccionU
-        usuario.respuesta = respuestaU
-        usuario.foto_usuario = fotoU
-        registroPregunta = Pregunta.objects.get(id_pregunta = idpreguntaU)
-        usuario.pregunta = registroPregunta
+            usuario.rut = rutU
+            usuario.dvrut = dvrutU
+            usuario.nombre = nombreU
+            usuario.apellido = apellidoU
+            usuario.telefono = telefonoU
+            usuario.correo = correoU
+            usuario.direccion = direccionU
+            usuario.respuesta = respuestaU
+            usuario.foto_usuario = fotoU
+            registroPregunta = Pregunta.objects.get(id_pregunta = idpreguntaU)
+            usuario.pregunta = registroPregunta
 
-        usuario2.username = correoU
-        usuario2.email = correoU
+            usuario2.username = correoU
+            usuario2.email = correoU
 
-        usuario.save()
-        usuario2.save()
-        messages.success(request,'Perfil editado correctamente (o no cambió nada)')
-        
-        return redirect('mostrarPerfilAdm')
-    else:
-        messages.warning(request,'Debe estar registrado para acceder a esta pagina')
-        return redirect('mostrarIni_sesion')
-
-def cambiarClaveAdm(request):
-    if request.user.is_authenticated:
-        usernameP = request.session.get('username')
-        contraA = request.POST['contra_actual']
-        contraN = request.POST['contra_nueva']
-
-        usuario = Usuario.objects.get(correo = usernameP)
-        usuario2 = User.objects.get(username = usuario.correo)
-
-        if str(usuario.clave) == str(contraA):
-
-            usuario.clave = contraN
-            usuario2.set_password(contraN)
             usuario.save()
             usuario2.save()
-            messages.success(request,'Contraseña cambiada correctamente')
+            messages.success(request,'Perfil editado correctamente (o no cambió nada)')
+            
             return redirect('mostrarPerfilAdm')
-
         else:
-            messages.error(request,'La contraseña actual es incorrecta')
-            return redirect('mostrarCambioContraAdm')
+            messages.warning(request,'Debe ser un administrador para acceder a esta pagina')
+            return redirect('mostrarIni_sesion')
     else:
         messages.warning(request,'Debe estar registrado para acceder a esta pagina')
         return redirect('mostrarIni_sesion')
 
+ 
+def cambiarClaveAdm(request):
+    if request.user.is_authenticated:
+        if request.user.is_staff:
+            usernameP = request.session.get('username')
+            contraA = request.POST['contra_actual']
+            contraN = request.POST['contra_nueva']
+
+            usuario = Usuario.objects.get(correo = usernameP)
+            usuario2 = User.objects.get(username = usuario.correo)
+
+            if str(usuario.clave) == str(contraA):
+
+                usuario.clave = contraN
+                usuario2.set_password(contraN)
+                usuario.save()
+                usuario2.save()
+                messages.success(request,'Contraseña cambiada correctamente')
+                return redirect('mostrarPerfilAdm')
+
+            else:
+                messages.error(request,'La contraseña actual es incorrecta')
+                return redirect('mostrarCambioContraAdm')
+        else:
+            messages.warning(request,'Debe ser un administrador para acceder a esta pagina')
+            return redirect('mostrarIni_sesion')
+    else:
+        messages.warning(request,'Debe estar registrado para acceder a esta pagina')
+        return redirect('mostrarIni_sesion')
+
+ 
 def editarRol(request,id):
     if request.user.is_authenticated:
-        usuario = Usuario.objects.get(id_usuario = id)
-        usuario2 = User.objects.get(username = usuario.correo)
+        if request.user.is_staff:
+            usuario = Usuario.objects.get(id_usuario = id)
+            usuario2 = User.objects.get(username = usuario.correo)
 
-        if usuario.rol.id_rol == 1:
-            registrolRol = Rol.objects.get(id_rol = 2)
-            usuario.rol = registrolRol
-            usuario2.is_staff = True
+            if usuario.rol.id_rol == 1:
+                registrolRol = Rol.objects.get(id_rol = 2)
+                usuario.rol = registrolRol
+                usuario2.is_staff = True
+            else:
+                registrolRol = Rol.objects.get(id_rol = 1)
+                usuario.rol = registrolRol
+                usuario2.is_staff = False
+            
+            usuario.save()
+            usuario2.save()
+            messages.success(request,"Rol cambiado con éxito")
+            return redirect('mostrarEditarRol')
         else:
-            registrolRol = Rol.objects.get(id_rol = 1)
-            usuario.rol = registrolRol
-            usuario2.is_staff = False
-        
-        usuario.save()
-        usuario2.save()
-        messages.success(request,"Rol cambiado con éxito")
-        return redirect('mostrarEditarRol')    
+            messages.warning(request,'Debe ser un administrador para acceder a esta pagina')
+            return redirect('mostrarIni_sesion')    
     else:
         messages.warning(request,'Debe estar registrado para acceder a esta pagina')
         return redirect('mostrarIni_sesion')
 
+
+###Sobre errores
+def mostrarError(request):
+    return render(request, 'core/error.html')
+
+def error404(request):
+    messages.warning(request,'Esa pagina no existe :/')
+    return render(request, 'core/error.html', status=404)
 
