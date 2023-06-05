@@ -46,18 +46,11 @@
                 <div class="posicion-casillas-formulario">
                     
 
-                    {% if messages %}
-                        <ul class="messages">
-                            {% for message in messages %}
-                                <li class="{{ message.tags }}">{{ message }}</li>
-                            {% endfor %}
-                        </ul>
-                    {% endif %}
                     
 
                     <br>
 
-                    <a href="{% url 'ultimaPagina' %}" class="boton">Volver</a>
+
                     
                 </div> 
                 <br>
@@ -68,6 +61,21 @@
             </div>
         </div>
     </div>
+
+    {% if messages %}
+        {% for message in messages %}
+            <script>
+                Swal.fire({
+                            "title": "Atención",
+                            "text": "{{message}}",
+                            "icon": "warning",
+                            "confirmButtonColor": "#000",
+                            "background": "#ff0"
+                            })
+            </script>
+        {% endfor %}
+    {% endif %}
+    
     <!--Fin Cuerpo-->
     
    

@@ -22,16 +22,10 @@ $(document).ready(function(){
 
         //--Validacion Imágenes
 
-        if ($("#imagen").val() === "") {
-            msj += "Debe seleccionar una imagen<br>";
+        if(!validarExtension(imagen, extensionesPermitidas)){
+            msj += "El archivo seleccionado no tiene una extensión permitida<br>";
+            $('#imagen').val('');
             enviar = true;
-        } else {
-
-            if(!validarExtension(imagen, extensionesPermitidas)){
-                msj += "El archivo seleccionado no tiene una extensión permitida<br>";
-                $('#imagen').val('');
-                enviar = true;
-            }
         }
 
         if(enviar){

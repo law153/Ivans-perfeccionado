@@ -42,10 +42,15 @@ def mostrarIni_sesion(request):
     return render(request, 'core/sin-cuenta/inicio-sesion.html',contexto)
 
 def mostrarOlv_contra(request):
-    categoria = Categoria.objects.all()
 
-    contexto = {"categorias" : categoria}
-    return render(request, 'core/sin-cuenta/olvidar-contrasena.html',contexto)
+    if request.user.is_authenticated:
+        categoria = Categoria.objects.all()
+
+        contexto = {"categorias" : categoria}
+        return render(request, 'core/sin-cuenta/olvidar-contrasena.html',contexto)
+    else:
+        messages.warning(request,'Debe estar registrado para acceder a esta pagina')
+        return redirect('mostrarError')
 
 def mostrarPregunta(request):
     categoria = Categoria.objects.all()
@@ -204,13 +209,20 @@ def olvideClave(request):
 
 ###Paginas cliente###
 def mostrarProductoCli(request, id_prod):
-    categoria = Categoria.objects.all() 
 
-    producto = Producto.objects.get(cod_prod = id_prod)
+    if request.user.is_authenticated:
+        categoria = Categoria.objects.all() 
+
+        producto = Producto.objects.get(cod_prod = id_prod)
+        
+        contexto = {"product" : producto, "categorias" : categoria}
+
+        return render(request, 'core/cliente/Producto-cli.html',contexto)
     
-    contexto = {"product" : producto, "categorias" : categoria}
-
-    return render(request, 'core/cliente/Producto-cli.html',contexto)
+    else:
+        
+        messages.warning(request,'Debe estar registrado para acceder a esta pagina')
+        return redirect('mostrarError')
 
 def mostrarCategoriaCli(request, id_cate):
     categoria = Categoria.objects.all()
