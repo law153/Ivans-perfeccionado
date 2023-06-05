@@ -88,24 +88,31 @@ def registrarUsuario(request):
     registroRol = Rol.objects.get(id_rol = 1) ##Los usuarios registrados son clientes
     registroPregunta = Pregunta.objects.get(id_pregunta = 1) ##Pregunta asiganada por defecto
 
-    Usuario.objects.create( rut = rutU,
-                            dvrut = dvrutU,
-                            nombre = nombreU,
-                            apellido = apellidoU,
-                            telefono = telefonoU,
-                            correo = correoU,
-                            clave = claveU,
-                            direccion = direccionU,
-                            respuesta = respuestaU,
-                            rol = registroRol,
-                            pregunta = registroPregunta)
-    
-    user = User.objects.create_user(username = correoU, email = correoU, password = claveU )
-    user.is_staff = False
-    user.is_active = True
-    user.save()
+    usuario1 = Usuario.objects.get(rut = rutU)
+    usuario2 = Usuario.objects.get(correo = correoU)
 
-    return redirect('mostrarIni_sesion')
+    if usuario1 or usuario2:
+        messages.error(request,'Ya existe una cuenta con el correo/rut ingresado')
+        return redirect('mostrarRegistro')
+    else:
+        Usuario.objects.create( rut = rutU,
+                                dvrut = dvrutU,
+                                nombre = nombreU,
+                                apellido = apellidoU,
+                                telefono = telefonoU,
+                                correo = correoU,
+                                clave = claveU,
+                                direccion = direccionU,
+                                respuesta = respuestaU,
+                                rol = registroRol,
+                                pregunta = registroPregunta)
+        
+        user = User.objects.create_user(username = correoU, email = correoU, password = claveU )
+        user.is_staff = False
+        user.is_active = True
+        user.save()
+
+        return redirect('mostrarIni_sesion')
 
 def consultar(request):
     
