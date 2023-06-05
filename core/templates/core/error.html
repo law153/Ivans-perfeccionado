@@ -16,6 +16,7 @@
     <link rel="stylesheet" type="text/css" href="{% static  'core/css/barra.css'%}">
     <link rel="stylesheet" type="text/css" href="{% static  'core/css/formularios.css'%}">
     <script src="https://kit.fontawesome.com/2c74fac334.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <style>
     @media screen and (min-width: 0px) and (max-width: 576px){
@@ -66,9 +67,8 @@
         {% for message in messages %}
             <script>
                 Swal.fire({
-                            "title": "Atención",
+                            "title": "Error",
                             "text": "{{message}}",
-                            "icon": "warning",
                             "confirmButtonColor": "#000",
                             "background": "#ff0"
                             })
