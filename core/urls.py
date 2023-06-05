@@ -51,4 +51,5 @@ urlpatterns = [
     path('editarPerfilAdm/',editarPerfilAdm,name="editarPerfilAdm"),
     path('cambiarClaveAdm/',cambiarClaveAdm,name="cambiarClaveAdm"),
     path('editarRol/<id>', editarRol, name="editarRol"),
+
 ]
