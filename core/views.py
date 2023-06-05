@@ -88,8 +88,8 @@ def registrarUsuario(request):
     registroRol = Rol.objects.get(id_rol = 1) ##Los usuarios registrados son clientes
     registroPregunta = Pregunta.objects.get(id_pregunta = 1) ##Pregunta asiganada por defecto
 
-    usuario1 = Usuario.objects.filter(rut = rutU)
-    usuario2 = Usuario.objects.filter(correo = correoU)
+    usuario1 = Usuario.objects.get(rut = rutU)
+    usuario2 = Usuario.objects.get(correo = correoU)
 
     if usuario1 or usuario2:
         messages.error(request,'Ya existe una cuenta con el correo/rut ingresado')
@@ -322,37 +322,34 @@ def editarPerfilCli(request):
 
     fotoU = request.FILES.get('imagen',usuario.foto_usuario)
 
-    userTest1 = Usuario.objects.filter(rut = rutU).first()
-    userTest2 = Usuario.objects.filter(correo = correoU).first()
-    
-    if (userTest1 or userTest2):
-
-        messages.error(request,'Ya existe una cuenta con el correo/rut ingresado')
+    if Usuario.objects.filter(rut = rutU).exclude(id_usuario = usuario.id_usuario).exists():
+        messages.error(request, 'Ya existe un usuario con ese RUT.')
         return redirect('mostrarEditarPerfilCli')
     
-    else:
+    if Usuario.objects.filter(correo = correoU).exclude(correo = usuario.correo).exists():
+        messages.error(request, 'Ya existe un usuario con ese correo.')
+        return redirect('mostrarEditarPerfilCli')
 
-        usuario.rut = rutU
-        usuario.dvrut = dvrutU
-        usuario.nombre = nombreU
-        usuario.apellido = apellidoU
-        usuario.telefono = telefonoU
-        usuario.correo = correoU
-        usuario.direccion = direccionU
-        usuario.respuesta = respuestaU
-        usuario.foto_usuario = fotoU
-        registroPregunta = Pregunta.objects.get(id_pregunta = idpreguntaU)
-        usuario.pregunta = registroPregunta
+    usuario.rut = rutU
+    usuario.dvrut = dvrutU
+    usuario.nombre = nombreU
+    usuario.apellido = apellidoU
+    usuario.telefono = telefonoU
+    usuario.correo = correoU
+    usuario.direccion = direccionU
+    usuario.respuesta = respuestaU
+    usuario.foto_usuario = fotoU
+    registroPregunta = Pregunta.objects.get(id_pregunta = idpreguntaU)
+    usuario.pregunta = registroPregunta
 
-        usuario2.username = correoU
-        usuario2.email = correoU
+    usuario2.username = correoU
+    usuario2.email = correoU
 
-        usuario.save()
-        usuario2.save()
+    usuario.save()
+    usuario2.save()
 
-        messages.success(request,'Perfil editado correctamente (o no a realizado ningún cambio)')
-        
-        return redirect('mostrarPerfilCli')
+    messages.success(request,'Perfil editado correctamente (o no cambió nada)')        
+    return redirect('mostrarPerfilCli')
 
 def eliminarCuenta(request,id_user):
     usuario = Usuario.objects.get(id_usuario = id_user)
@@ -619,7 +616,6 @@ def editarPerfilAdm(request):
     usernameP = request.session.get('username')
 
     nombreU = request.POST['nombre']
-    fotoU = request.FILES['imagen']
     apellidoU = request.POST['apellido']
     rutU = request.POST['rut']
     dvrutU = request.POST['dvrut']
@@ -631,6 +627,17 @@ def editarPerfilAdm(request):
 
     usuario = Usuario.objects.get(correo = usernameP)
     usuario2 = User.objects.get(username = usuario.correo)
+
+    fotoU = request.FILES.get('imagen',usuario.foto_usuario)
+
+    if Usuario.objects.filter(rut = rutU).exclude(id_usuario = usuario.id_usuario).exists():
+        messages.error(request, 'Ya existe un usuario con ese RUT.')
+        return redirect('mostrarEditarPerfilAdm')
+    
+    if Usuario.objects.filter(correo = correoU).exclude(correo = usuario.correo).exists():
+        messages.error(request, 'Ya existe un usuario con ese correo.')
+        return redirect('mostrarEditarPerfilAdm')
+
     usuario.rut = rutU
     usuario.dvrut = dvrutU
     usuario.nombre = nombreU
@@ -648,7 +655,7 @@ def editarPerfilAdm(request):
 
     usuario.save()
     usuario2.save()
-    messages.success(request,'Perfil editado correctamente')
+    messages.success(request,'Perfil editado correctamente (o no cambió nada)')
     
     return redirect('mostrarPerfilAdm')
 
