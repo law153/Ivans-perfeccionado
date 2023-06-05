@@ -56,7 +56,7 @@
                         <input type="number" min="1" value="{{ i.cantidad }}" class="contador" name="cantidad">
                         <button type="submit">Aceptar</button>
                     </form>
-                    <form name="borrar-form" style="margin-top: -48px;" class="container-button"  method="POST">
+                    <form name="borrar-form" style="margin-top: -48px;" class="container-button"  method="POST" action="{% url 'sacarDelCarro' i.id_detalle%}">
                         {% csrf_token %}
                         <input type="hidden" name="producto_id" value="{{ i.producto.id }}">
                         <button type="submit" class="borrar"><i class="fa-solid fa-trash"></i></button>

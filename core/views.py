@@ -261,6 +261,9 @@ def mostrarCarritoCli(request):
         detalles = Detalle.objects.filter(venta = carrito)
         contexto = {"categorias" : categoria,
                     "carrito" : detalles}
+        if not detalles:
+            carrito.estado = 'INACTIVO'
+            carrito.save()
     else:
         contexto = {"categorias" : categoria}
         messages.error(request,'No hay productos en el carrito actualmente')
@@ -354,6 +357,7 @@ def agregarAlCarrito(request):
         detalle = Detalle.objects.get(venta = carrito, producto = productoC)
         if detalle:
             detalle.cantidad += 1
+            detalle.subtotal += productoC.precio
             detalle.save()
         else:
             Detalle.objects.create(cantidad = 1,
@@ -380,6 +384,8 @@ def agregarAlCarrito(request):
 def sacarDelCarro(request, cod_detalle):
     detalle = Detalle.objects.get(id_detalle = cod_detalle)
     detalle.delete()
+    
+
     return redirect('mostrarCarritoCli')
 
 def consultarCli(request):
@@ -612,7 +618,7 @@ def cambiarClaveAdm(request):
 def editarRol(request,id):
     usuario = Usuario.objects.get(id_usuario = id)
     usuario2 = User.objects.get(username = usuario.correo)
-    
+
     if usuario.rol.id_rol == 1:
         registrolRol = Rol.objects.get(id_rol = 2)
         usuario.rol = registrolRol
