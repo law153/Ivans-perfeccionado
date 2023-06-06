@@ -442,6 +442,7 @@ def eliminarCuenta(request,id_user):
 
 def agregarAlCarrito(request):
     if request.user.is_authenticated:
+
         cod_produc = request.POST['id_product']
         productoC = Producto.objects.get(cod_prod = cod_produc)
 
@@ -456,8 +457,9 @@ def agregarAlCarrito(request):
         carrito = Venta.objects.filter(usuario = usuarioC, estado='ACTIVO').first()
 
         if carrito:
-            detalle = Detalle.objects.get(venta = carrito, producto = productoC)
-            if detalle:
+            detalle1 = Detalle.objects.filter(venta = carrito, producto = productoC)
+            if detalle1:
+                detalle = Detalle.objects.get(venta = carrito, producto = productoC)
                 detalle.cantidad += 1
                 detalle.subtotal += productoC.precio
                 detalle.save()
