@@ -505,14 +505,20 @@ def cambiarCantidad(request, cod_detalle):
     if request.user.is_authenticated:
         detalle = Detalle.objects.get(id_detalle = cod_detalle)
         cant = int(request.POST['nueva_cantidad_{}'.format(cod_detalle)])
+        producto = Producto.objects.get(cod_prod = detalle.producto.cod_prod)
 
+        stockC = producto.stock
         cantidadC = int(cant)
 
         if cantidadC >= 0:
-            detalle.cantidad = cantidadC
-            detalle.subtotal = detalle.producto.precio * cantidadC
-            detalle.save()
-            return redirect('mostrarCarritoCli')
+            if cantidadC < stockC:
+                detalle.cantidad = cantidadC
+                detalle.subtotal = detalle.producto.precio * cantidadC
+                detalle.save()
+                return redirect('mostrarCarritoCli')
+            else:
+                messages.warning(request,'La cantidad no puede exceder el stock disponible')
+                return redirect('mostrarCarritoCli')
         else:
             messages.warning(request,'La cantidad no puede ser menor a 1')
             return redirect('mostrarCarritoCli')
