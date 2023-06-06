@@ -43,13 +43,17 @@
                         <a class="boton-fake-2" href="{% url 'mostrarProducto' i.cod_prod%}">Ver</a>
                     </div>
                 </div>
+                    {% if forloop.counter|divisibleby:4 and not forloop.last %}
+                    <div class="col-md-2 "></div>
+                    <div class="col-md-2 "></div>
+                    {% endif %}
                 {% endfor %}
 
                 <div class="col-md-2"></div>
 
             </div>
 
-            </div>
+            
             
         </div>
         <!--Fin Cuerpo-->

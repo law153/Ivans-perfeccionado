@@ -37,6 +37,10 @@
                         <p>$ {{ i.precio }} {{ i.unidad_medida }}</p>
                     </div>
                 </div>
+                    {% if forloop.counter|divisibleby:4 and not forloop.last %}
+                        <div class="col-md-2 "></div>
+                        <div class="col-md-2 "></div>
+                    {% endif %}
                 {% endfor %}
                     
                 
