@@ -533,11 +533,21 @@ def pagarCarrito(request):
         
         carritoP = Venta.objects.filter(usuario = usuarioC, estado='ACTIVO').first()
 
+        detalles = Detalle.objects.filter(venta = carritoP)
+
+        for d in detalles:
+            producto = Producto.objects.get(cod_prod = d.producto.cod_prod)
+            producto.stock -= d.cantidad
+
+            producto.save()
+
         carritoP.estado = 'PAGANDO'
 
         carritoP.carrito = 0
 
         carritoP.save()
+
+        
 
         messages.warning(request,'Esta función no está implementada')
         return redirect('mostrarError')
