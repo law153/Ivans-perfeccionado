@@ -138,6 +138,7 @@ def consultar(request):
     Consulta.objects.create(nombre_consultante = nombreC,
                             asunto_consulta = asuntoC,
                             mensaje_consulta = mensajeC)
+    messages.success(request,'Se ha enviado el mensaje')
     return redirect('mostrarNosotros')
 
 def inicioSesion(request):
@@ -568,6 +569,7 @@ def consultarCli(request):
         Consulta.objects.create(nombre_consultante = usuario.nombre,
                                 asunto_consulta = asuntoC,
                                 mensaje_consulta = mensajeC)
+        messages.success(request,'Se ha enviado el mensaje')
         return redirect('mostrarNosotrosCli')
     else:
         messages.warning(request,'Debe estar registrado para acceder a esta pagina')
@@ -820,7 +822,7 @@ def editarProducto(request):
             messages.success(request,'El producto fue editado correctamente')
                 
             return redirect('mostrarIndexAdm')
-        
+            
         else:
             messages.warning(request,'Debe ser un administrador para acceder a esta pagina')
             return redirect('mostrarIni_sesion')
