@@ -769,9 +769,15 @@ def agregarProducto(request):
 
             registroCategoria = Categoria.objects.get(id_categoria = categoriaP)
 
-            Producto.objects.create(nombre_prod = nombreP, descripcion = descripcionP, precio = precioP, stock = stockP, foto_prod = fotoP, unidad_medida = unidadP, categoria = registroCategoria)
-            messages.success(request,'El producto fue agregado correctamente')
-            return redirect('mostrarAgregar')
+            prodTest = Producto.objects.filter(nombre_prod = nombreP, categoria = registroCategoria).first()
+
+            if prodTest:
+                messages.success(request,'Ya existe un producto con el mismo nombre y categoria')
+                return redirect('mostrarAgregar')
+            else:
+                Producto.objects.create(nombre_prod = nombreP, descripcion = descripcionP, precio = precioP, stock = stockP, foto_prod = fotoP, unidad_medida = unidadP, categoria = registroCategoria)
+                messages.success(request,'El producto fue agregado correctamente')
+                return redirect('mostrarAgregar')
         else:
             messages.warning(request,'Debe ser un administrador para acceder a esta pagina')
             return redirect('mostrarIni_sesion')
@@ -788,24 +794,33 @@ def editarProducto(request):
             descripcionP = request.POST['descripcion']
             precioP = request.POST['precio']
             stockP = request.POST['stock']
-            fotoP = request.FILES['imagen']
             unidadP = request.POST['medida']
             categoriaP = request.POST['categoria']
+            registroCategoria = Categoria.objects.get(id_categoria = categoriaP)
+
 
             producto = Producto.objects.get(cod_prod = codigoP)
+
+            fotoP = request.FILES.get('imagen',producto.foto_prod)
+
+
+
+            if Producto.objects.filter(nombre_prod = nombreP, categoria = registroCategoria).exclude(cod_prod = producto.cod_prod).exists():
+                messages.success(request,'Ya existe un producto con el mismo nombre y categoria')
+                return redirect('mostrarAgregar')
+                
             producto.nombre_prod = nombreP
             producto.descripcion = descripcionP
             producto.precio = precioP
             producto.stock = stockP
             producto.foto_prod = fotoP
             producto.unidad_medida = unidadP
-
-            registroCategoria = Categoria.objects.get(id_categoria = categoriaP)
             producto.categoria = registroCategoria
             producto.save()
             messages.success(request,'El producto fue editado correctamente')
-            
+                
             return redirect('mostrarIndexAdm')
+        
         else:
             messages.warning(request,'Debe ser un administrador para acceder a esta pagina')
             return redirect('mostrarIni_sesion')
