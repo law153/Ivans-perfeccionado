@@ -103,8 +103,8 @@ def registrarUsuario(request):
     registroRol = Rol.objects.get(id_rol = 1) ##Los usuarios registrados son clientes
     registroPregunta = Pregunta.objects.get(id_pregunta = 1) ##Pregunta asiganada por defecto
 
-    usuario1 = Usuario.objects.get(rut = rutU)
-    usuario2 = Usuario.objects.get(correo = correoU)
+    usuario1 = Usuario.objects.filter(rut = rutU)
+    usuario2 = Usuario.objects.filter(correo = correoU)
 
     if usuario1 or usuario2:
         messages.error(request,'Ya existe una cuenta con el correo/rut ingresado')
