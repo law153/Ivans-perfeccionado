@@ -27,3 +27,24 @@ def lista_consulta(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED )
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@csrf_exempt
+@api_view(['GET', 'POST'])
+def lista_detalle(request):
+    
+    if request.method == 'GET':
+
+        detalle = Detalle.objects.all()
+        serializer = detalleSerializer(detalle, many=True)
+        return Response(serializer.data)
+
+    elif request.method == 'POST':
+
+        data = JSONParser().parse(request)
+        serializer = detalleSerializer(data = data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED )
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

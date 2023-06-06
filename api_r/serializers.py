@@ -4,7 +4,7 @@ from core.models import Detalle, Consulta
 class consultaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Consulta
-        fields = ['id_consulta','nombre_consultante','asunto_consultante','mensaje_consulta']
+        fields = ['id_consulta','nombre_consultante','asunto_consulta','mensaje_consulta']
 
 
 class detalleSerializer(serializers.ModelSerializer):
