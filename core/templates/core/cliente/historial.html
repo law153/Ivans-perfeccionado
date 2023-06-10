@@ -35,17 +35,17 @@
 
         {% else %}  
 
-            {% for i in historial %}
+            {% for compra, fecha_venta_es, fecha_entrega_es in historial %}
 
             <div class="row contenedor__producto ">                               
                 <div class="col-md-6">
                     <div class="contenedor__producto-texto">
-                        <h2>{{ i.fecha_venta }}</h2>
+                        <h2>{{ fecha_venta_es }}</h2>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="contenedor__producto-precio">
-                        <p>${{ i.total }}</p>
+                        <p>${{ compra.total }}</p>
                     </div>
                 </div>
             </div>

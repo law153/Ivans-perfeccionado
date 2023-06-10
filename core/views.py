@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Rol, Pregunta, Categoria, Consulta, Usuario, Producto, Venta, Detalle
-from datetime import date, timedelta, datetime
+from datetime import date, timedelta
+from django.utils.translation import activate
 from babel.dates import format_date
 from django.contrib import messages
 from django.contrib.auth.models import User
@@ -381,6 +382,8 @@ def mostrarEditarPerfilCli(request):
 def mostrarHistorial(request):
     if request.user.is_authenticated:
 
+        activate('es')
+
         categoria = Categoria.objects.all()
 
         username = request.session.get('username')
@@ -389,8 +392,15 @@ def mostrarHistorial(request):
         compras = Venta.objects.filter(usuario = usuario1, estado='VENTA')
 
         if compras:
+            historial_formateado = []
+
+            for compra in compras:
+                fecha_venta_es = format_date(compra.fecha_venta, format='medium', locale='es')
+                fecha_entrega_es = format_date(compra.fecha_entrega, format='medium', locale='es')
+                historial_formateado.append((compra, fecha_venta_es, fecha_entrega_es))
+
             contexto = {"categorias" : categoria,
-                        "historial" : compras}
+                        "historial" : historial_formateado}
         else:
             contexto = {"categorias" : categoria}
             messages.warning(request,'No tiene compras previas')
