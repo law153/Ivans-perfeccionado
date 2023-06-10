@@ -40,7 +40,7 @@
             <div class="row contenedor__producto ">                               
                 <div class="col-md-6">
                     <div class="contenedor__producto-texto">
-                        <h2>{{ fecha_venta_es }}</h2>
+                        <h2>{{ fecha_venta_es }} - {{ fecha_entrega_es }}</h2>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -48,7 +48,11 @@
                         <p>${{ compra.total }}</p>
                     </div>
                 </div>
+                <form>
+
+                </form>
             </div>
+            
             
             {% endfor %}
 

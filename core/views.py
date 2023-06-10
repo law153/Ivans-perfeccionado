@@ -567,7 +567,17 @@ def pagarCarrito(request):
         username = request.session.get('username')
         usuarioC = Usuario.objects.get(correo = username)
         
-        carritoP = Venta.objects.filter(usuario = usuarioC, estado='ACTIVO').first()
+        carritoP = Venta.objects.get(usuario = usuarioC, estado='ACTIVO')
+
+        entrega = timedelta(3)
+
+        fecha_compra = carritoP.fecha_venta
+
+        fecha_e_nueva = fecha_compra + entrega
+
+        carritoP.fecha_entrega = fecha_e_nueva
+
+        carritoP.save()
 
         detalles = Detalle.objects.filter(venta = carritoP)
 
