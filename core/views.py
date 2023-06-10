@@ -424,11 +424,16 @@ def mostrarCompra(request, idVenta):
         
         detalles = Detalle.objects.filter(venta = carrito)
 
+        fecha_venta_esp = format_date(carrito.fecha_venta, format='short', locale='es')
+        fecha_entrega_esp = format_date(carrito.fecha_entrega, format='short', locale='es')
+
         contexto = {"categorias" : categoria,
                     "carrito" : detalles,
-                    "venta" : carrito}
+                    "venta" : carrito,
+                    "fecha_venta_es": fecha_venta_esp,
+                    "fecha_entrega_es": fecha_entrega_esp}
         
-        return render(request, 'core/cliente/carrito.html',contexto)
+        return render(request, 'core/cliente/compra.html',contexto)
     
     else:
 

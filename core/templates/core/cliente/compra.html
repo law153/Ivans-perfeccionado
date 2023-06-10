@@ -18,6 +18,15 @@
         </div>
         
 
+            <div class="row">
+                <div class="col-md-6" style="text-align: center;">
+                    <p style="font-size: 25px;">Pedido el: {{fecha_venta_es}}</p>
+                </div>
+                <div class="col-md-6" style="text-align: center;">
+                    <p style="font-size: 25px;">Esta listo el: {{fecha_entrega_es}}</p>
+                </div>
+            </div>
+
             {% for i in carrito %}
 
             <div class="row contenedor__producto ">                
@@ -37,6 +46,14 @@
             </div>
             
             {% endfor %}
+            
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4" style="text-align: center;">
+                    <p style="font-size: 30px;">Total: ${{venta.total}}</p>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
         
         
     </div>
