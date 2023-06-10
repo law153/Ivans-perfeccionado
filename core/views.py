@@ -411,6 +411,29 @@ def mostrarHistorial(request):
 
         messages.warning(request,'Debe estar registrado para acceder a esta pagina')
         return redirect('mostrarIni_sesion')
+    
+def mostrarCompra(request, idVenta):
+    if request.user.is_authenticated:
+
+        categoria = Categoria.objects.all()
+
+        username = request.session.get('username')
+        usuario1 = Usuario.objects.get(correo = username)
+
+        carrito = Venta.objects.get(id_venta = idVenta, usuario = usuario1)
+        
+        detalles = Detalle.objects.filter(venta = carrito)
+
+        contexto = {"categorias" : categoria,
+                    "carrito" : detalles,
+                    "venta" : carrito}
+        
+        return render(request, 'core/cliente/carrito.html',contexto)
+    
+    else:
+
+        messages.warning(request,'Debe estar registrado para acceder a esta pagina')
+        return redirect('mostrarIni_sesion')
 
 def editarPerfilCli(request):
     if request.user.is_authenticated:
