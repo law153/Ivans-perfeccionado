@@ -1,6 +1,6 @@
 from django.urls import path,include
 from django.conf.urls import handler404
-from .views import mostrarIndex, mostrarNosotros, mostrarRegistro,mostrarIni_sesion, mostrarOlv_contra, mostrarPregunta, mostrarProducto, mostrarCategoria, mostrarIndexAdm, mostrarPerfilAdm, mostrarCategoriaAdm, mostrarAgregar, mostrarEditarPerfilAdm, mostrarCambioContraAdm, mostrarProductoAdm, mostrarEditarRol, mostrarProductoCli, mostrarCategoriaCli, mostrarMetodoPago, mostrarNosotrosCli, mostrarPerfilCli, mostrarIndexCli, mostrarCarritoCli, mostrarCambioContraCli, mostrarEditarPerfilCli,registrarUsuario,consultar, agregarProducto, inicioSesion, agregarAlCarrito, consultarCli, editarProducto, eliminarProducto, cierreSesion,mostrarError, editarPerfilCli, editarPerfilAdm, eliminarCuenta, revisarDatos, cambiarClaveAdm, cambiarClaveCli, olvideClave, editarRol, sacarDelCarro, cambiarCantidad, pagarCarrito, error_404
+from .views import mostrarIndex, mostrarNosotros, mostrarRegistro,mostrarIni_sesion, mostrarOlv_contra, mostrarPregunta, mostrarProducto, mostrarCategoria, mostrarIndexAdm, mostrarPerfilAdm, mostrarCategoriaAdm, mostrarAgregar, mostrarEditarPerfilAdm, mostrarCambioContraAdm, mostrarProductoAdm, mostrarEditarRol, mostrarProductoCli, mostrarCategoriaCli, mostrarMetodoPago, mostrarNosotrosCli, mostrarPerfilCli, mostrarIndexCli, mostrarCarritoCli, mostrarCambioContraCli, mostrarEditarPerfilCli,registrarUsuario,consultar, agregarProducto, inicioSesion, agregarAlCarrito, consultarCli, editarProducto, eliminarProducto, cierreSesion,mostrarError, editarPerfilCli, editarPerfilAdm, eliminarCuenta, revisarDatos, cambiarClaveAdm, cambiarClaveCli, olvideClave, editarRol, sacarDelCarro, cambiarCantidad, pagarCarrito, error_404, mostrarHistorial
 urlpatterns = [
 
     ### Paginas sin-cuenta###
@@ -29,6 +29,7 @@ urlpatterns = [
     path('cambio_de_contrasena_cli/',mostrarCambioContraCli,name="mostrarCambioContraCli"),
     path('categoria_cli/<id_cate>',mostrarCategoriaCli,name="mostrarCategoriaCli"),
     path('agregarAlCarrito/',agregarAlCarrito, name="agregarAlCarrito"),
+    path('mostrarHistorial/',mostrarHistorial, name="mostrarHistorial"),
     path('consultarCli/',consultarCli,name="consultarCli"),
     path('editarPerfilCli/',editarPerfilCli,name="editarPerfilCli"),
     path('eliminarCuenta/<id_user>',eliminarCuenta,name="eliminarCuenta"),

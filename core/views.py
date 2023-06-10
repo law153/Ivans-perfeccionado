@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Rol, Pregunta, Categoria, Consulta, Usuario, Producto, Venta, Detalle
-from datetime import date, timedelta
+from datetime import date, timedelta, datetime
+from babel.dates import format_date
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import check_password
@@ -89,6 +90,7 @@ def mostrarCategoria(request, id_cate):
     contexto = {"products" : productos ,"categorias" : categoria, "categoria" : cate}
 
     return render(request, 'core/sin-cuenta/Categoria.html',contexto)
+
 
 def registrarUsuario(request):
     rutU = request.POST['rut']
@@ -376,6 +378,30 @@ def mostrarEditarPerfilCli(request):
         messages.warning(request,'Debe estar registrado para acceder a esta pagina')
         return redirect('mostrarIni_sesion')
 
+def mostrarHistorial(request):
+    if request.user.is_authenticated:
+
+        categoria = Categoria.objects.all()
+
+        username = request.session.get('username')
+        usuario1 = Usuario.objects.get(correo = username)
+
+        compras = Venta.objects.filter(usuario = usuario1, estado='VENTA')
+
+        if compras:
+            contexto = {"categorias" : categoria,
+                        "historial" : compras}
+        else:
+            contexto = {"categorias" : categoria}
+            messages.warning(request,'No tiene compras previas')
+        
+        return render(request, 'core/cliente/historial.html',contexto)
+    
+    else:
+
+        messages.warning(request,'Debe estar registrado para acceder a esta pagina')
+        return redirect('mostrarIni_sesion')
+
 def editarPerfilCli(request):
     if request.user.is_authenticated:
 
@@ -453,7 +479,6 @@ def agregarAlCarrito(request):
         fecha_hoy = date.today()
         entrega = timedelta(999)
         fecha_e = fecha_hoy + entrega
-
 
         carrito = Venta.objects.filter(usuario = usuarioC, estado='ACTIVO').first()
 
@@ -542,7 +567,7 @@ def pagarCarrito(request):
 
             producto.save()
 
-        carritoP.estado = 'PAGANDO'
+        carritoP.estado = 'VENTA'
 
         carritoP.carrito = 0
 

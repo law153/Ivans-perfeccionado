@@ -28,8 +28,21 @@
                 <h1 style="font-size: 45px; text-align: center; text-decoration: underline; margin-top: 2%;">TU CARRITO</h1>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-10"></div>
+            <div class="col-md-2">
 
+                <div class="container-button">
+                    <a class="boton-fake-2" style="border: 2px solid #000;" href="{% url 'mostrarHistorial' %}">Ver historial de compra</a>
+                </div>
+                
+
+            </div>
+            
+            
+        </div>
         {% if carrito.doesNotExist %}
+        
 
             {% if messages %}
                 {% for message in messages %}

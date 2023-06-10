@@ -1,0 +1,73 @@
+{% extends 'core/cliente/plantillaConCuenta.html'%}
+{% load static %}
+
+    {% block titulo %}
+    <title>Historial de compras</title>
+    {% endblock titulo %}
+    
+    {% block disenos %}
+    <link rel="stylesheet" type="text/css" href="{% static  'core/css/carrito.css'%}">
+    {% endblock disenos %}
+
+    {% block cuerpo %}
+    <div class="container">
+        <div class="row" >
+            <div class="col-md-12">
+                <h1 style="font-size: 45px; text-align: center; text-decoration: underline; margin-top: 2%;">Historial</h1>
+            </div>
+        </div>
+
+        {% if historial.doesNotExist %}
+        
+
+            {% if messages %}
+                {% for message in messages %}
+                    <script>
+                        Swal.fire({
+                            "title": "Aviso",
+                            "text": "{{message}}",
+                            "confirmButtonColor": "#000",
+                            "background": "#ff0"
+                        })
+                    </script>
+                {% endfor %}
+            {% endif %}
+
+        {% else %}  
+
+            {% for i in historial %}
+
+            <div class="row contenedor__producto ">                               
+                <div class="col-md-6">
+                    <div class="contenedor__producto-texto">
+                        <h2>{{ i.fecha_venta }}</h2>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="contenedor__producto-precio">
+                        <p>${{ i.total }}</p>
+                    </div>
+                </div>
+            </div>
+            
+            {% endfor %}
+
+        {% endif %}     
+
+        {% if messages %}
+                {% for message in messages %}
+                    <script>
+                        Swal.fire({
+                            "title": "Aviso",
+                            "text": "{{message}}",
+                            "confirmButtonColor": "#000",
+                            "background": "#ff0"
+                        })
+                    </script>
+                {% endfor %}
+            {% endif %}
+        
+        
+    </div>
+
+    {% endblock cuerpo %}
