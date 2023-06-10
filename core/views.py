@@ -824,10 +824,28 @@ def mostrarEditarRol(request):
             }
             return render(request, 'core/administrador/Editar-rol.html',contexto)
         else:
-            messages.warning(request,'Debe ser un administrador para acceder a esta pagina')
+            messages.warning(request,'Debe ser un administrador para acceder a esta página')
             return redirect('mostrarIni_sesion')
     else:
-        messages.warning(request,'Debe estar registrado para acceder a esta pagina')
+        messages.warning(request,'Debe estar registrado para acceder a esta página')
+        return redirect('mostrarIni_sesion')
+    
+def mostrarConsultas(request):
+    if request.user.is_authenticated:
+        if request.user.is_staff:
+            categoria = Categoria.objects.all()
+            consultas = Consulta.objects.all()
+
+            contexto = {
+                "categorias": categoria,
+                "consulta": consultas
+            }
+            return render(request, 'core/administrador/consultas.html', contexto)
+        else:
+            messages.warning(request, 'Debe ser una administrador para acceder a esta página')
+            return redirect('mostrarIni_sesion')
+    else:
+        messages.warning(request,'Debe estar registrado para acceder a esta página')
         return redirect('mostrarIni_sesion')
     
  

@@ -1,0 +1,47 @@
+{% extends 'core/administrador/plantillaAdministrador.html'%}
+{% load static %}
+    {% block titulo%}
+    <title>Consultas</title>
+    {% endblock titulo%}
+
+    {% block disenos %}
+    <link rel="stylesheet" type="text/css" href="{% static 'core/css/formularios.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'core/css/consultas.css' %}">
+    {% endblock disenos %}
+
+    {% block cuerpo %}
+        <div class="container">
+
+            <table class="contenedor-tabla" cellspacing="1" cellpadding="1" border="2" bgcolor="#ff0">
+                <tr align="center">
+                    <th>Nombre</th>
+                    <th>Asunto</th>
+                    <th>Mensaje</th>
+                </tr>
+        
+                {% for c in consulta %}
+                <tr align="center">
+                    <td>{{c.nombre_consultante}}</td>
+                    <td>{{ c.asunto_consulta }}</td>
+                    <td>{{c.mensaje_consulta}}</td>
+                    
+        
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        {% if messages %}
+                {% for message in messages %}
+                    <script>
+                        Swal.fire({
+                            "title": "Acción Exitosa",
+                            "text": "{{message}}",
+                            "confirmButtonColor": "#000",
+                            "background": "#ff0"
+                        })
+                    </script>
+                {% endfor %}
+        {% endif %}
+
+    {% endblock cuerpo %}
