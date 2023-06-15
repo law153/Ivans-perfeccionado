@@ -878,7 +878,7 @@ def mostrarConsultas(request):
         return redirect('mostrarIni_sesion')
 
 def mostrarPedidos(request):
-    if request.user.is_autenthicated:
+    if request.user.is_authenticated:
         if request.user.is_staff:
             activate('es')
             categoria = Categoria.objects.all()
@@ -899,16 +899,13 @@ def mostrarPedidos(request):
             else:
                 contexto = {"categorias" : categoria}
                 messages.warning(request,'No hay pedidos registrados')
-            return render(request, 'core/administrador/pedidos.html')
+            return render(request, 'core/administrador/pedidos.html',contexto)
         else:
             messages.warning(request,'Debe ser una administrador para acceder a esta página')
             return redirect('mostrarIni_sesion')
     else:
         messages.warning(request,'Debe estar registrado para acceder a esta pagina')
-        return redirect('mostrarIni_sesion')
-
-    
-    
+        return redirect('mostrarIni_sesion')    
  
 def agregarProducto(request):
     if request.user.is_authenticated:
