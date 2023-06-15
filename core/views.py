@@ -876,6 +876,9 @@ def mostrarConsultas(request):
     else:
         messages.warning(request,'Debe estar registrado para acceder a esta página')
         return redirect('mostrarIni_sesion')
+
+def mostrarPedidos(request):
+    return render(request, 'core/administrador/pedidos.html')
     
  
 def agregarProducto(request):
