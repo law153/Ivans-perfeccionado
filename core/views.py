@@ -878,7 +878,36 @@ def mostrarConsultas(request):
         return redirect('mostrarIni_sesion')
 
 def mostrarPedidos(request):
-    return render(request, 'core/administrador/pedidos.html')
+    if request.user.is_autenthicated:
+        if request.user.is_staff:
+            activate('es')
+            categoria = Categoria.objects.all()
+
+            pedidos = Venta.objects.filter(estado = 'VENTA')
+            
+            if pedidos:
+                l_pedidos_formateado=[]
+                for pedido in pedidos:
+                    fecha_pedido_es = format_date(pedido.fecha_venta, format='medium', locale='es')
+                    fecha_entrega_es = format_date(pedido.fecha_entrega, format='medium', locale='es')
+                    l_pedidos_formateado.append((pedido, fecha_pedido_es, fecha_entrega_es))
+                
+                contexto = {
+                    "categorias": categoria,
+                    "l_pedido": l_pedidos_formateado
+                }
+            else:
+                contexto = {"categorias" : categoria}
+                messages.warning(request,'No hay pedidos registrados')
+            return render(request, 'core/administrador/pedidos.html')
+        else:
+            messages.warning(request,'Debe ser una administrador para acceder a esta página')
+            return redirect('mostrarIni_sesion')
+    else:
+        messages.warning(request,'Debe estar registrado para acceder a esta pagina')
+        return redirect('mostrarIni_sesion')
+
+    
     
  
 def agregarProducto(request):
