@@ -93,7 +93,7 @@
             <div class="row">
                 <div class="col-md-4"></div>
                 <div class="col-md-4">
-                    <form class="form-group container-button"  style="text-align: center;">
+                    <form class="form-group container-button"  style="text-align: center; margin: auto; margin-top: 20px;">
                         {% csrf_token %}
                         <label for="Total">Total: $</label>
                         <input style="color: #fff; background: #000; width: 40%;" class="no-editable" type="number" min="0" name="total" value="{{venta.total}}" readonly style="width: 30%;" >
