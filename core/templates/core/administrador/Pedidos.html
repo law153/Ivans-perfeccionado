@@ -1,0 +1,53 @@
+{% extends 'core/administrador/plantillaAdministrador.html'%}
+{% load static %}
+    {% block titulo%}
+    <title>Pedidos</title>
+    {% endblock titulo%}
+    
+    {% block disenos%}
+    <link rel="stylesheet" type="text/css" href="{% static 'core/css/carrito.css' %}">
+    {% endblock disenos%}
+
+    {% block cuerpo%}
+        <div class="container">
+            <div class="row" >
+                <div class="col-md-12">
+                    <h1 style="font-size: 45px; text-align: center; text-decoration: underline; margin-top: 2%;">Pedidos</h1>
+                </div>
+            </div>
+
+            <div class="row contenedor__producto ">                               
+                <div class="col-md-6">
+                    <div class="contenedor__producto-texto">
+                        <h2>{{ fecha_venta_es }} - {{ fecha_entrega_es }}</h2>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="contenedor__producto-precio">
+                        <p>${{ compra.total }}</p>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="container-button">
+                        <a class="boton-fake-2" style="border: 2px solid #000;" href="">Ver compra</a>
+                    </div>
+                </div>
+                
+            </div>
+            
+        </div>
+
+        {% if messages %}
+                {% for message in messages %}
+                    <script>
+                        Swal.fire({
+                            "title": "Acción Exitosa",
+                            "text": "{{message}}",
+                            "confirmButtonColor": "#000",
+                            "background": "#ff0"
+                        })
+                    </script>
+                {% endfor %}
+        {% endif %}
+
+    {% endblock cuerpo%}
