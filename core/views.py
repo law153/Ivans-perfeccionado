@@ -907,7 +907,7 @@ def mostrarPedidos(request):
             else:
                 contexto = {"categorias" : categoria}
                 messages.warning(request,'No hay pedidos registrados')
-            return render(request, 'core/administrador/pedidos.html',contexto)
+            return render(request, 'core/administrador/listado-pedidos.html',contexto)
         else:
             messages.warning(request,'Debe ser una administrador para acceder a esta página')
             return redirect('mostrarIni_sesion')
