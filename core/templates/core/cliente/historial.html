@@ -37,8 +37,13 @@
 
             {% for compra, fecha_venta_es, fecha_entrega_es in historial %}
 
-            <div class="row contenedor__producto ">                               
-                <div class="col-md-6">
+            <div class="row contenedor__producto ">  
+                <div class="col-md-2">
+                    <div class="container-button" >
+                        <a class="boton-fake-1"  href="{% url 'cancelarPedido' compra.id_venta%}">Cancelar pedido</a>
+                    </div>
+                </div>                             
+                <div class="col-md-4">
                     <div class="contenedor__producto-texto">
                         <h2>{{ fecha_venta_es }} - {{ fecha_entrega_es }}</h2>
                     </div>
@@ -53,6 +58,8 @@
                         <a class="boton-fake-2" style="border: 2px solid #000;" href="{% url 'mostrarCompra' compra.id_venta%}">Ver compra</a>
                     </div>
                 </div>
+
+                
                 
             </div>
             

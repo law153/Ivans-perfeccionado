@@ -1,6 +1,6 @@
 from django.urls import path,include
 from django.conf.urls import handler404
-from .views import mostrarIndex, mostrarNosotros, mostrarRegistro,mostrarIni_sesion, mostrarOlv_contra, mostrarPregunta, mostrarProducto, mostrarCategoria, mostrarIndexAdm, mostrarPerfilAdm, mostrarCategoriaAdm, mostrarAgregar, mostrarEditarPerfilAdm, mostrarCambioContraAdm, mostrarProductoAdm, mostrarEditarRol, mostrarProductoCli, mostrarCategoriaCli, mostrarMetodoPago, mostrarNosotrosCli, mostrarPerfilCli, mostrarIndexCli, mostrarCarritoCli, mostrarCambioContraCli, mostrarEditarPerfilCli,registrarUsuario,consultar, agregarProducto, inicioSesion, agregarAlCarrito, consultarCli, editarProducto, eliminarProducto, cierreSesion,mostrarError, editarPerfilCli, editarPerfilAdm, eliminarCuenta, revisarDatos, cambiarClaveAdm, cambiarClaveCli, olvideClave, editarRol, sacarDelCarro, cambiarCantidad, pagarCarrito, error_404, mostrarHistorial, mostrarCompra, mostrarConsultas
+from .views import mostrarIndex, mostrarNosotros, mostrarRegistro,mostrarIni_sesion, mostrarOlv_contra, mostrarPregunta, mostrarProducto, mostrarCategoria, mostrarIndexAdm, mostrarPerfilAdm, mostrarCategoriaAdm, mostrarAgregar, mostrarEditarPerfilAdm, mostrarCambioContraAdm, mostrarProductoAdm, mostrarEditarRol, mostrarProductoCli, mostrarCategoriaCli, mostrarMetodoPago, mostrarNosotrosCli, mostrarPerfilCli, mostrarIndexCli, mostrarCarritoCli, mostrarCambioContraCli, mostrarEditarPerfilCli,registrarUsuario,consultar, agregarProducto, inicioSesion, agregarAlCarrito, consultarCli, editarProducto, eliminarProducto, cierreSesion,mostrarError, editarPerfilCli, editarPerfilAdm, eliminarCuenta, revisarDatos, cambiarClaveAdm, cambiarClaveCli, olvideClave, editarRol, sacarDelCarro, cambiarCantidad, pagarCarrito, error_404, mostrarHistorial, mostrarCompra, mostrarConsultas, cancelarPedido
 urlpatterns = [
 
     ### Paginas sin-cuenta###
@@ -38,6 +38,7 @@ urlpatterns = [
     path('sacarDelCarro/<cod_detalle>',sacarDelCarro,name="sacarDelCarro"),
     path('cambiarCantidad/<cod_detalle>',cambiarCantidad,name="cambiarCantidad"),
     path('pagarCarrito/',pagarCarrito,name="pagarCarrito"),
+    path('cancelarPedido/<idVenta>',cancelarPedido,name="cancelarPedido"),
     ### Paginas admin###
     path('principal_adm/',mostrarIndexAdm,name="mostrarIndexAdm"),
     path('categoria_adm/<id_cate>', mostrarCategoriaAdm, name="mostrarCategoriaAdm"),

@@ -389,7 +389,7 @@ def mostrarHistorial(request):
         username = request.session.get('username')
         usuario1 = Usuario.objects.get(correo = username)
 
-        compras = Venta.objects.filter(usuario = usuario1, estado='VENTA')
+        compras = Venta.objects.filter(usuario = usuario1, estado='VENTA') | Venta.objects.filter(usuario = usuario1, estado='Cancelado')
 
         if compras:
             historial_formateado = []
@@ -673,6 +673,35 @@ def cambiarClaveCli(request):
     else:
         messages.warning(request,'Debe estar registrado para acceder a esta pagina')
         return redirect('mostrarIni_sesion')
+    
+def cancelarPedido(request, idVenta):
+    if request.user.is_authenticated:
+
+        username = request.session.get('username')
+        usuario1 = Usuario.objects.get(correo = username)
+
+        compra = Venta.objects.get(id_venta = idVenta, usuario = usuario1)
+        
+        compra.estado = 'Cancelado'
+
+        compra.save()
+
+        detalles = Detalle.objects.filter(venta = compra)
+
+        for i in detalles:
+            product = i.producto
+            cant = i.cantidad
+            productou = Producto.objects.get(cod_prod = product.cod_prod)
+            productou.stock += cant
+            productou.save()
+        
+        return redirect('mostrarHistorial')
+    
+    else:
+
+        messages.warning(request,'Debe estar registrado para acceder a esta pagina')
+        return redirect('mostrarIni_sesion')
+
     
 
 ###Paginas admin###
