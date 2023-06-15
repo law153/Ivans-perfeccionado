@@ -681,21 +681,29 @@ def cancelarPedido(request, idVenta):
         usuario1 = Usuario.objects.get(correo = username)
 
         compra = Venta.objects.get(id_venta = idVenta, usuario = usuario1)
-        
-        compra.estado = 'Cancelado'
 
-        compra.save()
+        hoy = date.today()
 
-        detalles = Detalle.objects.filter(venta = compra)
+        if compra.fecha_entrega >= hoy:
 
-        for i in detalles:
-            product = i.producto
-            cant = i.cantidad
-            productou = Producto.objects.get(cod_prod = product.cod_prod)
-            productou.stock += cant
-            productou.save()
-        
-        return redirect('mostrarHistorial')
+            messages.success(request,'No puede cancelar su pedido ahora')
+            return redirect('mostrarHistorial')
+        else:
+            compra.estado = 'Cancelado'
+
+            compra.save()
+
+            detalles = Detalle.objects.filter(venta = compra)
+
+            for i in detalles:
+                product = i.producto
+                cant = i.cantidad
+                productou = Producto.objects.get(cod_prod = product.cod_prod)
+                productou.stock += cant
+                productou.save()
+            
+            messages.success(request,'Pedido cancelado')
+            return redirect('mostrarHistorial')
     
     else:
 
