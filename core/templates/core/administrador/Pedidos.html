@@ -16,24 +16,28 @@
                 </div>
             </div>
 
-            <div class="row contenedor__producto ">                               
-                <div class="col-md-6">
-                    <div class="contenedor__producto-texto">
-                        <h2>{{ fecha_venta_es }} - {{ fecha_entrega_es }}</h2>
+            {% for pedido, fecha_pedido_es, fecha_entrega_es in l_pedido %}
+
+                <div class="row contenedor__producto ">                               
+                    <div class="col-md-6">
+                        <div class="contenedor__producto-texto">
+                            <h2>{{ fecha_pedido_es }} - {{ fecha_entrega_es }}</h2>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="contenedor__producto-precio">
-                        <p>${{ compra.total }}</p>
+                    <div class="col-md-4">
+                        <div class="contenedor__producto-precio">
+                            <p>${{ pedido.total }}</p>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="container-button">
-                        <a class="boton-fake-2" style="border: 2px solid #000;" href="">Ver compra</a>
+                    <div class="col-md-2">
+                        <div class="container-button">
+                            <a class="boton-fake-2" style="border: 2px solid #000;" href="">Ver compra</a>
+                        </div>
                     </div>
+                    
                 </div>
-                
-            </div>
+
+            {% endfor %}
             
         </div>
 
@@ -41,7 +45,7 @@
                 {% for message in messages %}
                     <script>
                         Swal.fire({
-                            "title": "Acción Exitosa",
+                            "title": "Aviso",
                             "text": "{{message}}",
                             "confirmButtonColor": "#000",
                             "background": "#ff0"
