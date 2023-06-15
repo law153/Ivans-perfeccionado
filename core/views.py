@@ -885,6 +885,33 @@ def mostrarConsultas(request):
         messages.warning(request,'Debe estar registrado para acceder a esta página')
         return redirect('mostrarIni_sesion')
 
+def mostrarDetallePedido(request, idPedido):
+    if request.user.is_authenticated:
+        if request.user.is_staff:
+            categoria = Categoria.objects.all()
+
+            carrito = Venta.objects.get(id_venta = idPedido)
+            detalles = Detalle.objects.filter(venta = carrito)
+
+            fecha_pedido_es = format_date(carrito.fecha_venta, format='short', locale='es')
+            fecha_entrega_es = format_date(carrito.fecha_entrega, format='short', locale='es')
+
+            contexto = {
+                "categorias": categoria,
+                "carrito": detalles,
+                "pedido": carrito,
+                "fecha_pedido": fecha_pedido_es,
+                "fecha_entrega": fecha_entrega_es
+            }
+            return render(request, 'core/administrador/pedido.html',contexto)
+        else:
+            messages.warning(request,'Debe ser una administrador para acceder a esta página')
+            return redirect('mostrarIni_sesion')
+    else:
+        messages.warning(request,'Debe estar registrado para acceder a esta pagina')
+        return redirect('mostrarIni_sesion') 
+    
+
 def mostrarPedidos(request):
     if request.user.is_authenticated:
         if request.user.is_staff:
@@ -907,7 +934,7 @@ def mostrarPedidos(request):
             else:
                 contexto = {"categorias" : categoria}
                 messages.warning(request,'No hay pedidos registrados')
-            return render(request, 'core/administrador/listado-pedidos.html',contexto)
+            return render(request, 'core/administrador/Listado-Pedidos.html',contexto)
         else:
             messages.warning(request,'Debe ser una administrador para acceder a esta página')
             return redirect('mostrarIni_sesion')

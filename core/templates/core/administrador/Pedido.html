@@ -1,0 +1,61 @@
+{% extends 'core/administrador/plantillaAdministrador.html'%}
+{% load static %}
+
+    {% block titulo %}
+    <title>Pedido</title>
+    {% endblock titulo %}
+    
+    {% block disenos %}
+    <link rel="stylesheet" type="text/css" href="{% static  'core/css/carrito.css'%}">
+    {% endblock disenos %}
+
+    {% block cuerpo %}
+    <div class="container">
+        <div class="row" >
+            <div class="col-md-12">
+                <h1 style="font-size: 45px; text-align: center; text-decoration: underline; margin-top: 2%;">Pedido</h1>
+            </div>
+        </div>
+        
+
+            <div class="row">
+                <div class="col-md-6" style="text-align: center;">
+                    <p style="font-size: 25px;" class="resaltador-2">Pedido el: {{fecha_pedido}}</p>
+                </div>
+                <div class="col-md-6" style="text-align: center;">
+                    <p style="font-size: 25px;" class="resaltador-2">Esta listo el: {{fecha_entrega}}</p>
+                </div>
+            </div>
+
+            {% for i in carrito %}
+
+            <div class="row contenedor__producto ">                
+                <div class="col-md-6">
+                    <div class="contenedor__producto-img">
+                        <img src="{{ i.producto.foto_prod.url }}" alt="No hay imagen disponible">
+                    </div>
+                </div>                
+                <div class="col-md-6">
+                    <div class="contenedor__producto-texto">
+                        <h2>{{ i.producto.nombre_prod }}</h2>
+                    </div>
+                    <div class="contenedor__producto-precio">
+                        <p>${{ i.subtotal }}</p>
+                    </div>
+                </div>
+            </div>
+            
+            {% endfor %}
+            
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4" style="text-align: center;">
+                    <p style="font-size: 30px;" class="resaltador-1">Total: ${{pedido.total}}</p>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+        
+        
+    </div>
+
+    {% endblock cuerpo %}

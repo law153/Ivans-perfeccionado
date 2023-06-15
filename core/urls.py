@@ -1,6 +1,6 @@
 from django.urls import path,include
 from django.conf.urls import handler404
-from .views import mostrarIndex, mostrarNosotros, mostrarRegistro,mostrarIni_sesion, mostrarOlv_contra, mostrarPregunta, mostrarProducto, mostrarCategoria, mostrarIndexAdm, mostrarPerfilAdm, mostrarCategoriaAdm, mostrarAgregar, mostrarEditarPerfilAdm, mostrarCambioContraAdm, mostrarProductoAdm, mostrarEditarRol, mostrarProductoCli, mostrarCategoriaCli, mostrarMetodoPago, mostrarNosotrosCli, mostrarPerfilCli, mostrarIndexCli, mostrarCarritoCli, mostrarCambioContraCli, mostrarEditarPerfilCli,registrarUsuario,consultar, agregarProducto, inicioSesion, agregarAlCarrito, consultarCli, editarProducto, eliminarProducto, cierreSesion,mostrarError, editarPerfilCli, editarPerfilAdm, eliminarCuenta, revisarDatos, cambiarClaveAdm, cambiarClaveCli, olvideClave, editarRol, sacarDelCarro, cambiarCantidad, pagarCarrito, mostrarHistorial, mostrarCompra, mostrarConsultas, mostrarPedidos, cancelarPedido
+from .views import mostrarIndex, mostrarNosotros, mostrarRegistro,mostrarIni_sesion, mostrarOlv_contra, mostrarPregunta, mostrarProducto, mostrarCategoria, mostrarIndexAdm, mostrarPerfilAdm, mostrarCategoriaAdm, mostrarAgregar, mostrarEditarPerfilAdm, mostrarCambioContraAdm, mostrarProductoAdm, mostrarEditarRol, mostrarProductoCli, mostrarCategoriaCli, mostrarMetodoPago, mostrarNosotrosCli, mostrarPerfilCli, mostrarIndexCli, mostrarCarritoCli, mostrarCambioContraCli, mostrarEditarPerfilCli,registrarUsuario,consultar, agregarProducto, inicioSesion, agregarAlCarrito, consultarCli, editarProducto, eliminarProducto, cierreSesion,mostrarError, editarPerfilCli, editarPerfilAdm, eliminarCuenta, revisarDatos, cambiarClaveAdm, cambiarClaveCli, olvideClave, editarRol, sacarDelCarro, cambiarCantidad, pagarCarrito, mostrarHistorial, mostrarCompra, mostrarConsultas, mostrarPedidos, mostrarDetallePedido, cancelarPedido
 urlpatterns = [
 
     ### Paginas sin-cuenta###
@@ -50,6 +50,7 @@ urlpatterns = [
     path('consultas/', mostrarConsultas, name='mostrarConsultas'),
     path('editar_rol/', mostrarEditarRol, name="mostrarEditarRol"),
     path('listado_pedidos/',mostrarPedidos, name="mostrarPedidos"),
+    path('detalle_pedido/<idPedido>',mostrarDetallePedido, name="mostrarDetallePedido"),
     path('agregarProducto/', agregarProducto, name="agregarProducto"),
     path('editarProducto/', editarProducto, name="editarProducto"),
     path('eliminarProducto/<id_prod>', eliminarProducto, name="eliminarProducto"),
