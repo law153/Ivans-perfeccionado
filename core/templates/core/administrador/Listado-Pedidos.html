@@ -6,6 +6,33 @@
     
     {% block disenos%}
     <link rel="stylesheet" type="text/css" href="{% static 'core/css/carrito.css' %}">
+    <style>
+        @media screen and (min-width: 0px) and (max-width: 576px){
+    
+            #cancelar{
+                width: 50%;
+                margin: auto;
+                margin-top: 5%;
+            }  
+
+            #fechas{
+                margin: auto;
+                text-align: center;
+                margin-left: 5%;
+            }
+
+            #total{
+                margin: auto;
+                margin-left: 32%;
+                text-align: center;
+            }
+
+            #compra{
+                margin: auto;
+            }
+            
+        }
+    </style>
     {% endblock disenos%}
 
     {% block cuerpo%}
@@ -20,17 +47,17 @@
 
                 <div class="row contenedor__producto ">                               
                     <div class="col-md-6">
-                        <div class="contenedor__producto-texto">
+                        <div class="contenedor__producto-texto" id="fechas">
                             <h2>{{ fecha_pedido_es }} - {{ fecha_entrega_es }}</h2>
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="contenedor__producto-precio">
+                        <div class="contenedor__producto-precio" id="total">
                             <p>${{ pedido.total }}</p>
                         </div>
                     </div>
                     <div class="col-md-2">
-                        <div class="container-button">
+                        <div class="container-button" id="compra">
                             <a class="boton-fake-2" style="border: 2px solid #000;" href="{% url 'mostrarDetallePedido' pedido.id_venta%}">Ver pedido</a>
                         </div>
                     </div>
