@@ -852,8 +852,12 @@ def mostrarProductoAdm(request,id_prod):
 def mostrarEditarRol(request):
     if request.user.is_authenticated:
         if request.user.is_staff:
+
+            username = request.session.get('username')
+            usuario = Usuario.objects.get(correo = username)
+
             categoria = Categoria.objects.all()
-            clientes = Usuario.objects.all()
+            clientes = Usuario.objects.exclude(id_usuario = usuario.id_usuario)
 
             contexto = {
                 "clients": clientes,
