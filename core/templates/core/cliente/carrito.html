@@ -35,32 +35,14 @@
                 <div class="container-button">
                     <a class="boton-fake-2" style="border: 2px solid #000;" href="{% url 'mostrarHistorial' %}">Ver historial de compra</a>
                 </div>
-                
 
             </div>
             
-            
         </div>
-        {% if carrito.doesNotExist %}
+        {% if carrito %}
         
-
-            {% if messages %}
-                {% for message in messages %}
-                    <script>
-                        Swal.fire({
-                            "title": "Aviso",
-                            "text": "{{message}}",
-                            "confirmButtonColor": "#000",
-                            "background": "#ff0"
-                        })
-                    </script>
-                {% endfor %}
-            {% endif %}
-
-        {% else %}  
-
             {% for i in carrito %}
-
+                
             <div class="row contenedor__producto ">                
                 <div class="col-md-6">
                     <div class="contenedor__producto-img">
