@@ -684,9 +684,9 @@ def cancelarPedido(request, idVenta):
 
         hoy = date.today()
 
-        if compra.fecha_entrega >= hoy:
+        if compra.fecha_entrega <= hoy:
 
-            messages.success(request,'No puede cancelar su pedido ahora')
+            messages.success(request,'Ya no puede cancelar su pedido')
             return redirect('mostrarHistorial')
         else:
             compra.estado = 'Cancelado'
