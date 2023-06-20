@@ -14,31 +14,12 @@ $(document).ready(function(){
         var telefono = $("#telefono").val();
         var direccion = $("#direccion").val();
         var correo = $("#correo").val();
-        var pregunta = $("#pregunta").val();
-        var respuesta = $("#respuesta").val()
+        var respuesta = $("#respuesta").val();
 
         let msj = "";
         let enviar = false;
 
-        //--Validacion Imágenes
-
-        if(!validarExtension(imagen, extensionesPermitidas)){
-            msj += "El archivo seleccionado no tiene una extensión permitida<br>";
-            $('#imagen').val('');
-            enviar = true;
-        }
-
-        if(enviar){
-            $("#alerta_imagen-ed_perfil").html(msj);
-            e.preventDefault();
-
-        }else{
-            $("#alerta_imagen-ed_perfil").html("");
-        }
-
-        msj="";
-
-        //Fin validacion imágen
+      
 
         //--Validaciones Nombre
 
@@ -293,25 +274,6 @@ $(document).ready(function(){
 
         //Fin Validaciones correo--
 
-        //--Validación Pregunta
-
-        if(pregunta == 0){
-            msj += "Seleccione una pregunta<br>";
-            enviar = true;
-        }
-
-        if(enviar){
-            $("#alerta_pregunta-ed_perfil").html(msj);
-            e.preventDefault();
-
-        }else{
-            $("#alerta_pregunta-ed_perfil").html("");
-        }
-
-        msj = "";
-
-        //Fin validación Pregunta 
-
         //Validación Respuesta
 
         if(respuesta.trim().length === 0){
@@ -328,6 +290,26 @@ $(document).ready(function(){
         }
 
         //Fin validación Respuesta--
+
+        //--Validacion Imágenes
+
+        if(!validarExtension(imagen, extensionesPermitidas)){
+            msj += "El archivo seleccionado no tiene una extensión permitida<br>";
+            $('#imagen').val('');
+            enviar = true;
+        }
+
+        if(enviar){
+            $("#alerta_imagen-ed_perfil").html(msj);
+            e.preventDefault();
+
+        }else{
+            $("#alerta_imagen-ed_perfil").html("");
+        }
+
+        msj="";
+
+        //Fin validacion imágen
 
     });
 

@@ -1,6 +1,5 @@
 $(document).ready(function(){
     $("#form_editar-perfil-cli").submit(function(e){
-
         //--Variables--
 
         //--Permite que solo se suban ciertos formatos de archivos
@@ -15,32 +14,12 @@ $(document).ready(function(){
         var telefono = $("#telefono").val();
         var direccion = $("#direccion").val();
         var correo = $("#correo").val();
-        var pregunta = $("#pregunta").val();
         var respuesta = $("#respuesta").val();
 
         let msj = "";
         let enviar = false;
 
-        //--Validacion Imágenes
-
-
-        if(!validarExtension(imagen, extensionesPermitidas)){
-            msj += "El archivo seleccionado no tiene una extensión permitida<br>";
-            $('#imagen').val('');
-            enviar = true;
-        }
-
-        if(enviar){
-            $("#alerta_imagen-ed_perfil").html(msj);
-            e.preventDefault();
-
-        }else{
-            $("#alerta_imagen-ed_perfil").html("");
-        }
-
-        msj="";
-
-        //Fin validacion imágen
+     
 
         //--Validaciones Nombre
 
@@ -309,6 +288,27 @@ $(document).ready(function(){
         }
 
         //Fin validación Respuesta--
+
+         //--Validacion Imágenes
+
+
+        if(!validarExtension(imagen, extensionesPermitidas)){
+            msj += "El archivo seleccionado no tiene una extensión permitida<br>";
+            $('#imagen').val('');
+            enviar = true;
+        }
+
+        if(enviar){
+            $("#alerta_imagen-ed_perfil").html(msj);
+            e.preventDefault();
+
+        }else{
+            $("#alerta_imagen-ed_perfil").html("");
+        }
+
+        msj="";
+
+        //Fin validacion imágen
 
     });
 
