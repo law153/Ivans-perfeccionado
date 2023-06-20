@@ -1112,7 +1112,7 @@ def cambiarClaveAdm(request):
                 usuario.save()
                 usuario2.save()
                 messages.success(request,'Contraseña cambiada correctamente')
-                return redirect('mostrarPerfilAdm')
+                return redirect('cierreSesion')
 
             else:
                 messages.error(request,'La contraseña actual es incorrecta')
