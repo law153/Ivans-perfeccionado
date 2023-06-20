@@ -72,6 +72,23 @@
                             <input type="password" id="contra_confirm" name="contra_confirm" placeholder="Repetir contraseña"><br>
                             <p class="alerta" id="alerta-conf"></p><br>
                         </div>
+
+                        <div class="form-group left">
+                            <label>Pregunta de seguridad:</label><br>
+                            <select id="pregunta" name="pregunta">
+                                {% for pr in pregunta %}
+                                    {% if pr.id_pregunta == user.pregunta.id_pregunta %}
+                                        <option value="{{pr.id_pregunta}}" selected>{{pr.nombre_pregunta}}</option>
+                                    {% else %}
+                                        <option value="{{pr.id_pregunta}}">{{pr.nombre_pregunta}}</option>
+                                    {% endif%}
+                                {% endfor %}
+                            </select><br><br>
+                            <p id="alerta_pregunta-ed_perfil" class="alerta"></p>
+                            <label for="contra_confirm">Respuesta:</label><br>
+                            <input type="text" id="respuesta" name="respuesta" value="{{user.respuesta}}" id="respuesta"><br>
+                            <p id="alerta_respuesta-ed_perfil" class="alerta"></p>
+                        </div>
     
                         <div class="form-group container-button">
                             <input type="submit" value="Confirmar" id="btn-confirmar">

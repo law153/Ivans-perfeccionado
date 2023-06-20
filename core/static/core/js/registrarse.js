@@ -13,6 +13,8 @@ $(document).ready(function(){
         var correo = $("#correo").val();
         var clave = $("#contra").val();
         var clave_conf = $("#contra_confirm").val();
+        var pregunta = $("#pregunta").val();
+        var respuesta = $("#respuesta").val();
 
         let msj = "";
         let enviar = false;
@@ -333,6 +335,24 @@ $(document).ready(function(){
         }
 
         msj = "";
+
+
+        //Validación Respuesta
+
+        if(respuesta.trim().length === 0){
+            msj += "La respuesta esta vacia!<br>";
+            enviar = true;
+        }
+
+        if(enviar){
+            $("#alerta_respuesta-ed_perfil").html(msj);
+            e.preventDefault();
+
+        }else{
+            $("#alerta_respuesta-ed_perfil").html("");
+        }
+
+        //Fin validación Respuesta--
         
     });
 

@@ -16,7 +16,7 @@ $(document).ready(function(){
         var direccion = $("#direccion").val();
         var correo = $("#correo").val();
         var pregunta = $("#pregunta").val();
-        var respuesta = $("#respuesta").val()
+        var respuesta = $("#respuesta").val();
 
         let msj = "";
         let enviar = false;
@@ -292,25 +292,6 @@ $(document).ready(function(){
         msj = "";
 
         //Fin Validaciones correo--
-
-        //--Validación Pregunta
-
-        if(pregunta == 0){
-            msj += "Seleccione una pregunta<br>";
-            enviar = true;
-        }
-
-        if(enviar){
-            $("#alerta_pregunta-ed_perfil").html(msj);
-            e.preventDefault();
-
-        }else{
-            $("#alerta_pregunta-ed_perfil").html("");
-        }
-
-        msj = "";
-
-        //Fin validación Pregunta 
 
         //Validación Respuesta
 

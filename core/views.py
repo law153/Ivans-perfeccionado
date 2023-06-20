@@ -41,8 +41,10 @@ def mostrarNosotros(request):
 
 def mostrarRegistro(request):
     categoria = Categoria.objects.all()
+    preguntaObjeto = Pregunta.objects.all()
 
-    contexto = {"categorias" : categoria}
+    contexto = {"categorias" : categoria,
+                "pregunta" : preguntaObjeto}
 
     return render(request, 'core/sin-cuenta/registrarse.html',contexto)
 
@@ -102,9 +104,11 @@ def registrarUsuario(request):
     direccionU = request.POST['direc']
     correoU = request.POST['correo_reg']
     claveU = request.POST['contra_ini']
-    respuestaU = ' '
+    respuestaU = request.POST['respuesta']
+    preguntaUid = request.POST['pregunta']
+
     registroRol = Rol.objects.get(id_rol = 1) ##Los usuarios registrados son clientes
-    registroPregunta = Pregunta.objects.get(id_pregunta = 1) ##Pregunta asiganada por defecto
+    registroPregunta = Pregunta.objects.get(id_pregunta = preguntaUid) ##Pregunta asiganada por defecto
 
     usuario1 = Usuario.objects.filter(rut = rutU)
     usuario2 = Usuario.objects.filter(correo = correoU)
@@ -218,6 +222,7 @@ def olvideClave(request):
     usuario.save()
     user.save()
 
+    messages.success(request,'Contraseña reestablecida correctamente')
     return redirect('cierreSesion')  
         
 
@@ -665,7 +670,7 @@ def cambiarClaveCli(request):
             usuario.save()
             usuario2.save()
             messages.success(request,'Contraseña cambiada correctamente')
-            return redirect('mostrarPerfilCli')
+            return redirect('cierreSesion')
 
         else:
             messages.error(request,'La contraseña actual es incorrecta')
