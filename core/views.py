@@ -1139,6 +1139,9 @@ def editarRol(request,id):
             usuario2.save()
             messages.success(request,"Rol cambiado con éxito")
             return redirect('mostrarEditarRol')
+        else:
+            messages.warning(request,'Debe ser un administrador para acceder a esta pagina')
+            return redirect('mostrarIni_sesion')
             
     else:
         messages.warning(request,'Debe estar registrado para acceder a esta pagina')
