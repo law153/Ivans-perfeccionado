@@ -331,6 +331,12 @@ def mostrarCarritoCli(request):
             detalles = Detalle.objects.filter(venta = carrito)
             totalV = 0
             for i in detalles:
+
+                if i.producto.stock <= 0:
+                    i.delete()
+                    messages.warning(request,'Un producto de su carrito se quedó sin stock')
+                    return redirect('mostrarCarritoCli')
+                    
                 totalV += i.subtotal
             carrito.total = totalV
             carrito.save()
