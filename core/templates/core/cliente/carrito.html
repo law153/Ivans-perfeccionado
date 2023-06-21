@@ -56,7 +56,7 @@
                     <div class="contenedor__producto-precio">
                         <p>${{ i.subtotal }}</p>
                     </div>
-                    <form name="contador" id="boton-cant" class="container-button" method="POST" action="{% url 'cambiarCantidad' i.id_detalle%}">
+                    <form name="contador" id="boton-cant" class="contene_boton" method="POST" action="{% url 'cambiarCantidad' i.id_detalle%}">
                         {% csrf_token %}
                         <input type="number" min="1" value="{{ i.cantidad }}" class="contador" name="nueva_cantidad_{{ i.id_detalle }}" id="cantidad">
                         <input type="submit" value="Aceptar">
