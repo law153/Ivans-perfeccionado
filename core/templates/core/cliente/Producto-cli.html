@@ -22,13 +22,20 @@
                 <div class="contenedor-precio">
                     <p>${{product.precio}} {{product.unidad_medida}}</p>
                 </div>
+
+                {% if 0 >= product.stock %}
                 <div class="contenedor-boton" style="text-align: center;">
-                    <form action="{% url 'agregarAlCarrito' %}" method="POST" >
-                        {% csrf_token %}
-                        <button class="boton-fake-2">Agregar</button>
-                        <input type="hidden" name="id_product" value="{{ product.cod_prod }}">
-                    </form>
+                    <p class="boton-fake-1">Sin stock</p>
                 </div>
+                {% else %}
+                    <div class="contenedor-boton" style="text-align: center;">
+                        <form action="{% url 'agregarAlCarrito' %}" method="POST" >
+                            {% csrf_token %}
+                            <button class="boton-fake-2">Agregar</button>
+                            <input type="hidden" name="id_product" value="{{ product.cod_prod }}">
+                        </form>
+                    </div>
+                {% endif %}
             </div>
         </div>
     </div>
