@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Rol, Pregunta, Categoria, Consulta, Usuario, Producto, Venta, Detalle, Producto_comprado, Detalle_comprado
+from .models import Rol, Pregunta, Categoria, Consulta, Usuario, Producto, Venta, Detalle,  Detalle_comprado
 from datetime import date, timedelta
 from django.utils.translation import activate
 from babel.dates import format_date
@@ -427,7 +427,7 @@ def mostrarCompra(request, idVenta):
 
         carrito = Venta.objects.get(id_venta = idVenta, usuario = usuario1)
         
-        detalles = Detalle.objects.filter(venta = carrito)
+        detalles = Detalle_comprado.objects.filter(venta_c = carrito)
 
         fecha_venta_esp = format_date(carrito.fecha_venta, format='short', locale='es')
         fecha_entrega_esp = format_date(carrito.fecha_entrega, format='short', locale='es')
@@ -617,15 +617,12 @@ def pagarCarrito(request):
         for d in detalles:
             producto = Producto.objects.get(cod_prod = d.producto.cod_prod)
             producto.stock -= d.cantidad
-
-            producto_comp = Producto_comprado.objects.create(nombre_prod_c = producto.nombre_prod,
-                                             precio_c = producto.precio,
-                                             foto_prod_c = producto.foto_prod)
             
-            Detalle_comprado.objects.create(cantidad_c = d.cantidad,
+            Detalle_comprado.objects.create(nombre_prod_c = producto.nombre_prod,
+                                            cantidad_c = d.cantidad,
+                                            foto_prod_c = producto.foto_prod,
                                             subtotal_c = d.subtotal,
-                                            venta_c = d.venta,
-                                            producto_c = producto_comp)
+                                            venta_c = d.venta)
 
 
             producto.save()

@@ -83,8 +83,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.oracle',
         'NAME': '192.168.1.143/orcl', #Para la inmensa mayoria 127.0.0.1, para Abel 192.168.1.143
-        'USER': 'ivan1',
-        'PASSWORD': 'ivan1',
+        'USER': 'ivan3',
+        'PASSWORD': 'ivan3',
         'TEST':{
             'USER': 'default_test',
             'TBLSPACE': 'default_test_tbls',

@@ -73,21 +73,16 @@ class Detalle(models.Model):
     venta = models.ForeignKey(Venta, on_delete=models.CASCADE)
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
 
-
-class Producto_comprado(models.Model):
-    cod_prod_c = models.AutoField(primary_key=True)
-    nombre_prod_c = models.CharField(max_length=100)
-    precio_c = models.IntegerField()
-    foto_prod_c = models.ImageField(upload_to="productos")
-    def __str__(self) -> str:
-        return self.nombre_prod_c
     
 class Detalle_comprado(models.Model):
     id_detalle_c = models.AutoField(primary_key=True)
+    nombre_prod_c = models.CharField(max_length=100)
+    foto_prod_c = models.ImageField(upload_to="productos")
     cantidad_c = models.IntegerField()
     subtotal_c = models.IntegerField()
     venta_c = models.ForeignKey(Venta, on_delete=models.CASCADE)
-    producto_c = models.ForeignKey(Producto_comprado, on_delete=models.CASCADE)
+    def __str__(self) -> str:
+        return self.nombre_prod_c
 
 ###incremental: models.AutoField()###
 ###imagenes: foto = models.ImageField(upload_to="carpeta")###
