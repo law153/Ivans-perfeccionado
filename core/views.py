@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Rol, Pregunta, Categoria, Consulta, Usuario, Producto, Venta, Detalle
+from .models import Rol, Pregunta, Categoria, Consulta, Usuario, Producto, Venta, Detalle, Producto_comprado, Detalle_comprado
 from datetime import date, timedelta
 from django.utils.translation import activate
 from babel.dates import format_date
@@ -617,6 +617,16 @@ def pagarCarrito(request):
         for d in detalles:
             producto = Producto.objects.get(cod_prod = d.producto.cod_prod)
             producto.stock -= d.cantidad
+
+            producto_comp = Producto_comprado.objects.create(nombre_prod_c = producto.nombre_prod,
+                                             precio_c = producto.precio,
+                                             foto_prod_c = producto.foto_prod)
+            
+            Detalle_comprado.objects.create(cantidad_c = d.cantidad,
+                                            subtotal_c = d.subtotal,
+                                            venta_c = d.venta,
+                                            producto_c = producto_comp)
+
 
             producto.save()
 
