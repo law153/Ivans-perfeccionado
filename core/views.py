@@ -907,7 +907,7 @@ def mostrarDetallePedido(request, idPedido):
             categoria = Categoria.objects.all()
 
             carrito = Venta.objects.get(id_venta = idPedido)
-            detalles = Detalle.objects.filter(venta = carrito)
+            detalles = Detalle_comprado.objects.filter(venta_c = carrito)
 
             fecha_pedido_es = format_date(carrito.fecha_venta, format='short', locale='es')
             fecha_entrega_es = format_date(carrito.fecha_entrega, format='short', locale='es')

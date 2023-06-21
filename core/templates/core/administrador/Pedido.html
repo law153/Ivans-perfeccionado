@@ -32,15 +32,15 @@
             <div class="row contenedor__producto ">                
                 <div class="col-md-6">
                     <div class="contenedor__producto-img">
-                        <img src="{{ i.producto.foto_prod.url }}" alt="No hay imagen disponible">
+                        <img src="{{ i.foto_prod_c.url }}" alt="No hay imagen disponible">
                     </div>
                 </div>                
                 <div class="col-md-6">
                     <div class="contenedor__producto-texto">
-                        <h2>{{ i.producto.nombre_prod }}</h2>
+                        <h2>{{ i.nombre_prod_c }} X {{i.cantidad_c}}</h2>
                     </div>
                     <div class="contenedor__producto-precio">
-                        <p>${{ i.subtotal }}</p>
+                        <p>${{ i.subtotal_c }}</p>
                     </div>
                 </div>
             </div>
