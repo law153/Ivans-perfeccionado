@@ -58,7 +58,7 @@
                     </div>
                     <form name="contador" id="boton-cant" class="container-button" method="POST" action="{% url 'cambiarCantidad' i.id_detalle%}">
                         {% csrf_token %}
-                        <input type="number" min="1" value="{{ i.cantidad }}" class="contador" name="nueva_cantidad_{{ i.id_detalle }}">
+                        <input type="number" min="1" value="{{ i.cantidad }}" class="contador" name="nueva_cantidad_{{ i.id_detalle }}" id="cantidad">
                         <input type="submit" value="Aceptar">
                     </form>
                     <form name="borrar-form" style="margin-top: -48px;" id="borrar-boton" class="container-button"  method="POST" action="{% url 'sacarDelCarro' i.id_detalle%}">
@@ -71,7 +71,7 @@
             
             {% endfor %}
         
-
+            <p id="alerta-cant" class="alerta" style="font-size: 25px; text-align: center;"></p><br>
             <div class="row">
                 <div class="col-md-4"></div>
                 <div class="col-md-4">
@@ -113,3 +113,8 @@
     {% endif %}
 
     {% endblock cuerpo %}
+
+    
+    {% block js %}
+    <script src="{% static 'core/js/carrito.js' %}"></script>
+    {% endblock js %}
