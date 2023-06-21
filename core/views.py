@@ -580,7 +580,7 @@ def cambiarCantidad(request, cod_detalle):
         cantidadC = int(cant)
 
         if cantidadC >= 0:
-            if cantidadC < stockC:
+            if cantidadC <= stockC:
                 detalle.cantidad = cantidadC
                 detalle.subtotal = detalle.producto.precio * cantidadC
                 detalle.save()
