@@ -309,6 +309,24 @@ def mostrarIndexCli(request):
     if request.user.is_authenticated:
 
         categoria = Categoria.objects.all()
+
+        username = request.session.get('username')
+        usuario1 = Usuario.objects.get(correo = username)
+
+        carrito = Venta.objects.filter(usuario = usuario1, estado='ACTIVO').first()
+
+        if carrito:
+            detalles = Detalle.objects.filter(venta = carrito)
+            for i in detalles:
+                if i.producto.stock <= 0:
+                    i.delete()
+                    messages.warning(request,'Un producto de su carrito se quedó sin stock')
+                    return redirect('mostrarCarritoCli')
+                    
+            carrito.save()
+            if not detalles:
+                carrito.estado = 'INACTIVO'
+                carrito.save()
         
         contexto = {"categorias" : categoria}
         return render(request, 'core/cliente/index-cli.html',contexto)
