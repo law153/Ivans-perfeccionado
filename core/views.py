@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.shortcuts import render, redirect
 from .models import Rol, Pregunta, Categoria, Consulta, Usuario, Producto, Venta, Detalle,  Detalle_comprado
 from datetime import date, timedelta
@@ -11,6 +12,49 @@ from django.core.files import File
 import os
 from django.contrib.auth.decorators import user_passes_test
 # Create your views here.
+
+#dchango con webpay
+#---------------------------------------------------------------------------------------------------------------------------
+from django.shortcuts import redirect, render
+from transbank.webpay.webpay_plus.transaction import Transaction
+from transbank.webpay.webpay_plus import WebpayPlus
+
+def procesar_pago(request):
+    if request.method == 'POST':
+        # Recibe los datos del formulario de pago
+        buy_order = request.POST.get('buy_order')
+        session_id = request.POST.get('session_id')
+        amount = request.POST.get('amount')
+        return_url = request.build_absolute_uri('/')  # URL de retorno a tu sitio web
+
+        # Define tus credenciales de integración (códigos de comercio y llaves)
+        commerce_code = getattr(settings, 'REST_FRAMEWORK', {}).get('TRANSBANK_CONFIGURATION', {}).get('COMMERCE_CODE', None)
+        api_key = getattr(settings, 'REST_FRAMEWORK', {}).get('TRANSBANK_CONFIGURATION', {}).get('API_KEY', None)
+        integration_type = getattr(settings, 'REST_FRAMEWORK', {}).get('TRANSBANK_CONFIGURATION', {}).get('INTEGRATION_TYPE', 'TEST')
+        
+        # Inicializa la transacción
+        tx = Transaction(WebpayPlus.Options(commerce_code, api_key, integration_type))
+
+        # Crea la transacción
+        resp = tx.create(buy_order, session_id, amount, return_url)
+
+        # Verifica la respuesta y redirige al usuario a la página de pago
+        if resp and "token" in resp:
+            token = resp["token"]
+            return redirect(f"https://webpay.transbank.cl/webpayplus?token_ws={token}")
+        else:
+            # Maneja el caso de error
+            return render(request, 'error.html', {'error': resp})
+    else:
+        # Renderiza el formulario de pago
+        return render(request, 'formulario_pago.html')
+
+
+
+
+
+
+#---------------------------------------------------------------------------------------------------------------------------
 
 
 

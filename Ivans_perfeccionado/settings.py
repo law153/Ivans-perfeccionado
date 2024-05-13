@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'api_r',
     'rest_framework.authtoken',
+    'transbank.webpay',
 ]
 
 MIDDLEWARE = [
@@ -124,6 +125,12 @@ USE_I18N = True
 
 USE_TZ = True
 
+#-----------------------------------------------------------------cosas de webpay
+SECURE_SSL_REDIRECT = True
+
+SESSION_COOKIE_SECURE = True
+#-----------------------------------------------------------------
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
@@ -148,5 +155,10 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES' : [
         'rest_framework.authentication.TokenAuthentication'
-    ]
+    ],
+    'TRANSBANK_CONFIGURATION': {
+        'COMMERCE_CODE': '597055555532',
+        'API_KEY': '579B532A7440BB0C9079DED94D31EA1615BACEB56610332264630D42D0A36B1C',
+        'INTEGRATION_TYPE': 'TEST'  # O 'LIVE' si estás en producción
+    }
 }
