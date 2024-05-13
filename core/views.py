@@ -16,8 +16,8 @@ from django.contrib.auth.decorators import user_passes_test
 #dchango con webpay
 #---------------------------------------------------------------------------------------------------------------------------
 from django.shortcuts import redirect, render
+from transbank.webpay import webpay_plus
 from transbank.webpay.webpay_plus.transaction import Transaction
-from transbank.webpay.webpay_plus import WebpayPlus
 
 def procesar_pago(request):
     if request.method == 'POST':
@@ -25,7 +25,7 @@ def procesar_pago(request):
         buy_order = request.POST.get('buy_order')
         session_id = request.POST.get('session_id')
         amount = request.POST.get('amount')
-        return_url = request.build_absolute_uri('/')  # URL de retorno a tu sitio web
+        return_url = request.build_absolute_uri('/127.0.0.1')  # URL de retorno a tu sitio web
 
         # Define tus credenciales de integración (códigos de comercio y llaves)
         commerce_code = getattr(settings, 'REST_FRAMEWORK', {}).get('TRANSBANK_CONFIGURATION', {}).get('COMMERCE_CODE', None)
@@ -33,7 +33,7 @@ def procesar_pago(request):
         integration_type = getattr(settings, 'REST_FRAMEWORK', {}).get('TRANSBANK_CONFIGURATION', {}).get('INTEGRATION_TYPE', 'TEST')
         
         # Inicializa la transacción
-        tx = Transaction(WebpayPlus.Options(commerce_code, api_key, integration_type))
+        tx = Transaction(webpay_plus.Options(commerce_code, api_key, integration_type))
 
         # Crea la transacción
         resp = tx.create(buy_order, session_id, amount, return_url)
