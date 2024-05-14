@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-fppdqntgn^e85$r_s-19pom5(z4d@m7+2a-xm&4*6%63-bzb29
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False #COLOCAR "False" CUANDO ESTE EL ENTORNO DE PRODUCCION Y "True" SI SOLO ES UN LOCALHOST
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://integracionwebpay-95b7d88b2e10.herokuapp.com']
 
 MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
 
