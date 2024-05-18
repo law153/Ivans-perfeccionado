@@ -10,10 +10,27 @@
 {% endblock disenos %}
 
 {% block cuerpo %}
-    <h1>Pago aprobado</h1>
-    <p>La transacción fue exitosa.</p
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-12 ajustado-posicion">
+                <form id="" name="" method="POST" enctype="application/x-www-form-urlencoded" action="{% url 'mostrarIndexCli' %}">
+                    {% csrf_token %}
+                    <div>
+                        <h1 style="font-size: 45px; text-align: center; text-decoration: underline; margin-top: 3%;">Pago aprobado</h1>
+                        <p>Monto: 10000</p>
+                        <p>Orden de compra: 12345</p>
+                        <p>ID de sesión: session123</p>
+                        <p>Su pago fue exitoso y la transacción fue aprobada.</p>
+
+                    </div>
+
+                    <div class="container-button">
+                        <input type="submit" value="Volver al inicio" name="retorno_inicio">
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
 {% endblock cuerpo %}
-
-{% block js %}
-
-{% endblock js %}

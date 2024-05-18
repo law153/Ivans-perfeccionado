@@ -13,9 +13,8 @@ import os
 from django.contrib.auth.decorators import user_passes_test
 # Create your views here.
 
-#dchango con webpay
-#---------------------------------------------------------------------------------------------------------------------------
-from django.shortcuts import redirect, render
+#Django Webpypay
+#-----------------------------------------------------------------------------------------------------------------------------
 from transbank.webpay.webpay_plus.transaction import Transaction
 
 def iniciar_transaccion(request):
@@ -26,34 +25,37 @@ def iniciar_transaccion(request):
         return_url = request.build_absolute_uri('/confirmar_transaccion/')
         #final_url = request.build_absolute_uri('/fin_transaccion/')
 
-        print(monto, orden_compra, session_id, return_url)
-
         transaction = Transaction()
         response = transaction.create(orden_compra, session_id, int(monto), return_url)
 
-        return redirect(response['url'] + '?token_ws=' + response['token'])
+        #return redirect(response['url'] + '?token_ws=' + response['token'])
 
-        #if response ['response_code'] == 0:
-            #return redirect(response['url'] + '?token_ws=' + response['token'])
-        #else:
-            #return render(request, 'core/error.html', {'message': 'Error al iniciar la transacción'})
+        if response:
+            return redirect(response['url'] + '?token_ws=' + response['token'])
+        else:
+            messages.warning(request,'Error al iniciar la transacción')
+            return render(request, 'core/error.html')
     else:
+        messages.warning(request,'Intente de nuevo')
         return render(request, 'core/cliente/metodo-pago.html')
 
 def confirmar_transaccion(request):
-    if 'token_ws' in request.POST:
-        token = request.POST['token_ws']
+    if 'token_ws' in request.GET:
+        token = request.GET['token_ws']
         transaction = Transaction()
         response = transaction.commit(token)
 
-        if response:
+        if response['status'] == 'AUTHORIZED':
             return render(request, 'core/cliente/exito-compra.html', {'response': response})
         else:
-            return render(request, 'core/error.html', {'message': 'Pago rechazado'})
+            messages.warning(request, 'El pago ha sido rechazado')
+            return render(request, 'core/error.html')
     else:
-        return render(request, 'core/error.html', {'message': 'No se recibió el token de la transacción'})
+        messages.warning(request,'No se recibió el token')
+        return render(request, 'core/error.html')
     
 def exitoCompra(request):
+
     return render(request, 'core/cliente/exito-compra.html')
 
 
@@ -309,13 +311,14 @@ def mostrarCategoriaCli(request, id_cate):
         messages.warning(request,'Debe estar registrado para acceder a esta pagina')
         return redirect('mostrarIni_sesion')
 
-def mostrarMetodoPago(request):
+def mostrarMetodoPago(request, total_pago):
 
     if request.user.is_authenticated:
 
         categoria = Categoria.objects.all()
+        venta = Venta.objects.get(total = total_pago)
         
-        contexto = {"categorias" : categoria}
+        contexto = {"categorias" : categoria, "ventas": venta}
         return render(request, 'core/cliente/Metodo-pago.html',contexto)
 
     else:
