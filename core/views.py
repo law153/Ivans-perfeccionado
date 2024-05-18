@@ -16,42 +16,45 @@ from django.contrib.auth.decorators import user_passes_test
 #dchango con webpay
 #---------------------------------------------------------------------------------------------------------------------------
 from django.shortcuts import redirect, render
-from transbank.webpay import webpay_plus
 from transbank.webpay.webpay_plus.transaction import Transaction
 
-def procesar_pago(request):
+def iniciar_transaccion(request):
     if request.method == 'POST':
-        # Recibe los datos del formulario de pago
-        buy_order = request.POST.get('buy_order')
-        session_id = request.POST.get('session_id')
-        amount = request.POST.get('amount')
-        return_url = request.build_absolute_uri('/127.0.0.1')  # URL de retorno a tu sitio web
+        monto = request.POST.get('monto')
+        orden_compra = request.POST.get('ordenCompra')
+        session_id = request.POST.get('sessionId')
+        return_url = request.build_absolute_uri('/confirmar_transaccion/')
+        #final_url = request.build_absolute_uri('/fin_transaccion/')
 
-        # Define tus credenciales de integración (códigos de comercio y llaves)
-        commerce_code = getattr(settings, 'REST_FRAMEWORK', {}).get('TRANSBANK_CONFIGURATION', {}).get('COMMERCE_CODE', None)
-        api_key = getattr(settings, 'REST_FRAMEWORK', {}).get('TRANSBANK_CONFIGURATION', {}).get('API_KEY', None)
-        integration_type = getattr(settings, 'REST_FRAMEWORK', {}).get('TRANSBANK_CONFIGURATION', {}).get('INTEGRATION_TYPE', 'TEST')
-        
-        # Inicializa la transacción
-        tx = Transaction(webpay_plus.Options(commerce_code, api_key, integration_type))
+        print(monto, orden_compra, session_id, return_url)
 
-        # Crea la transacción
-        resp = tx.create(buy_order, session_id, amount, return_url)
+        transaction = Transaction()
+        response = transaction.create(orden_compra, session_id, int(monto), return_url)
 
-        # Verifica la respuesta y redirige al usuario a la página de pago
-        if resp and "token" in resp:
-            token = resp["token"]
-            return redirect(f"https://webpay.transbank.cl/webpayplus?token_ws={token}")
-        else:
-            # Maneja el caso de error
-            return render(request, 'error.html', {'error': resp})
+        return redirect(response['url'] + '?token_ws=' + response['token'])
+
+        #if response ['response_code'] == 0:
+            #return redirect(response['url'] + '?token_ws=' + response['token'])
+        #else:
+            #return render(request, 'core/error.html', {'message': 'Error al iniciar la transacción'})
     else:
-        # Renderiza el formulario de pago
-        return render(request, 'formulario_pago.html')
+        return render(request, 'core/cliente/metodo-pago.html')
 
+def confirmar_transaccion(request):
+    if 'token_ws' in request.POST:
+        token = request.POST['token_ws']
+        transaction = Transaction()
+        response = transaction.commit(token)
 
-
-
+        if response:
+            return render(request, 'core/cliente/exito-compra.html', {'response': response})
+        else:
+            return render(request, 'core/error.html', {'message': 'Pago rechazado'})
+    else:
+        return render(request, 'core/error.html', {'message': 'No se recibió el token de la transacción'})
+    
+def exitoCompra(request):
+    return render(request, 'core/cliente/exito-compra.html')
 
 
 #---------------------------------------------------------------------------------------------------------------------------

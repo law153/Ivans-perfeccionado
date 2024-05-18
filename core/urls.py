@@ -1,6 +1,6 @@
 from django.urls import path,include
 from django.conf.urls import handler404
-from .views import mostrarIndex, mostrarNosotros, mostrarRegistro,mostrarIni_sesion, mostrarOlv_contra, mostrarPregunta, mostrarProducto, mostrarCategoria, mostrarIndexAdm, mostrarPerfilAdm, mostrarCategoriaAdm, mostrarAgregar, mostrarEditarPerfilAdm, mostrarCambioContraAdm, mostrarProductoAdm, mostrarEditarRol, mostrarProductoCli, mostrarCategoriaCli, mostrarMetodoPago, mostrarNosotrosCli, mostrarPerfilCli, mostrarIndexCli, mostrarCarritoCli, mostrarCambioContraCli, mostrarEditarPerfilCli,registrarUsuario,consultar, agregarProducto, inicioSesion, agregarAlCarrito, consultarCli, editarProducto, eliminarProducto, cierreSesion,mostrarError, editarPerfilCli, editarPerfilAdm, eliminarCuenta, revisarDatos, cambiarClaveAdm, cambiarClaveCli, olvideClave, editarRol, sacarDelCarro, cambiarCantidad, pagarCarrito, mostrarHistorial, mostrarCompra, mostrarConsultas, mostrarPedidos, mostrarDetallePedido, cancelarPedido, procesar_pago
+from .views import mostrarIndex, mostrarNosotros, mostrarRegistro,mostrarIni_sesion, mostrarOlv_contra, mostrarPregunta, mostrarProducto, mostrarCategoria, mostrarIndexAdm, mostrarPerfilAdm, mostrarCategoriaAdm, mostrarAgregar, mostrarEditarPerfilAdm, mostrarCambioContraAdm, mostrarProductoAdm, mostrarEditarRol, mostrarProductoCli, mostrarCategoriaCli, mostrarMetodoPago, mostrarNosotrosCli, mostrarPerfilCli, mostrarIndexCli, mostrarCarritoCli, mostrarCambioContraCli, mostrarEditarPerfilCli,registrarUsuario,consultar, agregarProducto, inicioSesion, agregarAlCarrito, consultarCli, editarProducto, eliminarProducto, cierreSesion,mostrarError, editarPerfilCli, editarPerfilAdm, eliminarCuenta, revisarDatos, cambiarClaveAdm, cambiarClaveCli, olvideClave, editarRol, sacarDelCarro, cambiarCantidad, pagarCarrito, mostrarHistorial, mostrarCompra, mostrarConsultas, mostrarPedidos, mostrarDetallePedido, cancelarPedido, iniciar_transaccion, confirmar_transaccion, exitoCompra
 urlpatterns = [
 
     ### Paginas sin-cuenta###
@@ -39,6 +39,7 @@ urlpatterns = [
     path('cambiarCantidad/<cod_detalle>',cambiarCantidad,name="cambiarCantidad"),
     path('pagarCarrito/',pagarCarrito,name="pagarCarrito"),
     path('cancelarPedido/<idVenta>',cancelarPedido,name="cancelarPedido"),
+    path('exitoCompra', exitoCompra, name="exitoCompra"),
     ### Paginas admin###
     path('principal_adm/',mostrarIndexAdm,name="mostrarIndexAdm"),
     path('categoria_adm/<id_cate>', mostrarCategoriaAdm, name="mostrarCategoriaAdm"),
@@ -58,7 +59,8 @@ urlpatterns = [
     path('cambiarClaveAdm/',cambiarClaveAdm,name="cambiarClaveAdm"),
     path('editarRol/<id>', editarRol, name="editarRol"),
     ### WebPay ###
-    path('procesar_pago/', procesar_pago, name="procesar_pago"),
+    path('iniciar_transaccion/', iniciar_transaccion, name="iniciar_transaccion"),
+    path('confirmar_transaccion/', confirmar_transaccion, name="confirmar_transaccion"),
     ### Errores ###
     path('error/',mostrarError,name="mostrarError"),
    

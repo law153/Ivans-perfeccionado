@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-fppdqntgn^e85$r_s-19pom5(z4d@m7+2a-xm&4*6%63-bzb29'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False #COLOCAR "False" CUANDO ESTE EL ENTORNO DE PRODUCCION Y "True" SI SOLO ES UN LOCALHOST
+DEBUG = True #COLOCAR "False" CUANDO ESTE EL ENTORNO DE PRODUCCION Y "True" SI SOLO ES UN LOCALHOST
 
-ALLOWED_HOSTS = ['https://git.heroku.com/integracionwebpay.git']
+ALLOWED_HOSTS = ['127.0.0.1', 'https://webpay3gint.transbank.cl']
 
 MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
 
@@ -126,10 +126,7 @@ USE_I18N = True
 USE_TZ = True
 
 #-----------------------------------------------------------------cosas de webpay
-SECURE_SSL_REDIRECT = True
-
-SESSION_COOKIE_SECURE = True
-#-----------------------------------------------------------------
+#SECURE_SSL_REDIRECT = True
 
 
 # Static files (CSS, JavaScript, Images)
