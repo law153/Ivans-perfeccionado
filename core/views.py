@@ -18,26 +18,28 @@ from django.contrib.auth.decorators import user_passes_test
 from transbank.webpay.webpay_plus.transaction import Transaction
 
 def iniciar_transaccion(request):
-    if request.method == 'POST':
-        monto = request.POST.get('monto')
-        orden_compra = request.POST.get('ordenCompra')
-        session_id = request.POST.get('sessionId')
-        return_url = request.build_absolute_uri('/confirmar_transaccion/')
-        #final_url = request.build_absolute_uri('/fin_transaccion/')
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            monto = request.POST.get('monto')
+            orden_compra = request.POST.get('ordenCompra')
+            session_id = request.POST.get('sessionId')
+            return_url = request.build_absolute_uri('/confirmar_transaccion/')
+            #final_url = request.build_absolute_uri('/fin_transaccion/')
 
-        transaction = Transaction()
-        response = transaction.create(orden_compra, session_id, int(monto), return_url)
+            transaction = Transaction()
+            response = transaction.create(orden_compra, session_id, int(monto), return_url)
 
-        #return redirect(response['url'] + '?token_ws=' + response['token'])
-
-        if response:
-            return redirect(response['url'] + '?token_ws=' + response['token'])
+            if response:
+                return redirect(response['url'] + '?token_ws=' + response['token'])
+            else:
+                messages.warning(request,'Error al iniciar la transacción')
+                return render(request, 'core/error.html')
         else:
-            messages.warning(request,'Error al iniciar la transacción')
-            return render(request, 'core/error.html')
+            messages.warning(request,'Intente de nuevo')
+            return render(request, 'core/cliente/metodo-pago.html')
     else:
-        messages.warning(request,'Intente de nuevo')
-        return render(request, 'core/cliente/metodo-pago.html')
+        messages.warning(request,'Debe estar registrado para acceder a esta pagina')
+        return redirect('mostrarIni_sesion')
 
 def confirmar_transaccion(request):
     if 'token_ws' in request.GET:
@@ -311,14 +313,15 @@ def mostrarCategoriaCli(request, id_cate):
         messages.warning(request,'Debe estar registrado para acceder a esta pagina')
         return redirect('mostrarIni_sesion')
 
-def mostrarMetodoPago(request, total_pago):
+def mostrarMetodoPago(request, monto):
 
     if request.user.is_authenticated:
 
         categoria = Categoria.objects.all()
-        venta = Venta.objects.get(total = total_pago)
+
+        carrito = Venta.objects.get(total = monto)
         
-        contexto = {"categorias" : categoria, "ventas": venta}
+        contexto = {"categorias" : categoria, "venta" : carrito}
         return render(request, 'core/cliente/Metodo-pago.html',contexto)
 
     else:

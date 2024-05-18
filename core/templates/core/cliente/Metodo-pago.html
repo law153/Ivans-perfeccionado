@@ -18,23 +18,24 @@
 
             <div class="col-md-4 ajustado-posicion">
                 <h1>Metodo de pago</h1>
-                <form id="metodo-de-pago" name="pregunta" method="post" enctype="application/x-www-form-urlencoded" action="{% url 'iniciar_transaccion' venta.total_pago %}">
+                <form id="metodo-de-pago" name="pregunta" method="post" enctype="application/x-www-form-urlencoded" action="{% url 'iniciar_transaccion' %}">
                     {% csrf_token %}
                     <div class="form-group">
                         <label for="eleccion">Pague con WebPay:</label><br>
                         <p class="alerta" id="alerta_metodo"></p>
                     </div>
 
-                    {% if venta %}
-                        {% for i in venta %}
-                            <div class="container-button">
-                                <input type="hidden" name="monto" value="{{i.venta.total}}">
-                                <input type="hidden" name="ordenCompra" value="12345">
-                                <input type="hidden" name="sessionId" value="session123">
-                                <input type="submit" value="Confirmar" name="confirmar">
-                            </div>
-                        {% endfor %}
-                    {% endif %}
+                    
+                        
+                        <div class="container-button">
+                            <input type="hidden" name="monto" value="10000">
+                         <input type="hidden" name="ordenCompra" value="12345">
+                            <input type="hidden" name="sessionId" value="session123">
+                            <input type="submit" value="Confirmar" name="confirmar">
+                        </div>
+                    {% endif  %}
+                        
+                    
                     
                     
                 </form> 
