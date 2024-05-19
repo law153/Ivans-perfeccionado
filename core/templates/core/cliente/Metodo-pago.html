@@ -15,41 +15,44 @@
             <div class="col-md-4">
             </div>
 
+            
 
             <div class="col-md-4 ajustado-posicion">
                 <h1>Metodo de pago</h1>
-                <form id="metodo-de-pago" name="pregunta" method="post" enctype="application/x-www-form-urlencoded" action="{% url 'iniciar_transaccion' %}">
+
+                <form id="metodo-de-pago" name="metodo-de-pago" method="post" enctype="application/x-www-form-urlencoded" action="{% url 'iniciar_transaccion' %}">
                     {% csrf_token %}
+
+                    
                     <div class="form-group">
                         <label for="eleccion">Pague con WebPay:</label><br>
-                        <p class="alerta" id="alerta_metodo"></p>
                     </div>
 
                     
-                        
-                        <div class="container-button">
-                            <input type="hidden" name="monto" value="10000">
-                         <input type="hidden" name="ordenCompra" value="12345">
+
+                    <div class="container-button">
+                        {% if venta %}
+                            {% for i in venta%}
+                            <input type="hidden" name="monto" value="{{i.total}}">
+                            <input type="hidden" name="ordenCompra" value="12345">
                             <input type="hidden" name="sessionId" value="session123">
                             <input type="submit" value="Confirmar" name="confirmar">
-                        </div>
-                    {% endif  %}
-                        
-                    
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+
                     
                     
                 </form> 
+                
+                
                 <br>
 
             </div>
+            
 
             <div class="col-md-4">
             </div>
         </div>
     </div>
     {% endblock cuerpo %}
-
-    {% block js %}
-    <!--Bootstrap JS-->
-    <script src="{% static 'core/js/metodo-de-pago.js' %}"></script>
-    {% endblock js %}
