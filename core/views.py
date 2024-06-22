@@ -53,6 +53,44 @@ def confirmar_transaccion(request):
 
             if response['status'] == 'AUTHORIZED':
                 monto = request.session.get('monto')
+                # A continuación la funcion de pagar el carrito fue agregada y asimilida por confirmar_transaccion
+                username = request.session.get('username')
+                usuarioC = Usuario.objects.get(correo = username)
+                
+                carritoP = Venta.objects.get(usuario = usuarioC, estado='ACTIVO')
+
+                entrega = timedelta(3)
+
+                fecha_compra = carritoP.fecha_venta
+
+                fecha_e_nueva = fecha_compra + entrega
+
+                carritoP.fecha_entrega = fecha_e_nueva
+
+                carritoP.save()
+
+                detalles = Detalle.objects.filter(venta = carritoP)
+
+                for d in detalles:
+                    producto = Producto.objects.get(cod_prod = d.producto.cod_prod)
+                    producto.stock -= d.cantidad
+                    
+                    Detalle_comprado.objects.create(nombre_prod_c = producto.nombre_prod,
+                                                    cantidad_c = d.cantidad,
+                                                    foto_prod_c = producto.foto_prod,
+                                                    subtotal_c = d.subtotal,
+                                                    venta_c = d.venta)
+
+
+                    producto.save()
+
+                carritoP.estado = 'VENTA'
+
+                carritoP.carrito = 0
+
+                carritoP.save()
+
+
                 return render(request, 'core/cliente/exito-compra.html', {'response': response, 'monto': monto} )
             else:
                 messages.warning(request, 'El pago ha sido rechazado')
@@ -692,53 +730,6 @@ def cambiarCantidad(request, cod_detalle):
     else:
         messages.warning(request,'Debe estar registrado para acceder a esta pagina')
         return redirect('mostrarIni_sesion')
-    
-def pagarCarrito(request):
-    if request.user.is_authenticated:
-        username = request.session.get('username')
-        usuarioC = Usuario.objects.get(correo = username)
-        
-        carritoP = Venta.objects.get(usuario = usuarioC, estado='ACTIVO')
-
-        entrega = timedelta(3)
-
-        fecha_compra = carritoP.fecha_venta
-
-        fecha_e_nueva = fecha_compra + entrega
-
-        carritoP.fecha_entrega = fecha_e_nueva
-
-        carritoP.save()
-
-        detalles = Detalle.objects.filter(venta = carritoP)
-
-        for d in detalles:
-            producto = Producto.objects.get(cod_prod = d.producto.cod_prod)
-            producto.stock -= d.cantidad
-            
-            Detalle_comprado.objects.create(nombre_prod_c = producto.nombre_prod,
-                                            cantidad_c = d.cantidad,
-                                            foto_prod_c = producto.foto_prod,
-                                            subtotal_c = d.subtotal,
-                                            venta_c = d.venta)
-
-
-            producto.save()
-
-        carritoP.estado = 'VENTA'
-
-        carritoP.carrito = 0
-
-        carritoP.save()
-
-        
-
-        messages.warning(request,'Esta función no está implementada')
-        return redirect('mostrarError')
-    else:
-        messages.warning(request,'Debe estar registrado para acceder a esta pagina')
-        return redirect('mostrarIni_sesion')
-
 
 def consultarCli(request):
     if request.user.is_authenticated:
