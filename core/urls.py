@@ -1,6 +1,6 @@
 from django.urls import path,include
 from django.conf.urls import handler404
-from .views import mostrarIndex, mostrarNosotros, mostrarRegistro,mostrarIni_sesion, mostrarOlv_contra, mostrarPregunta, mostrarProducto, mostrarCategoria, mostrarIndexAdm, mostrarPerfilAdm, mostrarCategoriaAdm, mostrarAgregar, mostrarEditarPerfilAdm, mostrarCambioContraAdm, mostrarProductoAdm, mostrarEditarRol, mostrarProductoCli, mostrarCategoriaCli, mostrarMetodoPago, mostrarNosotrosCli, mostrarPerfilCli, mostrarIndexCli, mostrarCarritoCli, mostrarCambioContraCli, mostrarEditarPerfilCli,registrarUsuario,consultar, agregarProducto, inicioSesion, agregarAlCarrito, consultarCli, editarProducto, eliminarProducto, cierreSesion,mostrarError, editarPerfilCli, editarPerfilAdm, eliminarCuenta, revisarDatos, cambiarClaveAdm, cambiarClaveCli, olvideClave, editarRol, sacarDelCarro, cambiarCantidad, mostrarHistorial, mostrarCompra, mostrarConsultas, mostrarPedidos, mostrarDetallePedido, cancelarPedido, iniciar_transaccion, confirmar_transaccion, exitoCompra
+from .views import mostrarIndex, mostrarNosotros, mostrarRegistro,mostrarIni_sesion, mostrarOlv_contra, mostrarPregunta, mostrarProducto, mostrarCategoria, mostrarIndexAdm, mostrarPerfilAdm, mostrarCategoriaAdm, mostrarAgregar, mostrarEditarPerfilAdm, mostrarCambioContraAdm, mostrarProductoAdm, mostrarEditarRol, mostrarProductoCli, mostrarCategoriaCli, mostrarMetodoPago, mostrarNosotrosCli, mostrarPerfilCli, mostrarIndexCli, mostrarCarritoCli, mostrarCambioContraCli, mostrarEditarPerfilCli,registrarUsuario,consultar, agregarProducto, inicioSesion, agregarAlCarrito, consultarCli, editarProducto, eliminarProducto, cierreSesion,mostrarError, editarPerfilCli, editarPerfilAdm, eliminarCuenta, revisarDatos, cambiarClaveAdm, cambiarClaveCli, olvideClave, editarRol, sacarDelCarro, cambiarCantidad, mostrarHistorial, mostrarCompra, mostrarConsultas, mostrarPedidos, mostrarDetallePedido, cancelarPedido, iniciar_transaccion, confirmar_transaccion, exitoCompra,errorCarrito,pagoRechazado
 urlpatterns = [
 
     ### Paginas sin-cuenta###
@@ -60,6 +60,8 @@ urlpatterns = [
     ### WebPay ###
     path('iniciar_transaccion/', iniciar_transaccion, name="iniciar_transaccion"),
     path('confirmar_transaccion/', confirmar_transaccion, name="confirmar_transaccion"),
+    path('errorCarrito/', errorCarrito, name="errorCarrito"),
+    path('pagoRechazado/', pagoRechazado, name="pagoRechazado"),
     ### Errores ###
     path('error/',mostrarError,name="mostrarError"),
    

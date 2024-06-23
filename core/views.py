@@ -36,7 +36,7 @@ def iniciar_transaccion(request):
                 return redirect(response['url'] + '?token_ws=' + response['token'])
             else:
                 messages.warning(request,'Error al iniciar la transacción')
-                return render(request, 'core/error.html')
+                return render(request, 'core/ErroresCarrito/errorCarrito.html')
         else:
             messages.warning(request,'Intente de nuevo')
             return render(request, 'core/cliente/metodo-pago.html')
@@ -94,10 +94,10 @@ def confirmar_transaccion(request):
                 return render(request, 'core/cliente/exito-compra.html', {'response': response, 'monto': monto} )
             else:
                 messages.warning(request, 'El pago ha sido rechazado')
-                return render(request, 'core/error.html')
+                return render(request, 'core/ErroresCarrito/pagoRechazado.html')
         else:
             messages.warning(request,'No se recibió el token')
-            return render(request, 'core/error.html')
+            return render(request, 'core/ErroresCarrito/errorCarrito.html')
     else:
         messages.warning(request,'Debe estar registrado para acceder a esta pagina')
         return redirect('mostrarIni_sesion')
@@ -1247,7 +1247,12 @@ def editarRol(request,id):
     else:
         messages.warning(request,'Debe estar registrado para acceder a esta pagina')
         return redirect('mostrarIni_sesion')
+def errorCarrito(request):
+    return render(request, 'errorCarrito.html')
 
+def pagoRechazado(request):
+    return render(request, 'pagoRechazado.html')
+    
 
 
 

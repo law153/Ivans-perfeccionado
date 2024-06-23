@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error</title>
+    <!-- Bootstrap CSS-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    
+    <!--Javascript-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+    <!--Diseño propio-->
+    <link rel="stylesheet" type="text/css" href="{% static  'core/css/barra.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static  'core/css/formularios.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static  'core/css/errorCarrito.css'%}">
+    <script src="https://kit.fontawesome.com/2c74fac334.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<style>
+    @media screen and (min-width: 0px) and (max-width: 576px){
+
+        .contenedor-barra{
+            min-height: 0vh;
+            
+        }
+
+        
+    }
+</style>
+
+<body>
+    <div class="container-fluid contenedor-barra">
+        
+    </div>
+    
+     <!--Cuerpo-->
+     <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+            </div>
+
+
+            <div class="col-md-4 ajustado-posicion">
+                <h1>Oh no...Hubo un problema durante la transacion</h1>
+                <div class="posicion-casillas-formulario">
+                    
+
+                    
+                    <p>Hubo un problema durante la transacion, intente nuevamente mas tarde, si el error persiste llame a su banco o servicio al cliente para mas informacion</p>
+                    
+
+                    
+                </div> 
+
+                <div>Presione aqui para volver al carrito:</div>
+                <form action="{% url 'mostrarCarritoCli' %}">
+
+                    <button class="boton_Error">Carrito</button>
+
+                </form>
+                
+                <br>
+
+            </div>
+
+            <div class="col-md-4">
+            </div>
+        </div>
+    </div>
+
+    {% if messages %}
+        {% for message in messages %}
+            <script>
+                Swal.fire({
+                            "title": "Error",
+                            "text": "{{message}}",
+                            "confirmButtonColor": "#000",
+                            "background": "#ff0"
+                            })
+            </script>
+        {% endfor %}
+    {% endif %}
+    
+    <!--Fin Cuerpo-->
+    
+   
+</body>
+</html>
+
