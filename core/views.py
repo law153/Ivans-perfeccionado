@@ -61,7 +61,7 @@ def confirmar_transaccion(request):
 
                 entrega = timedelta(3)
 
-                fecha_compra = carritoP.fecha_venta
+                fecha_compra = date.today() #carritoP.fecha_venta
 
                 fecha_e_nueva = fecha_compra + entrega
 
